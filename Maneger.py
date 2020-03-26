@@ -68,14 +68,14 @@ class Meneger:
         shore = input("are you shore?[Y / N]:")
         if shore == "Y":
             print("The game break")
-            return True
+            exit()
         else:
             print("The game continue")
             return Stat.GAME
 
     def do_end(self):
         print(self.player[self.turn], "wine!!!!!!!!!!!!!!!!")
-        return # בלה בלה בלה בלה
+        return
 
 meneger = Meneger()
 st = Stat.START
@@ -89,7 +89,5 @@ while True:
         st = meneger.do_bungee()
     elif st == Stat.BREAK:
         st = meneger.do_break()
-        if st:
-            break
     elif st == Stat.END:
         st = meneger.do_end()
