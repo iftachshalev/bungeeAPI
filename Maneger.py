@@ -80,6 +80,7 @@ class Meneger:
 meneger = Meneger()
 st = Stat.START
 
+# run section
 while True:
     if st == Stat.START:
         st = meneger.do_start()
