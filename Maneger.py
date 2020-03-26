@@ -75,12 +75,11 @@ class Meneger:
 
     def do_end(self):
         print(self.player[self.turn], "wine!!!!!!!!!!!!!!!!")
-        return 
+        return # בלה בלה בלה בלה
 
 meneger = Meneger()
 st = Stat.START
 
-# run section
 while True:
     if st == Stat.START:
         st = meneger.do_start()
