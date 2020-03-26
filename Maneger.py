@@ -75,7 +75,7 @@ class Meneger:
 
     def do_end(self):
         print(self.player[self.turn], "wine!!!!!!!!!!!!!!!!")
-        return
+        return # ככעכע
 
 meneger = Meneger()
 st = Stat.START
