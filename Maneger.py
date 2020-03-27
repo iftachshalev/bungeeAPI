@@ -42,7 +42,13 @@ class Meneger:
             print("invalid text, pleas try againn")
             return Stat.GAME
         what_to_do = what_to_do[0:-1]
-        array_num = [int(i) for i in what_to_do]
+        array_num = []
+        for i in what_to_do:
+            card_ind = int(i)
+            if card_ind >= len(self.player[self.turn].my_cards):
+                print('ERROR: card index must be in hand')
+                return Stat.GAME
+            array_num.append(card_ind)
         success = self.player[self.turn].turn(array_num, is_from_stack)
         if not success:
             return Stat.GAME
@@ -77,6 +83,7 @@ class Meneger:
         print(self.player[self.turn], "wine!!!!!!!!!!!!!!!!")
         return # ככעכע
 
+
 meneger = Meneger()
 st = Stat.START
 
@@ -91,3 +98,4 @@ while True:
         st = meneger.do_break()
     elif st == Stat.END:
         st = meneger.do_end()
+
