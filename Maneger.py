@@ -2,6 +2,7 @@ from enum import Enum
 from Bunjy_Game import Game
 from Player import Player
 import random
+import copy
 
 
 class Stat(Enum):
@@ -41,11 +42,12 @@ class Meneger:
         else:
             print("invalid text, pleas try againn")
             return Stat.GAME
+        old_my_cards = copy.copy(self.player[self.turn].my_cards)
         what_to_do = what_to_do[0:-1]
         array_num = []
         for i in what_to_do:
             card_ind = int(i)
-            if card_ind >= len(self.player[self.turn].my_cards):
+            if card_ind >= len(old_my_cards):
                 print('ERROR: card index must be in hand')
                 return Stat.GAME
             array_num.append(card_ind)
@@ -54,8 +56,9 @@ class Meneger:
             return Stat.GAME
         print(self.player[self.turn])
         sam = 1
+        print(array_num)
         for i in array_num:
-            if i == 6:
+            if old_my_cards[i] == 6:
                 sam += 1
         self.turn = (self.turn + sam) % self.num_user
         return Stat.GAME
@@ -63,7 +66,7 @@ class Meneger:
     def do_bungee(self):
         bungee_turn = (self.turn - 1) % self.num_user
         while self.turn != bungee_turn:
-            stat = self.do_game()
+            stat = self.do_game() # if sae Bungee: do nothing
             if stat == Stat.BREAK:
                 return Stat.BREAK
             if stat == Stat.BUNGEE:
@@ -80,8 +83,10 @@ class Meneger:
             return Stat.GAME
 
     def do_end(self):
+        for i in self.player:
+            pass
         print(self.player[self.turn], "wine!!!!!!!!!!!!!!!!")
-        return # ככעכע
+        return
 
 
 meneger = Meneger()

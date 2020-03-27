@@ -8,16 +8,16 @@ import random
 
 class Game:
     cards = [0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6,
-             6, 6, 6,
-7, 7, 7, 7, 7, 8, 8, 8    , 8, 8, 9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10]
+             6, 6, 6, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10]
+    print(len(cards))
 
     def __init__(self):
         random.shuffle(self.cards)
         self.lucky_card = self.get_valid_lucky_card()
         del(self.cards[-1])
         self.lost_cards = []
-    def throw_card(self, *args):
 
+    def throw_card(self, *args):
         if len(args) == 1:
             self.lost_cards.append(args[0])
             return
@@ -53,6 +53,7 @@ class Game:
         except:
             return None
 
+    #
     def get_valid_lucky_card(self):
         while True:
             card = self.card_from_stack()

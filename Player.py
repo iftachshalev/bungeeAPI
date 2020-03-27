@@ -11,10 +11,11 @@ class Player:
             card = self.game.card_from_stack()
             self.my_cards.append(card)
         self.lucky_card = self.game.get_lucky_card()
-        self.my_cards = self.sort_array()
+        self.sort_array()
         self.lost_card = self.game.get_lost_card()
         self.bungee_mode = False
         self.my_score = self.my__score()
+        self.stick_factor = 0.5
 
     def say_bungee(self):
         if sum(self.my_cards) <= 5:
@@ -42,7 +43,8 @@ class Player:
             card, success = self.game.card_from_lost(throw_lost)
         if card != []:
             self.my_cards.append(card)
-            self.my_cards = self.sort_array()
+            self.sort_array()
+            # to stick
             return True
         return False
 
@@ -82,7 +84,6 @@ class Player:
         for i in self.my_cards:
             array.append(i)
         self.my_cards = array
-        return self.my_cards
 
 g = Game()
 p = Player(g)
