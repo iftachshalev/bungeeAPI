@@ -49,14 +49,14 @@ class Player:
             if card == old_my_cards[throw_index[0]]:
                 rand = random.random()
                 if rand > self.stick_factor:
-                    print("well done, you stick, rand:", rand)
+                    print("well done! you stick, rand:", rand)
                     self.sort_array()
                     self.game.throw_card(card)
                     if card == 6:
                         return True, 1
                     return True, 0
                 else:
-                    print("oh no!, you can't stick, rand:", rand)
+                    print("oh no! you can't stick, rand:", rand)
                     self.my_cards.append(card)
                     self.sort_array()
                     return True, 0
