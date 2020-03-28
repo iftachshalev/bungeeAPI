@@ -12,23 +12,38 @@ class Stat(Enum):
     BREAK = 4
     END = 5
 
-class Meneger:
+# Class Manager
+# Handle functionality of state machine
+class Manager:
 
-    def do_start(self):
-        self.num_user = int(input("num players:"))
-        self.game = Game()
+    def __init__(self):
+        self.num_user = -1
+        self.turn = -1
+        self.lucky_card = -1
+        self.game = []
         self.player = []
+
+    # prepare game: create users
+    def do_start(self):
+        self.num_user = int(input("Choose Number Of Players:"))
+        self.game = Game()
+
+        # init players
         for i in range(self.num_user):
             self.player.append(Player(self.game))
+
+        # choose random turn
         self.turn = random.randrange(len(self.player) - 1)
+
         self.lucky_card = self.game.get_lucky_card()
-        # self.lost_card = self.game.get_lost_card()
         return Stat.GAME
 
+    # run game: one turn each
     def do_game(self):
-        print(self.turn + 1)
+        print('------------------------------')
+        print('Player Number:', self.turn + 1)
         print(self.player[self.turn])
-        what_to_do = input("what do you want todo?\n   B [To sae Bungee]\n   Q [to quit]")
+        what_to_do = input("Action:  B [Bungee]  Q [Quit]\n>>> ")
         if what_to_do == "B":
             self.turn = (self.turn + 1) % self.num_user
             return Stat.BUNGEE
@@ -40,7 +55,7 @@ class Meneger:
         elif is_from_stack == "F":
             is_from_stack = False
         else:
-            print("invalid text, pleas try again")
+            print("Error: Invalid text, pleas try again")
             return Stat.GAME
         old_my_cards = copy.copy(self.player[self.turn].my_cards)
         what_to_do = what_to_do[0:-1]
@@ -62,6 +77,7 @@ class Meneger:
         self.turn = (self.turn + sam) % self.num_user
         return Stat.GAME
 
+    # run when player in bungee mode
     def do_bungee(self):
         bungee_turn = (self.turn - 1) % self.num_user
         while self.turn != bungee_turn:
@@ -72,6 +88,7 @@ class Meneger:
                 return Stat.GAME
         return Stat.END
 
+    # run when player ask to quit game
     def do_break(self):
         self.hwo_sae_bungee = self.player[self.turn]
         shore = input("are you shore?[Y / N]:")
@@ -82,25 +99,28 @@ class Meneger:
             print("The game continue")
             return Stat.GAME
 
+    # on game end: find the winner
     def do_end(self):
         for i in self.player:
             pass
-        print(self.player[self.turn], "wine!!!!!!!!!!!!!!!!")
-        return
+        print("Player Number", self.turn, "Is The Winner!!!!!!!!!!!!!!!!")
+        print(self.player[self.turn])
+        exit(0)
 
 
-meneger = Meneger()
+manager = Manager()
 st = Stat.START
 
+# game state machine
 while True:
     if st == Stat.START:
-        st = meneger.do_start()
+        st = manager.do_start()
     elif st == Stat.GAME:
-        st = meneger.do_game()
+        st = manager.do_game()
     elif st == Stat.BUNGEE:
-        st = meneger.do_bungee()
+        st = manager.do_bungee()
     elif st == Stat.BREAK:
-        st = meneger.do_break()
+        st = manager.do_break()
     elif st == Stat.END:
-        st = meneger.do_end()
+        manager.do_end()
 

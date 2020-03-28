@@ -80,8 +80,9 @@ class Player:
 
     def __repr__(self):
         lost_card = self.game.get_lost_card()
-        return f"my cards - {self.my_cards}, lucky card - {self.lucky_card}, lost_card - {lost_card}," \
-            f" bungee_mode - {self.bungee_mode}, my score - {self.my__score()}"
+        return f" Score: {self.my__score()}\n Cards: {self.my_cards}\t" \
+               f"Lucky card: {self.lucky_card}, Last_card: {lost_card},"
+
 
     def get_lucky_card_to_zero(self):
         for i in range(len(self.my_cards)):
