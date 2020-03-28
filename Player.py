@@ -43,6 +43,7 @@ class Player:
             card = self.game.card_from_stack()
         if not from_stack:
             card, success = self.game.card_from_lost(throw_lost)
+        self.sort_array()
         if card != []:
             if card == old_my_cards[throw_index[0]]:
                 rand = 0
@@ -50,19 +51,20 @@ class Player:
                     rand = random.randint(-10000, 10000)
                 if rand > 0:
                     print("well done, you stick, rand:", rand)
+                    self.sort_array()
                     self.game.throw_card(card)
                     if card == 6:
                         return True, 1
-                    return True, []
+                    return True, 0
                 else:
                     print("oh no!, you can't stick, rand:", rand)
                     self.my_cards.append(card)
                     self.sort_array()
-                    return True, []
+                    return True, 0
             else:
                 self.my_cards.append(card)
                 self.sort_array()
-                return True, []
+                return True, 0
         return False, []
 
     def get_state(self):
@@ -73,9 +75,8 @@ class Player:
         sam = 0
         for i in self.my_cards:
             if i == self.lucky_card:
-                pass
-            else:
-                sam += i
+                i = 0
+            sam = sam + i
         return sam
 
     def __repr__(self):

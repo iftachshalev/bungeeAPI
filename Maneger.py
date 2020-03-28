@@ -33,8 +33,7 @@ class Manager:
             self.player.append(Player(self.game))
 
         # choose random turn
-        self.turn = random.randrange(len(self.player) - 1)
-
+        self.turn = random.randrange(len(self.player))
         self.lucky_card = self.game.get_lucky_card()
         return Stat.GAME
 
@@ -66,26 +65,28 @@ class Manager:
                 print('ERROR: card index must be in hand')
                 return Stat.GAME
             array_num.append(card_ind)
-        success, sam = self.player[self.turn].turn(array_num, is_from_stack)
+        success, self.sam = self.player[self.turn].turn(array_num, is_from_stack)
         if not success:
             return Stat.GAME
         print(self.player[self.turn])
-        sam += 1
+        self.sam = self.sam + 1
         for i in array_num:
             if old_my_cards[i] == 6:
-                sam += 1
-        self.turn = (self.turn + sam) % self.num_user
+                self.sam += 1
+        self.turn = (self.turn + self.sam) % self.num_user
         return Stat.GAME
 
     # run when player in bungee mode
     def do_bungee(self):
+        for i in self.player:
+            i.bungee_mode = True
         bungee_turn = (self.turn - 1) % self.num_user
         while self.turn != bungee_turn:
-            stat = self.do_game() # if sae Bungee: do nothing
+            stat = self.do_game()
             if stat == Stat.BREAK:
                 return Stat.BREAK
             if stat == Stat.BUNGEE:
-                return Stat.GAME
+                self.turn = (self.turn + 1) % self.num_user
         return Stat.END
 
     # run when player ask to quit game
@@ -101,11 +102,17 @@ class Manager:
 
     # on game end: find the winner
     def do_end(self):
-        for i in self.player:
-            pass
-        print("Player Number", self.turn, "Is The Winner!!!!!!!!!!!!!!!!")
-        print(self.player[self.turn])
-        exit(0)
+        players_score = [i for i in self.player]
+        minimaly = min(players_score)
+        print(minimaly)
+        numin = 0
+        for i in range(len(players_score)):
+            if players_score[i] == minimaly:
+                numin += 1
+                now = i
+            if numin == 1:
+                print("Player Number", self.player[now], "Is The Winner!!!!!!!!!!!!!!!!")
+                exit()
 
 
 manager = Manager()
