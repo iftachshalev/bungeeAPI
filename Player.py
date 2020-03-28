@@ -17,6 +17,7 @@ class Player:
         self.lost_card = self.game.get_lost_card()
         self.bungee_mode = False
         self.my_score = self.my__score()
+        self.stick_factor = 0.5
 
     def say_bungee(self):
         if sum(self.my_cards) <= 5:
@@ -46,10 +47,8 @@ class Player:
         self.sort_array()
         if card != []:
             if card == old_my_cards[throw_index[0]]:
-                rand = 0
-                while rand == 0:
-                    rand = random.randint(-10000, 10000)
-                if rand > 0:
+                rand = random.random()
+                if rand > self.stick_factor:
                     print("well done, you stick, rand:", rand)
                     self.sort_array()
                     self.game.throw_card(card)

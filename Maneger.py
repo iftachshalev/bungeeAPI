@@ -34,6 +34,7 @@ class Manager:
 
         # choose random turn
         self.turn = random.randrange(len(self.player))
+
         self.lucky_card = self.game.get_lucky_card()
         return Stat.GAME
 
@@ -102,7 +103,7 @@ class Manager:
 
     # on game end: find the winner
     def do_end(self):
-        players_score = [i for i in self.player]
+        players_score = [i.my__score() for i in self.player]
         minimaly = min(players_score)
         print(minimaly)
         numin = 0
