@@ -40,7 +40,7 @@ class Meneger:
         elif is_from_stack == "F":
             is_from_stack = False
         else:
-            print("invalid text, pleas try againn")
+            print("invalid text, pleas try again")
             return Stat.GAME
         old_my_cards = copy.copy(self.player[self.turn].my_cards)
         what_to_do = what_to_do[0:-1]
@@ -51,12 +51,11 @@ class Meneger:
                 print('ERROR: card index must be in hand')
                 return Stat.GAME
             array_num.append(card_ind)
-        success = self.player[self.turn].turn(array_num, is_from_stack)
+        success, sam = self.player[self.turn].turn(array_num, is_from_stack)
         if not success:
             return Stat.GAME
         print(self.player[self.turn])
-        sam = 1
-        print(array_num)
+        sam += 1
         for i in array_num:
             if old_my_cards[i] == 6:
                 sam += 1
@@ -74,6 +73,7 @@ class Meneger:
         return Stat.END
 
     def do_break(self):
+        self.hwo_sae_bungee = self.player[self.turn]
         shore = input("are you shore?[Y / N]:")
         if shore == "Y":
             print("The game break")
