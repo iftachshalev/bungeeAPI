@@ -145,7 +145,6 @@ class Manager:
 manager = Manager()
 st = Stat.START
 
-
 # game state machine
 while True:
     if st == Stat.START:
