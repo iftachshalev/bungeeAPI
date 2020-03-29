@@ -81,7 +81,7 @@ class Manager:
 
     # run when player in bungee mode
     def do_bungee(self):
-        self.hwo_sae_bungee = copy.copy(self.turn)
+        self.who_say_bungee = copy.copy(self.turn)
         for i in self.player:
             i.bungee_mode = True
         bungee_turn = (self.turn - 1) % self.num_user
@@ -109,37 +109,17 @@ class Manager:
         minimaly = min(players_score)
         print(minimaly)
         numin = 0
-        for i in range(len(players_score)):
-            if players_score[i] == minimaly:
-                numin += 1
-                now = i
-            if numin == 1:
-                print("Player Number", self.player[now], "Is The Winner!!!!!!!!!!!!!!!!")
-                exit()
-        bifwinner = self.hwo_sae_bungee
-
-        def up_turn(bifwinner):
-            winner = copy.copy(bifwinner)
-            for i in range(bifwinner, self.num_user):
-                if players_score[winner] == players_score[i + 1]:
-                    winner = i + 1
-            return winner
-
-        def doun_turn(winner):
-            for i in range(self.hwo_sae_bungee):
-                if players_score[i] == players_score[winner]:
-                    winner = i
-            return winner
-
-        if bifwinner != 0 and bifwinner != self.num_user -1:
-            winner = up_turn(bifwinner)
-            self.ril_winner = doun_turn(winner)
-        elif bifwinner == 0:
-            self.ril_winner = up_turn(bifwinner)
-        elif bifwinner == -1:
-            self.ril_winner = doun_turn(bifwinner)
-        print("Player Number", self.player[self.ril_winner], "Is The Winner!!!!!!!!!!!!!!!!")
+        minscore = players_score[self.turn]
+        tur = (self.turn + 1) % self.num_user
+        while tur != self.turn:
+            if players_score[tur] <= minscore:
+                minscore = players_score[tur]
+                minplayer = self.player[tur]
+                minplayer_index = tur
+            tur = (tur + 1) % self.num_user
+        print("Player Number", minplayer_index + 1, "Is The Winner!!!!!!!!!!!!!!!!")
         exit()
+
 
 
 manager = Manager()
