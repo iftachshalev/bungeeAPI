@@ -14,6 +14,8 @@ class Stat(Enum):
 
 # Class Manager
 # Handle functionality of state machine
+
+
 class Manager:
 
     def __init__(self):
@@ -79,6 +81,7 @@ class Manager:
 
     # run when player in bungee mode
     def do_bungee(self):
+        self.hwo_sae_bungee = copy.copy(self.turn)
         for i in self.player:
             i.bungee_mode = True
         bungee_turn = (self.turn - 1) % self.num_user
@@ -92,7 +95,6 @@ class Manager:
 
     # run when player ask to quit game
     def do_break(self):
-        self.hwo_sae_bungee = self.player[self.turn]
         shore = input("are you shore?[Y / N]:")
         if shore == "Y":
             print("The game break")
@@ -114,10 +116,35 @@ class Manager:
             if numin == 1:
                 print("Player Number", self.player[now], "Is The Winner!!!!!!!!!!!!!!!!")
                 exit()
+        bifwinner = self.hwo_sae_bungee
+
+        def up_turn(bifwinner):
+            winner = copy.copy(bifwinner)
+            for i in range(bifwinner, self.num_user):
+                if players_score[winner] == players_score[i + 1]:
+                    winner = i + 1
+            return winner
+
+        def doun_turn(winner):
+            for i in range(self.hwo_sae_bungee):
+                if players_score[i] == players_score[winner]:
+                    winner = i
+            return winner
+
+        if bifwinner != 0 and bifwinner != self.num_user -1:
+            winner = up_turn(bifwinner)
+            self.ril_winner = doun_turn(winner)
+        elif bifwinner == 0:
+            self.ril_winner = up_turn(bifwinner)
+        elif bifwinner == -1:
+            self.ril_winner = doun_turn(bifwinner)
+        print("Player Number", self.player[self.ril_winner], "Is The Winner!!!!!!!!!!!!!!!!")
+        exit()
 
 
 manager = Manager()
 st = Stat.START
+
 
 # game state machine
 while True:
