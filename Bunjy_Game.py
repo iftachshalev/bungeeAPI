@@ -10,12 +10,14 @@ class Game:
     cards = [0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6,
              6, 6, 6, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10]
 
+    # it is the init
     def __init__(self):
         random.shuffle(self.cards)
         self.lucky_card = self.get_valid_lucky_card()
         del(self.cards[-1])
         self.lost_cards = []
 
+    # func to throw cads
     def throw_card(self, *args):
         if len(args) == 1:
             self.lost_cards.append(args[0])
@@ -25,6 +27,7 @@ class Game:
                 self.lost_cards.append(i)
             return
 
+    # get card from stack
     def card_from_stack(self):
         if len(self.cards) == 0:
             self.cards = self.lost_cards[0:-1]
@@ -34,6 +37,7 @@ class Game:
         del(self.cards[-1])
         return card
 
+    # get card from lost cards
     def card_from_lost(self, throw_lost):
         success = True
         card = self.lost_cards[- (throw_lost + 1)]
@@ -43,9 +47,11 @@ class Game:
     def __repr__(self):
         return f"cards - {self.cards}\n, lucky card - {self.lucky_card}, lost_cards - {self.lost_cards}"
 
+    # get lucky card to the Player Class
     def get_lucky_card(self):
         return self.lucky_card
 
+    # get lost card to the Player Class
     def get_lost_card(self):
         try:
             return self.lost_cards[-1]

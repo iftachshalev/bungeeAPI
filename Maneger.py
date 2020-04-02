@@ -117,7 +117,7 @@ class Manager:
                 minplayer = self.player[tur]
                 minplayer_index = tur
             tur = (tur + 1) % self.num_user
-        print("Player Number", minplayer_index + 1, "Is The Winner!!!!!!!!!!!!!!!!")
+        print("Player Number:", minplayer_index + 1, "Is The Winner!!!!!!!!!!!!!!!!")
         exit()
 
 
