@@ -24,5 +24,5 @@ def algo_simple(my_cards, lucky_card, lost_card, bungee_mode, score):
     return throw_str + from_stack
 
 
-print(algo_simple([2, 3, 5, 7, 8], 9, 8, False, 25))
-print(algo_simple([2, 3, 5, 8, 8], 9, 7, False, 26))
+# print(algo_simple([2, 3, 5, 7, 8], 9, 8, False, 25))
+# print(algo_simple([2, 3, 5, 8, 8], 9, 7, False, 26))

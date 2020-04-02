@@ -25,6 +25,11 @@ class Manager:
         self.game = []
         self.player = []
 
+        # set func dictionary
+
+        # Init to Input class
+        # save to self.inp
+
     # prepare game: create users
     def do_start(self):
         self.num_user = int(input("Choose Number Of Players:"))
@@ -45,6 +50,8 @@ class Manager:
         print('------------------------------')
         print('Player Number:', self.turn + 1)
         print(self.player[self.turn])
+
+        # replace with Input function
         what_to_do = input("Action:  B [Bungee]  Q [Quit]\n>>> ")
         if what_to_do == "B":
             self.turn = (self.turn + 1) % self.num_user

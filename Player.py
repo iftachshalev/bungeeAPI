@@ -68,7 +68,8 @@ class Player:
 
     def get_state(self):
         lost_card = self.game.get_lost_card()
-        return self.my_cards, self.lucky_card, lost_card, self.bungee_mode
+        score = self.my__score()
+        return self.my_cards, self.lucky_card, lost_card, self.bungee_mode, score
 
     def my__score(self):
         sam = 0
