@@ -12,8 +12,6 @@ class IO_Class:
         self.turn = None
         self.file = open(self.url, "a")
 
-    def my_func(self, the_ask):
-        return "4T"
 
     def print(self, what_to_print):
         if self.file_flag:
@@ -39,3 +37,7 @@ d.print("iftach hatotach")
 d.print("qrtqrtafgafg5")
 d.delete_file()
 d.close()
+
+
+def my_func(self, the_ask):
+    return "4T"
