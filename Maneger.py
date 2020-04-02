@@ -121,7 +121,6 @@ class Manager:
         exit()
 
 
-
 manager = Manager()
 st = Stat.START
 
@@ -137,4 +136,3 @@ while True:
         st = manager.do_break()
     elif st == Stat.END:
         manager.do_end()
-

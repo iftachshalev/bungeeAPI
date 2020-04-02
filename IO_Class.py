@@ -1,4 +1,6 @@
-import Game
+import os
+
+
 
 class IO_Class:
 
@@ -19,12 +21,12 @@ class IO_Class:
         self.file.close()
 
     def delete_file(self):
-        pass
+        os.remove(self.url)
 
     def get_turn(self, what_to_ask):
         pass
 
-d = IO_Class("iftachshalev30115.com.txt", True, True)
+d = IO_Class("iftachshalev30115com.txt", True, True, True)
 d.print("iftach hatotach")
 d.print("qrtqrtafgafg5")
 d.close()
