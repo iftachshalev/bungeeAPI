@@ -1,6 +1,7 @@
 from enum import Enum
 from Bunjy_Game import Game
 from Player import Player
+from IO_Class import Input
 import random
 import copy
 import IO_Class
@@ -31,6 +32,8 @@ class Manager:
         # set output obj
         self.out = IO_Class.IO_Class(self.OUTPUT_TO_FILE, self.OUTPUT_TO_SCREEN, self.LOG_FILE)
 
+        self.inp = Input()
+
         # set func dictionary
 
         # Init to Input class
@@ -58,7 +61,8 @@ class Manager:
         self.out.print(repr(self.player[self.turn]))
 
         # replace with Input function
-        what_to_do = input("Action:  B [Bungee]  Q [Quit]\n>>> ")
+        # what_to_do = input("Action:  B [Bungee]  Q [Quit]\n>>> ")
+        dict = self.vvv
         if what_to_do == "B":
             self.turn = (self.turn + 1) % self.num_user
             return Stat.BUNGEE
