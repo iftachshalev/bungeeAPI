@@ -3,7 +3,7 @@ from Bunjy_Game import Game
 from Player import Player
 import random
 import copy
-
+import IO_Class
 
 class Stat(Enum):
     START = 1
@@ -17,6 +17,9 @@ class Stat(Enum):
 
 
 class Manager:
+    OUTPUT_TO_FILE = True
+    OUTPUT_TO_SCREEN = True
+    LOG_FILE = 'log.txt'
 
     def __init__(self):
         self.num_user = -1
@@ -24,6 +27,9 @@ class Manager:
         self.lucky_card = -1
         self.game = []
         self.player = []
+
+        # set output obj
+        self.out = IO_Class.IO_Class(self.OUTPUT_TO_FILE, self.OUTPUT_TO_SCREEN, self.LOG_FILE)
 
         # set func dictionary
 
@@ -37,7 +43,7 @@ class Manager:
 
         # init players
         for i in range(self.num_user):
-            self.player.append(Player(self.game))
+            self.player.append(Player(self.game, self.out.print))
 
         # choose random turn
         self.turn = random.randrange(len(self.player))
@@ -47,9 +53,9 @@ class Manager:
 
     # run game: one turn each
     def do_game(self):
-        print('------------------------------')
-        print('Player Number:', self.turn + 1)
-        print(self.player[self.turn])
+        self.out.print('------------------------------')
+        self.out.print('Player Number: {}'.format(self.turn + 1))
+        self.out.print(repr(self.player[self.turn]))
 
         # replace with Input function
         what_to_do = input("Action:  B [Bungee]  Q [Quit]\n>>> ")
@@ -64,7 +70,7 @@ class Manager:
         elif is_from_stack == "F":
             is_from_stack = False
         else:
-            print("Error: Invalid text, pleas try again")
+            self.out.print("Error: Invalid text, pleas try again")
             return Stat.GAME
         old_my_cards = copy.copy(self.player[self.turn].my_cards)
         what_to_do = what_to_do[0:-1]
@@ -72,13 +78,13 @@ class Manager:
         for i in what_to_do:
             card_ind = int(i)
             if card_ind >= len(old_my_cards):
-                print('ERROR: card index must be in hand')
+                self.out.print('ERROR: card index must be in hand')
                 return Stat.GAME
             array_num.append(card_ind)
         success, self.sam = self.player[self.turn].turn(array_num, is_from_stack)
         if not success:
             return Stat.GAME
-        print(self.player[self.turn])
+        self.out.print(repr(self.player[self.turn]))
         self.sam = self.sam + 1
         for i in array_num:
             if old_my_cards[i] == 6:
@@ -104,17 +110,17 @@ class Manager:
     def do_break(self):
         shore = input("are you shore?[Y / N]:")
         if shore == "Y":
-            print("The game break")
+            self.out.print("The game break")
             exit()
         else:
-            print("The game continue")
+            self.out.print("The game continue")
             return Stat.GAME
 
     # on game end: find the winner
     def do_end(self):
         players_score = [i.my__score() for i in self.player]
         minimaly = min(players_score)
-        print(minimaly)
+        self.out.print(str(minimaly))
         numin = 0
         minscore = players_score[self.turn]
         tur = (self.turn + 1) % self.num_user
@@ -124,7 +130,7 @@ class Manager:
                 minplayer = self.player[tur]
                 minplayer_index = tur
             tur = (tur + 1) % self.num_user
-        print("Player Number:", minplayer_index + 1, "Is The Winner!!!!!!!!!!!!!!!!")
+        self.out.print("Player Number: {} Is The Winner!!!!!!!!!!!!!!!!".format(minplayer_index + 1))
         exit()
 
 

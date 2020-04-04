@@ -6,8 +6,9 @@ class Player:
 
     # lucky card
 
-    def __init__(self, game):
+    def __init__(self, game, print_func):
         self.game = game
+        self.print_func = print_func
         self.my_cards = []
         for i in range(5):
             card = self.game.card_from_stack()
@@ -23,19 +24,19 @@ class Player:
         if sum(self.my_cards) <= 5:
             self.bungee_mode = True
         else:
-            print("ERROR!")
+            self.print_func("ERROR!")
 
     def turn(self, throw_index, from_stack):
         old_my_cards = copy.copy(self.my_cards)
         self.lost_card = self.game.get_lost_card()
         if not from_stack and self.lost_card == None:
-            print("ERROR! You cent put card from lost if you play 1")
+            self.print_func("ERROR! You cent put card from lost if you play 1")
             return False, []
         throw_lost = len(throw_index)
         throw_index.sort()
         for j in range(len(throw_index) - 1):
             if self.my_cards[throw_index[j]] != self.my_cards[throw_index[j + 1]]:
-                print("ERROR! You cannot throw unequal cards")
+                self.print_func("ERROR! You cannot throw unequal cards")
                 return False, []
         for i in range(len(throw_index)):
             self.game.throw_card(self.my_cards[throw_index[- (i + 1)]])
@@ -49,14 +50,14 @@ class Player:
             if card == old_my_cards[throw_index[0]]:
                 rand = random.random()
                 if rand > self.stick_factor:
-                    print("well done! you stick, rand:", rand)
+                    self.print_func("well done! you stick, rand: {}".format(rand))
                     self.sort_array()
                     self.game.throw_card(card)
                     if card == 6:
                         return True, 1
                     return True, 0
                 else:
-                    print("oh no! you can't stick, rand:", rand)
+                    self.print_func("oh no! you can't stick, rand: {}".format(rand))
                     self.my_cards.append(card)
                     self.sort_array()
                     return True, 0
@@ -103,7 +104,3 @@ class Player:
         for i in self.my_cards:
             array.append(i)
         self.my_cards = array
-
-
-g = Game()
-p = Player(g)
