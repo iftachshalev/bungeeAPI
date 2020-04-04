@@ -30,9 +30,9 @@ class Game:
     # get card from stack
     def card_from_stack(self):
         if len(self.cards) == 0:
-            self.cards = self.lost_cards[0:-1]
+            self.cards = self.lost_cards[:-1]
             random.shuffle(self.cards)
-            del(self.lost_cards[0:-1])
+            del(self.lost_cards[:-1])
         card = self.cards[-1]
         del(self.cards[-1])
         return card
@@ -61,7 +61,10 @@ class Game:
     #
     def get_valid_lucky_card(self):
         while True:
-            card = self.card_from_stack()
+            card = self.cards[-1]
             if card != 0 and card != 6:
                 break
+            else:
+                del(self.cards[-1])
+                self.cards.insert(0, card)
         return card

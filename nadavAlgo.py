@@ -25,6 +25,8 @@ def algo_simple(my_cards, lucky_card, lost_card, bungee_mode, score):
     dict = {
         'say_bungee': say_bungee,
         'from_stack': from_stack,
+        'quit': False,
+        'error': '',
         'throw_cards': throw_card
     }
 

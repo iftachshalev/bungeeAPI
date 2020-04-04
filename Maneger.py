@@ -20,6 +20,7 @@ class Stat(Enum):
 class Manager:
     OUTPUT_TO_FILE = True
     OUTPUT_TO_SCREEN = True
+    INPUT_FROM_FUNC = False
     LOG_FILE = 'log.txt'
 
     def __init__(self):
@@ -32,7 +33,8 @@ class Manager:
         # set output obj
         self.out = IO_Class.IO_Class(self.OUTPUT_TO_FILE, self.OUTPUT_TO_SCREEN, self.LOG_FILE)
 
-        self.inp = Input()
+        # user input obj
+        self.inp = Input(self.INPUT_FROM_FUNC)
 
         # set func dictionary
 
@@ -60,37 +62,36 @@ class Manager:
         self.out.print('Player Number: {}'.format(self.turn + 1))
         self.out.print(repr(self.player[self.turn]))
 
-        # replace with Input function
-        # what_to_do = input("Action:  B [Bungee]  Q [Quit]\n>>> ")
-        dict = self.vvv
-        if what_to_do == "B":
+        # get user or robot command
+        my_cards, lucky_card, lost_card, bungee_mode, score = self.player[self.turn].get_state()
+        command_dict = self.inp.get_turn(self.turn, my_cards, lucky_card, lost_card, bungee_mode, score)
+
+        # spatial cases
+        if command_dict['error'] != '':
+            self.out.print(command_dict['error'])
+            return Stat.GAME
+        elif command_dict['quit']:
+            return Stat.BREAK
+        elif command_dict['say_bungee']:
             self.turn = (self.turn + 1) % self.num_user
             return Stat.BUNGEE
-        if what_to_do == "Q":
-            return Stat.BREAK
-        is_from_stack = what_to_do[-1]
-        if is_from_stack == "T":
-            is_from_stack = True
-        elif is_from_stack == "F":
-            is_from_stack = False
-        else:
-            self.out.print("Error: Invalid text, pleas try again")
-            return Stat.GAME
+
+        # copy cards for change later
         old_my_cards = copy.copy(self.player[self.turn].my_cards)
-        what_to_do = what_to_do[0:-1]
-        array_num = []
-        for i in what_to_do:
-            card_ind = int(i)
-            if card_ind >= len(old_my_cards):
-                self.out.print('ERROR: card index must be in hand')
-                return Stat.GAME
-            array_num.append(card_ind)
-        success, self.sam = self.player[self.turn].turn(array_num, is_from_stack)
+
+        # play turn
+        success, self.sam = self.player[self.turn].turn(command_dict['throw_cards'], command_dict['from_stack'],)
+
+        # turn failed
         if not success:
             return Stat.GAME
+
+        # print state afterwards
         self.out.print(repr(self.player[self.turn]))
+
+        # skip turn if 6
         self.sam = self.sam + 1
-        for i in array_num:
+        for i in command_dict['throw_cards']:
             if old_my_cards[i] == 6:
                 self.sam += 1
         self.turn = (self.turn + self.sam) % self.num_user
@@ -108,6 +109,7 @@ class Manager:
                 return Stat.BREAK
             if stat == Stat.BUNGEE:
                 self.turn = (self.turn + 1) % self.num_user
+        self.turn = (self.turn + 1) % self.num_user
         return Stat.END
 
     # run when player ask to quit game

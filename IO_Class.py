@@ -34,7 +34,52 @@ class Input:
             my_func = self.user_funcs[turn]
             return my_func(my_cards, lucky_card, lost_card, bungee_mode, score)
         else:
-            return input("Action:  B [Bungee]  Q [Quit]\n>>>")
+            what_to_do = input("Action:  B [Bungee]  Q [Quit]\n>>>")
+
+            say_bungee = False
+            from_stack = True
+            to_quit = False
+            throw_card = []
+            error_msg = ''
+            if what_to_do == '':
+                error_msg = 'Error: empty command'
+            elif what_to_do == "B":
+                if score <= 5:
+                    say_bungee = True
+                else:
+                    error_msg = 'Error: score > 5, cant say bungee'
+            elif what_to_do == "Q":
+                to_quit = True
+            elif len(what_to_do) >= 2 & len(what_to_do) < len(my_cards)+1:
+                is_from_stack = what_to_do[-1]
+                if is_from_stack == "T":
+                    from_stack = True
+                elif is_from_stack == "F":
+                    from_stack = False
+                else:
+                    error_msg = "Error: Invalid text, pleas try again"
+
+                try:
+                    for i in range(len(what_to_do[:-1])):
+                        tcard = int(what_to_do[i])
+                        if tcard > len(my_cards)-1:
+                            error_msg = 'Error: index not in cards'
+                        else:
+                            throw_card.append(tcard)
+                except Exception as e:
+                    error_msg = repr(e)
+            else:
+                error_msg = 'Error: command not understood'
+
+            dict = {
+                'say_bungee': say_bungee,
+                'from_stack': from_stack,
+                'quit': to_quit,
+                'error': error_msg,
+                'throw_cards': throw_card
+            }
+
+            return dict
             # validation from user
 
 
@@ -52,7 +97,9 @@ class Input:
 #     1: my_func
 # }
 #
-# inp = Input(True, funcs)
+# inp = Input(False)
+#
+# print(inp.get_turn(1, 1, 1, 1, 1, 1))
 #
 # res_turn = inp.get_turn(0, [2, 3, 5, 7, 8], 9, 8, False, 25)
 # print(res_turn)
