@@ -20,7 +20,7 @@ class Stat(Enum):
 class Manager:
     OUTPUT_TO_FILE = True
     OUTPUT_TO_SCREEN = True
-    INPUT_FROM_FUNC = False
+    INPUT_FROM_FUNC = True
     LOG_FILE = 'log.txt'
 
     def __init__(self):
@@ -30,10 +30,9 @@ class Manager:
         self.game = []
         self.player = []
         self.who_say_bungee = 0
-
         # set output obj
         self.out = IO_Class.IO_Class(self.OUTPUT_TO_FILE, self.OUTPUT_TO_SCREEN, self.LOG_FILE)
-
+        #
         # user input obj
         self.inp = Input(self.INPUT_FROM_FUNC)
 
@@ -96,14 +95,13 @@ class Manager:
         # skip turn if 6
         self.sam = self.sam + 1
         for i in command_dict['throw_cards']:
-            if old_my_cards[i] == 6 and (self.turn + 1) % self.num_user != self.who_say_bungee:
+            if old_my_cards[i] == 6:
                 self.sam += 1
         self.turn = (self.turn + self.sam) % self.num_user
         return Stat.GAME
 
     # run when player in bungee mode
     def do_bungee(self):
-        self.who_say_bungee = copy.copy(self.turn)
         for i in self.player:
             i.bungee_mode = True
         bungee_turn = (self.turn - 1) % self.num_user
@@ -111,9 +109,17 @@ class Manager:
             stat = self.do_game()
             if stat == Stat.BREAK:
                 return Stat.BREAK
-            if stat == Stat.BUNGEE:
-                self.turn = (self.turn + 1) % self.num_user
-        self.turn = (self.turn + 1) % self.num_user
+            elif stat == Stat.BUNGEE:
+                pass
+                # self.turn = (self.turn + 1) % self.num_user
+            else:
+                for i in range(self.sam):
+                    tmp_turn = (self.turn - i) % self.num_user
+                    if tmp_turn == bungee_turn:
+                        self.turn = bungee_turn
+                        break
+
+        # self.turn = (self.turn + 1) % self.num_user
         return Stat.END
 
     # run when player ask to quit game
@@ -133,16 +139,16 @@ class Manager:
         self.out.print(str(minimaly))
         numin = 0
         minscore = players_score[self.turn]
+        minplayer_index = self.turn
         tur = (self.turn + 1) % self.num_user
         while tur != self.turn:
             if players_score[tur] <= minscore:
                 minscore = players_score[tur]
-                minplayer = self.player[tur]
                 minplayer_index = tur
             tur = (tur + 1) % self.num_user
         self.out.print("")
         self.out.print("Player Number: {} Is The Winner!!!!!!!!!!!!!!!!".format(minplayer_index + 1))
-        self.out.print("his score - ", minscore)
+        self.out.print(f"his score - {minscore}")
         exit()
 
 
