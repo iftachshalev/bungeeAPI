@@ -1,0 +1,43 @@
+------------------------------iftach shalev
+Player Number: 1iftach shalev
+ Score: 29iftach shalev
+ Cards: [4, 0, 9, 10, 10]	Lucky card: 4, Last_card: None,iftach shalev
+ Score: 10iftach shalev
+ Cards: [4, 0, 1, 9]	Lucky card: 4, Last_card: 10,iftach shalev
+------------------------------iftach shalev
+Player Number: 2iftach shalev
+ Score: 26iftach shalev
+ Cards: [1, 3, 7, 7, 8]	Lucky card: 4, Last_card: 10,iftach shalev
+ Score: 18iftach shalev
+ Cards: [1, 3, 6, 8]	Lucky card: 4, Last_card: 7,iftach shalev
+------------------------------iftach shalev
+Player Number: 1iftach shalev
+ Score: 10iftach shalev
+ Cards: [4, 0, 1, 9]	Lucky card: 4, Last_card: 7,iftach shalev
+ Score: 3iftach shalev
+ Cards: [4, 0, 1, 2]	Lucky card: 4, Last_card: 9,iftach shalev
+------------------------------iftach shalev
+Player Number: 2iftach shalev
+ Score: 18iftach shalev
+ Cards: [1, 3, 6, 8]	Lucky card: 4, Last_card: 9,iftach shalev
+ Score: 15iftach shalev
+ Cards: [1, 3, 5, 6]	Lucky card: 4, Last_card: 8,iftach shalev
+------------------------------iftach shalev
+Player Number: 1iftach shalev
+ Score: 3iftach shalev
+ Cards: [4, 0, 1, 2]	Lucky card: 4, Last_card: 8,iftach shalev
+------------------------------iftach shalev
+Player Number: 2iftach shalev
+ Score: 15iftach shalev
+ Cards: [1, 3, 5, 6]	Lucky card: 4, Last_card: 8,iftach shalev
+ Score: 14iftach shalev
+ Cards: [1, 3, 5, 5]	Lucky card: 4, Last_card: 6,iftach shalev
+------------------------------iftach shalev
+Player Number: 2iftach shalev
+ Score: 14iftach shalev
+ Cards: [1, 3, 5, 5]	Lucky card: 4, Last_card: 6,iftach shalev
+ Score: 12iftach shalev
+ Cards: [1, 3, 8]	Lucky card: 4, Last_card: 5,iftach shalev
+3iftach shalev
+Player Number: 1 Is The Winner!!!!!!!!!!!!!!!!iftach shalev
+iftach shalev

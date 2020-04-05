@@ -29,6 +29,7 @@ class Manager:
         self.lucky_card = -1
         self.game = []
         self.player = []
+        self.who_say_bungee = 0
 
         # set output obj
         self.out = IO_Class.IO_Class(self.OUTPUT_TO_FILE, self.OUTPUT_TO_SCREEN, self.LOG_FILE)
@@ -82,6 +83,9 @@ class Manager:
         # play turn
         success, self.sam = self.player[self.turn].turn(command_dict['throw_cards'], command_dict['from_stack'],)
 
+        # sort my_cards
+        self.player[self.turn].sort_array()
+
         # turn failed
         if not success:
             return Stat.GAME
@@ -92,7 +96,7 @@ class Manager:
         # skip turn if 6
         self.sam = self.sam + 1
         for i in command_dict['throw_cards']:
-            if old_my_cards[i] == 6:
+            if old_my_cards[i] == 6 and (self.turn + 1) % self.num_user != self.who_say_bungee:
                 self.sam += 1
         self.turn = (self.turn + self.sam) % self.num_user
         return Stat.GAME
@@ -114,7 +118,7 @@ class Manager:
 
     # run when player ask to quit game
     def do_break(self):
-        shore = input("are you shore?[Y / N]:")
+        shore = "Y"# input("are you shore?[Y / N]:")
         if shore == "Y":
             self.out.print("The game break")
             exit()
@@ -136,7 +140,9 @@ class Manager:
                 minplayer = self.player[tur]
                 minplayer_index = tur
             tur = (tur + 1) % self.num_user
+        self.out.print("")
         self.out.print("Player Number: {} Is The Winner!!!!!!!!!!!!!!!!".format(minplayer_index + 1))
+        self.out.print("his score - ", minscore)
         exit()
 
 

@@ -105,6 +105,3 @@ class Input:
 # print(res_turn)
 # res_turn = inp.get_turn(1, [2, 3, 5, 7, 8], 9, 8, False, 25)
 # print(res_turn)
-
-
-

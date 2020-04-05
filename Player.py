@@ -20,11 +20,11 @@ class Player:
         self.my_score = self.my__score()
         self.stick_factor = 0.5
 
-    def say_bungee(self):
-        if sum(self.my_cards) <= 5:
-            self.bungee_mode = True
-        else:
-            self.print_func("ERROR!")
+    # def say_bungee(self):
+    #     if sum(self.my_cards) <= 5:
+    #         self.bungee_mode = True
+    #     else:
+    #         self.print_func("ERROR!")
 
     def turn(self, throw_index, from_stack):
         old_my_cards = copy.copy(self.my_cards)
