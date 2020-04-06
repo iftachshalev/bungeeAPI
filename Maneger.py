@@ -20,7 +20,7 @@ class Stat(Enum):
 class Manager:
     OUTPUT_TO_FILE = True
     OUTPUT_TO_SCREEN = True
-    INPUT_FROM_FUNC = True
+    INPUT_FROM_FUNC = False
     LOG_FILE = 'log.txt'
 
     def __init__(self):

@@ -48,7 +48,32 @@ def iftach_algo_simple(my_cards, lucky_card, lost_card, bungee_mode, score):
             from_stack = False
             throw_card = index_best_array
     else:
-        pass
+        is_bungee = if_to_say_bungee(my_cards, lost_card, bungee_mode, score, index_best_array)
+        if is_bungee:
+            say_bungee = True
+        elif is_bungee == None:
+            from_stack = False
+            throw_card = index_best_array
+        else:
+            where = where_to_get(my_cards, lost_card, bungee_mode, score, index_best_array)
+            if where == None:
+                new = []
+                for i in my_cards:
+                    if i != index_best_array[0]:
+                        new.append(i)
+                new_index_best_array = best_cards(new, lost_card, bungee_mode, score)
+                if new_index_best_array[0] < 4:
+                    throw_card = index_best_array
+                    from_stack = True
+                else:
+                    throw_card = new_index_best_array
+                    from_stack = False
+            if not where:
+                throw_card = index_best_array
+                from_stack = False
+            elif where:
+                throw_card = index_best_array
+                from_stack = True
 
 
 def best_cards(my_cards, lost_card, bungee_mode, score):
@@ -63,15 +88,16 @@ def best_cards(my_cards, lost_card, bungee_mode, score):
 def where_to_get(my_cards, lost_card, bungee_mode, score, index_best_array):
     t = None
     if lost_card == index_best_array[0]:
-        return None
+        return t
+    for i in my_cards:
+        if lost_card == i:
+            t = True
+    if t:
+        return False
+    if lost_card <= 5:
+        return False
     else:
-        for i in my_cards:
-            if lost_card == i:
-                t = True
-        if t:
-            return False
-
-
+        return True
 
 
 def if_to_say_bungee(my_cards, lost_card, bungee_mode, score, index_best_array):
@@ -85,3 +111,4 @@ def if_to_say_bungee(my_cards, lost_card, bungee_mode, score, index_best_array):
     else:
         bungee = False
     return bungee
+
