@@ -5,6 +5,8 @@ from IO_Class import Input
 import random
 import copy
 import IO_Class
+import nadavAlgo
+import time
 
 class Stat(Enum):
     START = 1
@@ -20,7 +22,7 @@ class Stat(Enum):
 class Manager:
     OUTPUT_TO_FILE = True
     OUTPUT_TO_SCREEN = True
-    INPUT_FROM_FUNC = False
+    INPUT_FROM_FUNC = True
     LOG_FILE = 'log.txt'
 
     def __init__(self):
@@ -32,9 +34,16 @@ class Manager:
         self.who_say_bungee = 0
         # set output obj
         self.out = IO_Class.IO_Class(self.OUTPUT_TO_FILE, self.OUTPUT_TO_SCREEN, self.LOG_FILE)
-        #
+
+        func_dict = {
+            0: nadavAlgo.algo_simple,
+            1: nadavAlgo.algo_simple,
+            2: nadavAlgo.algo_simple,
+            3: nadavAlgo.algo_simple,
+            4: nadavAlgo.algo_simple
+        }
         # user input obj
-        self.inp = Input(self.INPUT_FROM_FUNC)
+        self.inp = Input(self.INPUT_FROM_FUNC, func_dict)
 
         # set func dictionary
 
@@ -157,6 +166,7 @@ st = Stat.START
 
 # game state machine
 while True:
+    # time.sleep(1)
     if st == Stat.START:
         st = manager.do_start()
     elif st == Stat.GAME:

@@ -29,22 +29,33 @@ class Player:
     def turn(self, throw_index, from_stack):
         old_my_cards = copy.copy(self.my_cards)
         self.lost_card = self.game.get_lost_card()
+
+        # when try to get card from empty lost list
         if not from_stack and self.lost_card == None:
-            self.print_func("ERROR! You cent put card from lost if you play 1")
+            self.print_func("ERROR! You cant put card from lost if you play 1")
             return False, []
-        throw_lost = len(throw_index)
+
+
+
+        # check throw cards are equal
         throw_index.sort()
         for j in range(len(throw_index) - 1):
             if self.my_cards[throw_index[j]] != self.my_cards[throw_index[j + 1]]:
                 self.print_func("ERROR! You cannot throw unequal cards")
                 return False, []
+
+        # throw the cards
         for i in range(len(throw_index)):
             self.game.throw_card(self.my_cards[throw_index[- (i + 1)]])
             del(self.my_cards[throw_index[-(i + 1)]])
+
+        # get card
         if from_stack:
             card = self.game.card_from_stack()
-        if not from_stack:
-            card, success = self.game.card_from_lost(throw_lost)
+        else:
+            card, success = self.game.card_from_lost()
+
+        # try to stick
         if card != []:
             if card == old_my_cards[throw_index[0]]:
                 rand = random.random()
@@ -61,6 +72,7 @@ class Player:
             else:
                 self.my_cards.append(card)
                 return True, 0
+
         self.sort_array()
         return False, []
 

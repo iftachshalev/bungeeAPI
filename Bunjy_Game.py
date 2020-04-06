@@ -37,10 +37,10 @@ class Game:
         return card
 
     # get card from lost cards
-    def card_from_lost(self, throw_lost):
+    def card_from_lost(self):
         success = True
-        card = self.lost_cards[- (throw_lost + 1)]
-        del (self.lost_cards[- (throw_lost + 1)])
+        card = self.lost_cards[-1]
+        del (self.lost_cards[-1])
         return card, success
 
     def __repr__(self):
