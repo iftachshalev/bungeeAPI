@@ -1,3 +1,4 @@
+import copy
 
 
 def simple(my_cards, lucky_card, lost_card, bungee_mode):
@@ -113,12 +114,17 @@ def simple(my_cards, lucky_card, lost_card, bungee_mode):
 
 
 def best_cards(my_cards):
+    old_my_cards = copy.copy(my_cards)
     max_cards = max(my_cards)
+    array_max = []
     array = []
     for i, card in enumerate(my_cards):
         if card == max_cards:
             array.append(i)
-    return array
+    t = copy.copy(array)
+
+    array_max.append(array)
+
 
 
 def where_to_get(my_cards, lost_card, index_best_array):
@@ -155,5 +161,5 @@ def if_to_say_bungee(my_cards, lost_card, index_best_array):
         return bungee
 
 
-name = simple([1, 5, 8, 10, 10], 4, 9, False)
+name = simple([10, 2, 3, 2, 0], 10, None, False)
 print(name)

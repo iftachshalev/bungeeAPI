@@ -22,7 +22,7 @@ class Stat(Enum):
 class Manager:
     OUTPUT_TO_FILE = True
     OUTPUT_TO_SCREEN = True
-    INPUT_FROM_FUNC = True
+    INPUT_FROM_FUNC = False
     LOG_FILE = 'log.txt'
 
     def __init__(self):
@@ -43,7 +43,7 @@ class Manager:
             4: nadavAlgo.algo_simple
         }
         # user input obj
-        self.inp = Input(self.INPUT_FROM_FUNC, func_dict)
+        self.inp = Input(self.INPUT_FROM_FUNC)
 
         # set func dictionary
 
