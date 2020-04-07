@@ -6,6 +6,7 @@ import random
 import copy
 import IO_Class
 import nadavAlgo
+import sampleAlgo
 import time
 
 class Stat(Enum):
@@ -22,7 +23,7 @@ class Stat(Enum):
 class Manager:
     OUTPUT_TO_FILE = True
     OUTPUT_TO_SCREEN = True
-    INPUT_FROM_FUNC = False
+    INPUT_FROM_FUNC = True
     LOG_FILE = 'log.txt'
 
     def __init__(self):
@@ -36,14 +37,14 @@ class Manager:
         self.out = IO_Class.IO_Class(self.OUTPUT_TO_FILE, self.OUTPUT_TO_SCREEN, self.LOG_FILE)
 
         func_dict = {
-            0: nadavAlgo.algo_simple,
-            1: nadavAlgo.algo_simple,
-            2: nadavAlgo.algo_simple,
-            3: nadavAlgo.algo_simple,
-            4: nadavAlgo.algo_simple
+            0: nadavAlgo.main_algo,
+            1: sampleAlgo.algo_simple,
+            2: sampleAlgo.algo_simple,
+            3: sampleAlgo.algo_simple,
+            4: sampleAlgo.algo_simple
         }
         # user input obj
-        self.inp = Input(self.INPUT_FROM_FUNC)
+        self.inp = Input(self.INPUT_FROM_FUNC, func_dict)
 
         # set func dictionary
 

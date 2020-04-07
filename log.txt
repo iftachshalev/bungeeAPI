@@ -1,0 +1,189 @@
+------------------------------
+Player Number: 2
+ Score: 40
+ Cards: [6, 8, 8, 9, 9]	Lucky card: 1, Last_card: None,
+ Score: 26
+ Cards: [4, 6, 8, 8]	Lucky card: 1, Last_card: 9,
+------------------------------
+Player Number: 1
+ Score: 21
+ Cards: [1, 3, 4, 5, 9]	Lucky card: 1, Last_card: 9,
+ Score: 21
+ Cards: [1, 3, 4, 5, 9]	Lucky card: 1, Last_card: 9,
+------------------------------
+Player Number: 2
+ Score: 26
+ Cards: [4, 6, 8, 8]	Lucky card: 1, Last_card: 9,
+------------------------------
+Player Number: 2
+ Score: 10
+ Cards: [4, 6]	Lucky card: 1, Last_card: 8,
+ Score: 12
+ Cards: [4, 8]	Lucky card: 1, Last_card: 6,
+------------------------------
+Player Number: 2
+ Score: 12
+ Cards: [4, 8]	Lucky card: 1, Last_card: 6,
+ Score: 13
+ Cards: [4, 9]	Lucky card: 1, Last_card: 8,
+------------------------------
+Player Number: 1
+ Score: 21
+ Cards: [1, 3, 4, 5, 9]	Lucky card: 1, Last_card: 8,
+ Score: 15
+ Cards: [1, 3, 3, 4, 5]	Lucky card: 1, Last_card: 9,
+------------------------------
+Player Number: 2
+ Score: 13
+ Cards: [4, 9]	Lucky card: 1, Last_card: 9,
+ Score: 18
+ Cards: [9, 9]	Lucky card: 1, Last_card: 4,
+------------------------------
+Player Number: 1
+ Score: 15
+ Cards: [1, 3, 3, 4, 5]	Lucky card: 1, Last_card: 4,
+ Score: 13
+ Cards: [1, 4, 4, 5]	Lucky card: 1, Last_card: 3,
+------------------------------
+Player Number: 2
+ Score: 18
+ Cards: [9, 9]	Lucky card: 1, Last_card: 3,
+ Score: 16
+ Cards: [7, 9]	Lucky card: 1, Last_card: 9,
+------------------------------
+Player Number: 1
+ Score: 13
+ Cards: [1, 4, 4, 5]	Lucky card: 1, Last_card: 9,
+ Score: 15
+ Cards: [1, 5, 10]	Lucky card: 1, Last_card: 4,
+------------------------------
+Player Number: 2
+ Score: 16
+ Cards: [7, 9]	Lucky card: 1, Last_card: 4,
+ Score: 9
+ Cards: [2, 7]	Lucky card: 1, Last_card: 9,
+------------------------------
+Player Number: 1
+ Score: 15
+ Cards: [1, 5, 10]	Lucky card: 1, Last_card: 9,
+ Score: 10
+ Cards: [1, 1, 10]	Lucky card: 1, Last_card: 5,
+------------------------------
+Player Number: 2
+ Score: 9
+ Cards: [2, 7]	Lucky card: 1, Last_card: 5,
+ Score: 8
+ Cards: [2, 6]	Lucky card: 1, Last_card: 7,
+------------------------------
+Player Number: 1
+ Score: 10
+ Cards: [1, 1, 10]	Lucky card: 1, Last_card: 7,
+oh no! you can't stick, rand: 0.46068936298214336
+ Score: 10
+ Cards: [1, 1, 10]	Lucky card: 1, Last_card: 10,
+------------------------------
+Player Number: 2
+ Score: 8
+ Cards: [2, 6]	Lucky card: 1, Last_card: 10,
+oh no! you can't stick, rand: 0.05979140250911841
+ Score: 8
+ Cards: [2, 6]	Lucky card: 1, Last_card: 6,
+------------------------------
+Player Number: 2
+ Score: 8
+ Cards: [2, 6]	Lucky card: 1, Last_card: 6,
+ Score: 12
+ Cards: [6, 6]	Lucky card: 1, Last_card: 2,
+------------------------------
+Player Number: 1
+ Score: 10
+ Cards: [1, 1, 10]	Lucky card: 1, Last_card: 2,
+ Score: 3
+ Cards: [1, 1, 3]	Lucky card: 1, Last_card: 10,
+------------------------------
+Player Number: 2
+ Score: 12
+ Cards: [6, 6]	Lucky card: 1, Last_card: 10,
+ Score: 14
+ Cards: [6, 8]	Lucky card: 1, Last_card: 6,
+------------------------------
+Player Number: 2
+ Score: 14
+ Cards: [6, 8]	Lucky card: 1, Last_card: 6,
+ Score: 12
+ Cards: [6, 6]	Lucky card: 1, Last_card: 8,
+------------------------------
+Player Number: 1
+ Score: 3
+ Cards: [1, 1, 3]	Lucky card: 1, Last_card: 8,
+ Score: 10
+ Cards: [1, 1, 10]	Lucky card: 1, Last_card: 3,
+------------------------------
+Player Number: 2
+ Score: 12
+ Cards: [6, 6]	Lucky card: 1, Last_card: 3,
+ Score: 15
+ Cards: [6, 9]	Lucky card: 1, Last_card: 6,
+------------------------------
+Player Number: 2
+ Score: 15
+ Cards: [6, 9]	Lucky card: 1, Last_card: 6,
+ Score: 12
+ Cards: [6, 6]	Lucky card: 1, Last_card: 9,
+------------------------------
+Player Number: 1
+ Score: 10
+ Cards: [1, 1, 10]	Lucky card: 1, Last_card: 9,
+oh no! you can't stick, rand: 0.35170091475873044
+ Score: 10
+ Cards: [1, 1, 10]	Lucky card: 1, Last_card: 10,
+------------------------------
+Player Number: 2
+ Score: 12
+ Cards: [6, 6]	Lucky card: 1, Last_card: 10,
+ Score: 10
+ Cards: [4, 6]	Lucky card: 1, Last_card: 6,
+------------------------------
+Player Number: 2
+ Score: 10
+ Cards: [4, 6]	Lucky card: 1, Last_card: 6,
+ Score: 12
+ Cards: [6, 6]	Lucky card: 1, Last_card: 4,
+------------------------------
+Player Number: 1
+ Score: 10
+ Cards: [1, 1, 10]	Lucky card: 1, Last_card: 4,
+ Score: 6
+ Cards: [1, 1, 6]	Lucky card: 1, Last_card: 10,
+------------------------------
+Player Number: 2
+ Score: 12
+ Cards: [6, 6]	Lucky card: 1, Last_card: 10,
+ Score: 9
+ Cards: [3, 6]	Lucky card: 1, Last_card: 6,
+------------------------------
+Player Number: 2
+ Score: 9
+ Cards: [3, 6]	Lucky card: 1, Last_card: 6,
+ Score: 12
+ Cards: [6, 6]	Lucky card: 1, Last_card: 3,
+------------------------------
+Player Number: 1
+ Score: 6
+ Cards: [1, 1, 6]	Lucky card: 1, Last_card: 3,
+ Score: 2
+ Cards: [1, 1, 2]	Lucky card: 1, Last_card: 6,
+------------------------------
+Player Number: 1
+ Score: 2
+ Cards: [1, 1, 2]	Lucky card: 1, Last_card: 6,
+------------------------------
+Player Number: 2
+ Score: 12
+ Cards: [6, 6]	Lucky card: 1, Last_card: 6,
+ Score: 12
+ Cards: [6, 6]	Lucky card: 1, Last_card: 6,
+2
+
+Player Number: 1 Is The Winner!!!!!!!!!!!!!!!!
+his score - 2

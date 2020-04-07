@@ -31,8 +31,8 @@ class Player:
         self.lost_card = self.game.get_lost_card()
 
         # when try to get card from empty lost list
-        if not from_stack and self.lost_card == None:
-            self.print_func("ERROR! You cant put card from lost if you play 1")
+        if not from_stack and self.lost_card is None:
+            self.print_func("ERROR! You cant put card from lost if you play first")
             return False, []
 
 
@@ -44,20 +44,21 @@ class Player:
                 self.print_func("ERROR! You cannot throw unequal cards")
                 return False, []
 
-        # throw the cards
-        for i in range(len(throw_index)):
-            self.game.throw_card(self.my_cards[throw_index[- (i + 1)]])
-            del(self.my_cards[throw_index[-(i + 1)]])
-
         # get card
         if from_stack:
             card = self.game.card_from_stack()
         else:
             card, success = self.game.card_from_lost()
 
+        # throw the cards
+        for i in range(len(throw_index)):
+            self.game.throw_card(self.my_cards[throw_index[- (i + 1)]])
+            del(self.my_cards[throw_index[-(i + 1)]])
+
+
         # try to stick
-        if card != []:
-            if card == old_my_cards[throw_index[0]]:
+        if card:
+            if from_stack and card == old_my_cards[throw_index[0]]:
                 rand = random.random()
                 if rand > self.stick_factor:
                     self.print_func("well done! you stick, rand: {}".format(rand))
@@ -72,6 +73,7 @@ class Player:
             else:
                 self.my_cards.append(card)
                 return True, 0
+
 
         self.sort_array()
         return False, []
