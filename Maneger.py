@@ -22,7 +22,7 @@ class Stat(Enum):
 class Manager:
     OUTPUT_TO_FILE = True
     OUTPUT_TO_SCREEN = True
-    INPUT_FROM_FUNC = False
+    INPUT_FROM_FUNC = True
     LOG_FILE = 'log.txt'
 
     def __init__(self):
@@ -43,7 +43,7 @@ class Manager:
             4: nadavAlgo.algo_simple
         }
         # user input obj
-        self.inp = Input(self.INPUT_FROM_FUNC)
+        self.inp = Input(self.INPUT_FROM_FUNC, func_dict)
 
         # set func dictionary
 
@@ -87,6 +87,9 @@ class Manager:
 
         # copy cards for change later
         old_my_cards = copy.copy(self.player[self.turn].my_cards)
+
+        array = [self.player[self.turn].my_cards[i] for i in command_dict['throw_cards']]
+        self.out.print(f" throw :{array}")
 
         # play turn
         success, self.sam = self.player[self.turn].turn(command_dict['throw_cards'], command_dict['from_stack'],)

@@ -1,0 +1,50 @@
+------------------------------
+Player Number: 2
+ Score: 20
+ Cards: [0, 2, 5, 6, 7]	Lucky card: 8, Last_card: None,
+ throw :[]
+ Score: 13
+ Cards: [0, 0, 2, 5, 6]	Lucky card: 8, Last_card: 7,
+------------------------------
+Player Number: 1
+ Score: 21
+ Cards: [8, 1, 8, 10, 10]	Lucky card: 8, Last_card: 7,
+ throw :[]
+ Score: 7
+ Cards: [8, 8, 1, 6]	Lucky card: 8, Last_card: 10,
+------------------------------
+Player Number: 2
+ Score: 13
+ Cards: [0, 0, 2, 5, 6]	Lucky card: 8, Last_card: 10,
+ throw :[]
+ Score: 11
+ Cards: [0, 0, 2, 4, 5]	Lucky card: 8, Last_card: 6,
+------------------------------
+Player Number: 2
+ Score: 11
+ Cards: [0, 0, 2, 4, 5]	Lucky card: 8, Last_card: 6,
+ throw :[]
+ Score: 15
+ Cards: [0, 0, 2, 4, 9]	Lucky card: 8, Last_card: 5,
+------------------------------
+Player Number: 1
+ Score: 7
+ Cards: [8, 8, 1, 6]	Lucky card: 8, Last_card: 5,
+ throw :[]
+ Score: 2
+ Cards: [8, 1, 1, 8]	Lucky card: 8, Last_card: 6,
+------------------------------
+Player Number: 1
+ Score: 2
+ Cards: [8, 1, 1, 8]	Lucky card: 8, Last_card: 6,
+------------------------------
+Player Number: 2
+ Score: 15
+ Cards: [0, 0, 2, 4, 9]	Lucky card: 8, Last_card: 6,
+ throw :[]
+ Score: 8
+ Cards: [0, 0, 2, 2, 4]	Lucky card: 8, Last_card: 9,
+2
+
+Player Number: 1 Is The Winner!!!!!!!!!!!!!!!!
+his score - 2
