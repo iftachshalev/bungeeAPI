@@ -114,16 +114,46 @@ def simple(my_cards, lucky_card, lost_card, bungee_mode):
 
 
 def best_cards(my_cards):
-    old_my_cards = copy.copy(my_cards)
-    max_cards = max(my_cards)
-    array_max = []
-    array = []
-    for i, card in enumerate(my_cards):
-        if card == max_cards:
-            array.append(i)
-    t = copy.copy(array)
-
-    array_max.append(array)
+    # old_my_cards = copy.copy(my_cards)
+    # array_max = []
+    #
+    # while len(my_cards) != 0:
+    #     max_cards = max(my_cards)
+    #     array = []
+    #     for i, card in enumerate(my_cards):
+    #         if card == max_cards:
+    #             array.append(i)
+    #     t = copy.copy(array)
+    #     for j in t:
+    #         del(my_cards[j])
+    #     array_max.append(t)
+    # array_num = []
+    #
+    # for i in array_max:
+    #     for j in array_max[i]:
+    #         r = old_my_cards[i[j]]
+    #         array_num.append(r)
+    #
+    # sam = []
+    # sam_index = []
+    # for i, card in enumerate(array_num):
+    #     b = sum(old_my_cards[array_num[i]])
+    #     sam.append(b)
+    #     sam_index.append(i)
+    # while True:
+    #     ril = max(sam)
+    #     nux = max(old_my_cards)
+    #     a = []
+    #     b = []
+    #     for i, card in enumerate(old_my_cards):
+    #         if i == nux:
+    #             a.append(card)
+    #             b.append(i)
+    #     if sum(a) == ril:
+    #         return b
+    #     else:
+    #         for i in range(len(a)):
+    #             del(old_my_cards[b[i]])
 
 
 
