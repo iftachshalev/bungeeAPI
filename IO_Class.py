@@ -82,6 +82,12 @@ class Input:
             return dict
             # validation from user
 
+    def input_num_users(self, robot_users):
+        if self.from_func:
+            return robot_users
+        else:
+            return int(input("Choose Number Of Players:"))
+
 
 # d = IO_Class(True, True, "f1.txt")
 # d.print("hello world 123")

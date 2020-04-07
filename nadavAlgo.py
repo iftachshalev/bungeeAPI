@@ -73,7 +73,7 @@ def main_algo(my_cards, lucky_card, lost_card, bungee_mode, score):
         'error': '',
         'throw_cards': throw_cards
     }
-    print(f"throw: {dict['throw_cards']}, stack: {dict['from_stack']}")
+    # print(f"throw: {dict['throw_cards']}, stack: {dict['from_stack']}")
     return dict
 
 def find_in_hand(my_cards, card):

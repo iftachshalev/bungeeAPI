@@ -7,7 +7,7 @@ import copy
 import IO_Class
 import nadavAlgo
 import sampleAlgo
-import time
+
 
 class Stat(Enum):
     START = 1
@@ -25,8 +25,11 @@ class Manager:
     OUTPUT_TO_SCREEN = True
     INPUT_FROM_FUNC = True
     LOG_FILE = 'log.txt'
+    ROBOT_NUM_USER = 2
+
 
     def __init__(self):
+
         self.num_user = -1
         self.turn = -1
         self.lucky_card = -1
@@ -53,7 +56,7 @@ class Manager:
 
     # prepare game: create users
     def do_start(self):
-        self.num_user = int(input("Choose Number Of Players:"))
+        self.num_user = self.inp.input_num_users(self.ROBOT_NUM_USER)
         self.game = Game()
 
         # init players
@@ -90,7 +93,7 @@ class Manager:
         old_my_cards = copy.copy(self.player[self.turn].my_cards)
 
         array = [self.player[self.turn].my_cards[i] for i in command_dict['throw_cards']]
-        self.out.print(f" throw :{array}")
+        self.out.print(f" throw: {array}, stack: {command_dict['from_stack']}")
 
         # play turn
         success, self.sam = self.player[self.turn].turn(command_dict['throw_cards'], command_dict['from_stack'],)
@@ -162,22 +165,25 @@ class Manager:
         self.out.print("")
         self.out.print("Player Number: {} Is The Winner!!!!!!!!!!!!!!!!".format(minplayer_index + 1))
         self.out.print(f"his score - {minscore}")
-        exit()
+        return minplayer_index
 
 
-manager = Manager()
-st = Stat.START
+
 
 # game state machine
-while True:
-    # time.sleep(1)
-    if st == Stat.START:
-        st = manager.do_start()
-    elif st == Stat.GAME:
-        st = manager.do_game()
-    elif st == Stat.BUNGEE:
-        st = manager.do_bungee()
-    elif st == Stat.BREAK:
-        st = manager.do_break()
-    elif st == Stat.END:
-        manager.do_end()
+    def run(self):
+        st = Stat.START
+        while True:
+            # time.sleep(1)
+            if st == Stat.START:
+                st = self.do_start()
+            elif st == Stat.GAME:
+                st = self.do_game()
+            elif st == Stat.BUNGEE:
+                st = self.do_bungee()
+            elif st == Stat.BREAK:
+                st = self.do_break()
+            elif st == Stat.END:
+                e = self.do_end()
+                return e
+

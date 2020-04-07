@@ -24,5 +24,5 @@ def algo_simple(my_cards, lucky_card, lost_card, bungee_mode, score):
         'error': '',
         'throw_cards': throw_card
     }
-    print(f"throw: {dict['throw_cards']}, stack: {dict['from_stack']}")
+    # print(f"throw: {dict['throw_cards']}, stack: {dict['from_stack']}")
     return dict
