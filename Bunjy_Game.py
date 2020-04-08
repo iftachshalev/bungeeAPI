@@ -1,5 +1,5 @@
 import random
-
+import copy
 # all_cards_array = [[i, i, i, i, i]for i in range(1, 11)]
 # t = [all_cards_array[-1].append(10)for i in range(3)]
 # t = [all_cards_array.insert(0, [0, 0, 0])for i in range(1)]
@@ -7,11 +7,12 @@ import random
 # print(all_cards_array)
 
 class Game:
-    cards = [0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6,
+    cards_type = [0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6,
              6, 6, 6, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10]
     # it is the init
     def __init__(self):
-        random.shuffle(self.cards)
+        # random.shuffle(self.cards)
+        self.reset_cards()
         self.lucky_card = self.get_valid_lucky_card()
         del(self.cards[-1])
         self.lost_cards = []
@@ -29,9 +30,10 @@ class Game:
     # get card from stack
     def card_from_stack(self):
         if len(self.cards) == 0:
-            self.cards = self.lost_cards[:-1]
-            random.shuffle(self.cards)
-            del(self.lost_cards[:-1])
+            # self.cards = self.lost_cards[:-1]
+            # random.shuffle(self.cards)
+            # del(self.lost_cards[:-1])
+            self.reset_cards()
         card = self.cards[-1]
         del(self.cards[-1])
         return card
@@ -67,3 +69,8 @@ class Game:
                 del(self.cards[-1])
                 self.cards.insert(0, card)
         return card
+
+    def reset_cards(self):
+        self.cards = copy.copy(self.cards_type)
+        random.shuffle(self.cards)
+
