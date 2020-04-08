@@ -1,25 +1,33 @@
+# import
 import copy
 
 
+# it is the main function
 def simple(my_cards, lucky_card, lost_card=None, bungee_mode=False):
 
+    # Defaults
     say_bungee = False
     throw_card = []
     to_quit = False
     error = ""
     from_stack = True
 
+    # Turning a lucky card to zero
     luc = lucky_card
     for i, card in enumerate(my_cards):
         if card == luc:
             my_cards[i] = 0
 
+    # To get a list of cards to throw
     index_best_array = best_cards(my_cards)
 
+    # jump into if lost_card is None
     if lost_card is None:
 
+        # Conference if the other player said Bungee
         if bungee_mode:
 
+            # To get if should say Bungee
             is_bungee = if_to_say_bungee(my_cards, lost_card, index_best_array)
             if not is_bungee:
                 to_quit = True
@@ -29,6 +37,7 @@ def simple(my_cards, lucky_card, lost_card=None, bungee_mode=False):
                 from_stack = False
                 throw_card = index_best_array
 
+            # it is what the software need to return
             user = {
                 'say_bungee': say_bungee,
                 'from_stack': from_stack,
@@ -37,11 +46,14 @@ def simple(my_cards, lucky_card, lost_card=None, bungee_mode=False):
                 'throw_cards': throw_card
             }
 
+            # the software return 'user'
             return user
 
+        # Conference if sum of the cards small or worth from five
         if sum(my_cards) <= 5:
             say_bungee = True
 
+            # it is what the software need to return
             user = {
                 'say_bungee': say_bungee,
                 'from_stack': from_stack,
@@ -49,6 +61,7 @@ def simple(my_cards, lucky_card, lost_card=None, bungee_mode=False):
                 'error': error,
                 'throw_cards': throw_card
             }
+
             return user
 
         throw_card = index_best_array
