@@ -24,10 +24,9 @@ class Stat(Enum):
 class Manager:
     OUTPUT_TO_FILE = True
     OUTPUT_TO_SCREEN = True
-    INPUT_FROM_FUNC = True
+    INPUT_FROM_FUNC = False
     LOG_FILE = 'log.txt'
     ROBOT_NUM_USER = 2
-
 
     def __init__(self):
 

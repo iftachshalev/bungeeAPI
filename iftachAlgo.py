@@ -18,6 +18,9 @@ def simple(my_cards, lucky_card, lost_card, bungee_mode):
         if card == luc:
             my_cards[i] = 0
 
+    # sort my cards
+    my_cards.sort()
+
     # To get a list of cards to throw
     index_best_array = best_cards(my_cards)
 
@@ -62,6 +65,7 @@ def simple(my_cards, lucky_card, lost_card, bungee_mode):
                 'throw_cards': throw_card
             }
 
+            # the software return 'user'
             return user
 
         throw_card = index_best_array
@@ -200,13 +204,26 @@ def array_to_best_cards(my_cards):
             if card == max_my_cards:
                 array_in.append(card)
                 array_for_delete.append(i)
-        array_for_return.append(array_in)
-        for i in range(len(array_for_delete)):
 
-            if i == 0:
-                del(my_cards[array_for_delete[0]])
-            else:
-                del (my_cards[array_for_delete[i - 1]])
+        array_for_return.append(array_in)
+        rili = True
+        array = []
+
+        for i in my_cards:
+            number_1 = my_cards[0]
+            if i == number_1:
+                array.append(0)
+
+        if len(my_cards) == len(array):
+            del(my_cards)
+            my_cards = []
+            rili = False
+
+        if rili:
+
+            for i in range(len(array_for_delete)):
+                del(my_cards[i - i])
+
     return array_for_return
 
 
@@ -282,6 +299,6 @@ def if_to_say_bungee(my_cards, lost_card, index_best_array):
         return bungee
 
 
-name = simple([2, 2, 2, 3, 4], 1, 10, False)
+name = simple([10, 10, 9, 9, 9], 10, None, False)
 
 print(name)
