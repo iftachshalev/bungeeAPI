@@ -33,7 +33,7 @@ class Player:
         # when try to get card from empty lost list
         if not from_stack and self.lost_card is None:
             self.print_func("ERROR! You cant put card from lost if you play first")
-            return False, []
+            return False, 0
 
 
 
@@ -42,7 +42,7 @@ class Player:
         for j in range(len(throw_index) - 1):
             if self.my_cards[throw_index[j]] != self.my_cards[throw_index[j + 1]]:
                 self.print_func("ERROR! You cannot throw unequal cards")
-                return False, []
+                return False, 0
 
         # get card
         if from_stack:
@@ -76,7 +76,7 @@ class Player:
 
 
         self.sort_array()
-        return False, []
+        return False, 0
 
     def get_state(self):
         lost_card = self.game.get_lost_card()

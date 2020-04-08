@@ -7,6 +7,7 @@ import copy
 import IO_Class
 import nadavAlgo
 import sampleAlgo
+import iftachAlgo
 
 
 class Stat(Enum):
@@ -36,26 +37,24 @@ class Manager:
         self.game = []
         self.player = []
         self.who_say_bungee = 0
-        # set output obj
-        self.out = IO_Class.IO_Class(self.OUTPUT_TO_FILE, self.OUTPUT_TO_SCREEN, self.LOG_FILE)
 
-        func_dict = {
+        self.func_dict = {
             0: nadavAlgo.main_algo,
-            1: sampleAlgo.algo_simple,
+            1: iftachAlgo.simple,
             2: sampleAlgo.algo_simple,
             3: sampleAlgo.algo_simple,
             4: sampleAlgo.algo_simple
         }
-        # user input obj
-        self.inp = Input(self.INPUT_FROM_FUNC, func_dict)
-
-        # set func dictionary
-
-        # Init to Input class
-        # save to self.inp
 
     # prepare game: create users
     def do_start(self):
+
+        # set output obj
+        self.out = IO_Class.IO_Class(self.OUTPUT_TO_FILE, self.OUTPUT_TO_SCREEN, self.LOG_FILE)
+
+        # user input obj
+        self.inp = Input(self.INPUT_FROM_FUNC, self.func_dict)
+
         self.num_user = self.inp.input_num_users(self.ROBOT_NUM_USER)
         self.game = Game()
 

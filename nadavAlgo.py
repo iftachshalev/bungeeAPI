@@ -24,7 +24,6 @@ def main_algo(my_cards, lucky_card, lost_card, bungee_mode, score):
         nt += 1
     except NameError:
         nt = 1
-    print(nt)
     from_stack = True
     say_bungee = False
 

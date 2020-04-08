@@ -3,7 +3,7 @@ import copy
 
 
 # it is the main function
-def simple(my_cards, lucky_card, lost_card=None, bungee_mode=False):
+def simple(my_cards, lucky_card, lost_card, bungee_mode):
 
     # Defaults
     say_bungee = False
@@ -37,7 +37,7 @@ def simple(my_cards, lucky_card, lost_card=None, bungee_mode=False):
                 from_stack = False
                 throw_card = index_best_array
 
-            # it is what the software need to return
+            # it is what the softwar need to return
             user = {
                 'say_bungee': say_bungee,
                 'from_stack': from_stack,
@@ -282,6 +282,6 @@ def if_to_say_bungee(my_cards, lost_card, index_best_array):
         return bungee
 
 
-name = simple([1, 2, 9, 9, 10], 4)
+name = simple([2, 2, 2, 3, 4], 1, 10, False)
 
 print(name)
