@@ -1,7 +1,7 @@
 import copy
 
 
-def simple(my_cards, lucky_card, lost_card, bungee_mode):
+def simple(my_cards, lucky_card, lost_card=None, bungee_mode=False):
 
     say_bungee = False
     throw_card = []
@@ -19,6 +19,7 @@ def simple(my_cards, lucky_card, lost_card, bungee_mode):
     if lost_card is None:
 
         if bungee_mode:
+
             is_bungee = if_to_say_bungee(my_cards, lost_card, index_best_array)
             if not is_bungee:
                 to_quit = True
@@ -27,6 +28,7 @@ def simple(my_cards, lucky_card, lost_card, bungee_mode):
             elif is_bungee is None:
                 from_stack = False
                 throw_card = index_best_array
+
             user = {
                 'say_bungee': say_bungee,
                 'from_stack': from_stack,
@@ -34,6 +36,7 @@ def simple(my_cards, lucky_card, lost_card, bungee_mode):
                 'error': error,
                 'throw_cards': throw_card
             }
+
             return user
 
         if sum(my_cards) <= 5:
@@ -48,7 +51,8 @@ def simple(my_cards, lucky_card, lost_card, bungee_mode):
             }
             return user
 
-        throw_card = best_cards(my_cards)
+        throw_card = index_best_array
+
         user = {
             'say_bungee': say_bungee,
             'from_stack': from_stack,
@@ -58,7 +62,6 @@ def simple(my_cards, lucky_card, lost_card, bungee_mode):
         }
 
         return user
-
     is_bungee = if_to_say_bungee(my_cards, lost_card, index_best_array)
 
     if bungee_mode:
@@ -84,10 +87,13 @@ def simple(my_cards, lucky_card, lost_card, bungee_mode):
             where = where_to_get(my_cards, lost_card, index_best_array)
             if where is None:
                 new = []
+
                 for i in my_cards:
                     if i != my_cards[index_best_array[0]]:
                         new.append(i)
+
                 new_index_best_array = best_cards(new)
+
                 if my_cards[new_index_best_array[0]] < 4:
                     throw_card = index_best_array
                     from_stack = True
@@ -95,9 +101,11 @@ def simple(my_cards, lucky_card, lost_card, bungee_mode):
 
                     throw_card = new_index_best_array
                     from_stack = False
+
             if not where:
                 throw_card = index_best_array
                 from_stack = False
+
             elif where:
                 throw_card = index_best_array
                 from_stack = True
@@ -114,6 +122,7 @@ def simple(my_cards, lucky_card, lost_card, bungee_mode):
 
 
 def best_cards(my_cards):
+
     # old_my_cards = copy.copy(my_cards)
     # array_max = []
     #
@@ -155,24 +164,91 @@ def best_cards(my_cards):
     #         for i in range(len(a)):
     #             del(old_my_cards[b[i]])
 
+    my_old_cards = copy.copy(my_cards)
+    old_my_cards = copy.copy(my_cards)
+
+    array_in_array = array_to_best_cards(old_my_cards)
+    sum_in_array = array_in_array_to_sum_in_array(array_in_array)
+    array_for_return = sum_in_array_to_max_for_return(sum_in_array, array_in_array, my_old_cards)
+
+    return array_for_return
+
+
+def array_to_best_cards(my_cards):
+
+    array_for_return = []
+
+    while len(my_cards) != 0:
+        array_for_delete = []
+        max_my_cards = max(my_cards)
+        array_in = []
+
+        for i, card in enumerate(my_cards):
+            if card == max_my_cards:
+                array_in.append(card)
+                array_for_delete.append(i)
+        array_for_return.append(array_in)
+        for i in range(len(array_for_delete)):
+
+            if i == 0:
+                del(my_cards[array_for_delete[0]])
+            else:
+                del (my_cards[array_for_delete[i - 1]])
+    return array_for_return
+
+
+def array_in_array_to_sum_in_array(array_in_array):
+
+    array_for_return = []
+
+    for i in array_in_array:
+        array_for_return.append(sum(i))
+
+    return array_for_return
+
+
+def sum_in_array_to_max_for_return(sum_in_array, array_in_array, my_cards):
+
+    max_sum_in_array = max(sum_in_array)
+    index = [1]
+
+    for i, card in enumerate(sum_in_array):
+        if card == max_sum_in_array:
+            index = i
+
+    number = array_in_array[index][0]
+    array_for_return = []
+
+    for i, card in enumerate(my_cards):
+        if card == number:
+            array_for_return.append(i)
+
+    return array_for_return
 
 
 def where_to_get(my_cards, lost_card, index_best_array):
+
     t = None
+
     if lost_card == index_best_array[0]:
         return t
+
     for i in my_cards:
         if lost_card == i:
             t = True
+
     if t:
         return False
+
     if lost_card <= 5:
         return False
+
     else:
         return True
 
 
 def if_to_say_bungee(my_cards, lost_card, index_best_array):
+
     my_sam = sum(my_cards)
 
     if my_sam <= 5:
@@ -180,7 +256,9 @@ def if_to_say_bungee(my_cards, lost_card, index_best_array):
         if lost_card is not None:
             if my_sam - sum(index_best_array) + lost_card < my_sam:
                 bungee = None
+
         return bungee
+
     elif lost_card is not None:
         if my_sam - sum(index_best_array) + lost_card <= 5:
             bungee = None
@@ -191,5 +269,6 @@ def if_to_say_bungee(my_cards, lost_card, index_best_array):
         return bungee
 
 
-name = simple([10, 2, 3, 2, 0], 10, None, False)
+name = simple([1, 2, 9, 9, 10], 4)
+
 print(name)
