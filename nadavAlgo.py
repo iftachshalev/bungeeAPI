@@ -17,7 +17,36 @@ class Card:
         return f'card: {self.card}, ind: {self.inds}, points: {self.points}\n'
 
 
-def main_algo(my_cards, lucky_card, lost_card, bungee_mode, score):
+class Pairs:
+
+    def __init__(self, pairs=None):
+        if pairs is None:
+            pairs = []
+        self.pairs = pairs
+
+    def set_cards(self, my_cards, lucky_card):
+        self.pairs = []
+        unique_cards = set(my_cards)
+        for card in unique_cards:
+            inds = find_in_hand(my_cards, card)
+            c = Card(card, inds, lucky_card)
+            self.pairs.append(c)
+        self.pairs.sort(key=lambda x: x.points)
+
+    def get_points(self):
+        score = 0
+        for p in self.pairs:
+            score += p.points
+        return score
+
+    def get_pairs_except_inds(self, inds):
+        new_pairs = []
+        for i, c in enumerate(self.pairs):
+            if c.inds != inds:
+                new_pairs.append(c)
+        return Pairs(new_pairs)
+
+def main_algo(my_cards, lucky_card, last_card, bungee_mode, score):
     # set nt for count game rounds
     global nt
     try:
@@ -41,29 +70,43 @@ def main_algo(my_cards, lucky_card, lost_card, bungee_mode, score):
         min_dup_take = 0
         max_use_take = 0
 
-    if lost_card is None:
-        lost_card = 777
+    if last_card is None:
+        last_card = 777
 
     # say bungee
     if score <= bungee_score:
         say_bungee = True
 
     # take useful card
-    if lost_card <= max_use_take:
+    if last_card <= max_use_take:
         from_stack = False
 
+    pairs = Pairs()
+    pairs.set_cards(my_cards, lucky_card)
+
+    # find index of card equal to last_card
+    last_ind = find_in_hand(my_cards, last_card)
+    # get all pairs except it
+    rest_pairs = pairs.get_pairs_except_inds(last_ind)
     # take from lost iff
-    #   1: have in hand,
-    #   2: large enough for dup turn,
-    #   3: not in bungee mode
-    if not bungee_mode and \
-            find_in_hand(my_cards, lost_card) != [] and \
-            lost_card >= min_dup_take:
-        from_stack = False
+    #   1: last_card is not None (first turn)
+    #   2: not in bungee mode
+    #   3: have in hand,
+    #   4: large enough for dup turn,
+    #   5: points of other throw is good enough
+    if last_card:
+        if not bungee_mode and \
+                last_card >= min_dup_take and \
+                last_ind and \
+                last_card > min_dup_take and \
+                rest_pairs.pairs[-1].points > max_use_take:
+            from_stack = False
 
     # find best cards throw
-    pairs = get_pairs(my_cards, lucky_card)
-    throw_cards = pairs[-1].inds
+    if from_stack:
+        throw_cards = pairs.pairs[-1].inds
+    else:
+        throw_cards = rest_pairs.pairs[-1].inds
 
     dict = {
         'say_bungee': say_bungee,
@@ -72,16 +115,24 @@ def main_algo(my_cards, lucky_card, lost_card, bungee_mode, score):
         'error': '',
         'throw_cards': throw_cards
     }
-    # print(f"throw: {dict['throw_cards']}, stack: {dict['from_stack']}")
+    print(f"throw: {dict['throw_cards']}, stack: {dict['from_stack']}, bungee: {dict['say_bungee']}")
     return dict
 
-def find_in_hand(my_cards, card):
+def get_pairs_except_inds(pairs, inds):
+    new_pairs = []
+    for i, c in enumerate(pairs):
+        if c.inds != inds:
+            new_pairs.append(c)
+    return new_pairs
+
+def find_in_hand(cards, card):
     inds = []
-    for i, c in enumerate(my_cards):
+    for i, c in enumerate(cards):
         if c == card:
             inds.append(i)
 
     return inds
+
 
 def get_pairs(my_cards, lucky_card):
     pairs = []
@@ -94,8 +145,4 @@ def get_pairs(my_cards, lucky_card):
     return pairs
 
 
-# d = main_algo([2, 4, 5, 5, 7], 5, 1, False, 4)
-#
-# print(d['throw_cards'])
-# print(d['from_stack'])
-# print(d['say_bungee'])
+d = main_algo([2, 1, 5, 5, 7], 5, 7, False, 14)
