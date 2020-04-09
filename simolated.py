@@ -13,6 +13,14 @@ for i in range(10):
     if e == 1:
         s += 1
     print(f'Winner is {e}')
+if r > s:
+    print("0 is the winner!!!!!!!!!!!!!")
+elif s > r:
+    print("1 is the winner!!!!!!!!!!!!!")
+else:
+    print("0 &^*()$#@! 1 is the winner!!!!!!!!!!!!!")
 print(r)
+print(s)
+
 
 

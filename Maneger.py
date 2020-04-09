@@ -36,6 +36,7 @@ class Manager:
         self.game = []
         self.player = []
         self.who_say_bungee = 0
+        self.break_ = 0
 
         self.func_dict = {
             0: nadavAlgo.main_algo,
@@ -112,6 +113,13 @@ class Manager:
             if old_my_cards[i] == 6:
                 self.sam += 1
         self.turn = (self.turn + self.sam) % self.num_user
+
+        self.break_ += 1
+
+        # cheek if has a bug in the software
+        if self.break_ > 200:
+            return Stat.BREAK
+
         return Stat.GAME
 
     # run when player in bungee mode
@@ -148,16 +156,16 @@ class Manager:
 
     # on game end: find the winner
     def do_end(self):
-        players_score = [i.my__score() for i in self.player]
-        minimaly = min(players_score)
+        self.players_score = [i.my__score() for i in self.player]
+        minimaly = min(self.players_score)
         self.out.print(str(minimaly))
         numin = 0
-        minscore = players_score[self.turn]
+        minscore = self.players_score[self.turn]
         minplayer_index = self.turn
         tur = (self.turn + 1) % self.num_user
         while tur != self.turn:
-            if players_score[tur] <= minscore:
-                minscore = players_score[tur]
+            if self.players_score[tur] <= minscore:
+                minscore = self.players_score[tur]
                 minplayer_index = tur
             tur = (tur + 1) % self.num_user
         self.out.print("")
@@ -183,5 +191,8 @@ class Manager:
                 st = self.do_break()
             elif st == Stat.END:
                 e = self.do_end()
-                return e
+                return {
+                    "winner": e,
+                    "score": self.players_score
+                }
 
