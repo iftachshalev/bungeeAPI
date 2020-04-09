@@ -131,6 +131,7 @@ def simple(my_cards, lucky_card, lost_card, bungee_mode, score):
 
             where = where_to_get(my_cards, lost_card, index_best_array)
             if where is None:
+
                 new = []
 
                 for i in my_cards:
@@ -139,15 +140,15 @@ def simple(my_cards, lucky_card, lost_card, bungee_mode, score):
 
                 new_index_best_array = best_cards(new)
 
-                if my_cards[new_index_best_array[0]] < 4:
+                if my_cards[new_index_best_array[0]] < 3:
                     throw_card = index_best_array
                     from_stack = True
-                else:
 
+                else:
                     throw_card = new_index_best_array
                     from_stack = False
 
-            if not where:
+            if where is False:
                 throw_card = index_best_array
                 from_stack = False
 
@@ -216,7 +217,7 @@ def best_cards(my_cards):
             array.append(i)
 
     if len(array) > 0:
-        if len(array) == 1 or len(array) == 3:
+        if len(array) == 1 or len(array) == 2 or len(array) == 3:
             return array
 
         else:
@@ -302,7 +303,7 @@ def where_to_get(my_cards, lost_card, index_best_array):
 
     t = None
 
-    if lost_card == index_best_array[0]:
+    if lost_card == my_cards[index_best_array[0]]:
         return t
 
     for i in my_cards:
@@ -337,36 +338,53 @@ def if_to_say_bungee(my_cards, lost_card, index_best_array):
     #     who_mach += 3
     #
     # print(who_mach)
-    my_sam = sum(my_cards)# + who_mach
 
+    my_sam = sum(my_cards)# + who_mach
     new_best_array = []
+
     for i in index_best_array:
         new_best_array.append(my_cards[i])
 
     sam_new_best_array = sum(new_best_array)
 
+    bungee = 8
+
     if my_sam <= 5:
         bungee = True
 
-    if lost_card is not None and my_sam - sam_new_best_array + lost_card < my_sam:
-            bungee = None
-
-    if lost_card is not None and my_sam - sam_new_best_array + lost_card <= 5:
-            bungee = None
-
-    elif lost_card is not None and my_sam - sam_new_best_array == 0 and lost_card <= 5:
-        bungee = None
-        return bungee
-
-    elif my_sam - sam_new_best_array == 0:
+    if lost_card is not None and (my_sam - sam_new_best_array + lost_card) < my_sam and my_sam < 5:
         bungee = None
 
-    else:
+    elif lost_card is not None and my_sam - sam_new_best_array == 0 and lost_card <= 5 and my_sam > 5:
+        bungee = None
+
+    elif my_sam - sam_new_best_array == 0 and lost_card is None and my_sam > 5:
+        bungee = None
+
+    elif bungee == 8:
         bungee = False
-
     return bungee
 
 
-# name = simple([0, 4, 4, 7, 9], 1, 2, True, 3)
+# name = simple([3, 8, 10, 10, 10], 5, 9, False, 3)
 #
 # print(name)
+
+
+# import numpy as np
+# import matplotlib.pyplot as plt
+#
+#
+# # In[5]:
+#
+#
+# a = np.arange(1000)
+# b = a**2
+# plt.plot(b)
+# # plt.show()
+# plt.savefig("fig.png")
+# #
+# #
+# #
+# #plt.scatter(a, b)
+# #

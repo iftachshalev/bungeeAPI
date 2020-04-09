@@ -36,7 +36,6 @@ class Player:
             return False, 0
 
 
-
         # check throw cards are equal
         throw_index.sort()
         for j in range(len(throw_index) - 1):
@@ -49,6 +48,7 @@ class Player:
             card = self.game.card_from_stack()
         else:
             card, success = self.game.card_from_lost()
+        self.print_func(f" get card: {card}")
 
         # throw the cards
         for i in range(len(throw_index)):

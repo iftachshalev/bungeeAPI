@@ -49,6 +49,7 @@ class Manager:
     # prepare game: create users
     def do_start(self):
 
+        self.break_ = 0
         # set output obj
         self.out = IO_Class.IO_Class(self.OUTPUT_TO_FILE, self.OUTPUT_TO_SCREEN, self.LOG_FILE)
 
@@ -192,7 +193,7 @@ class Manager:
             elif st == Stat.END:
                 e = self.do_end()
                 return {
-                    "winner": f"iftach{e}",
+                    "winner": e,
                     "score": self.players_score
                 }
 
