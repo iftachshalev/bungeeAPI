@@ -13,6 +13,6 @@ for i in range(10):
     if e == 1:
         s += 1
     print(f'Winner is {e}')
-print(e)
+print(r)
 
 
