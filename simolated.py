@@ -6,7 +6,7 @@ for i in range(10):
     manager.OUTPUT_TO_FILE = False
     manager.OUTPUT_TO_SCREEN = True
     print('--------------')
-    print(f'Game Number: {i}')
+    print(f'Game Number: {i + 1}')
     e = manager.run()
     if e == 0:
         r += 1

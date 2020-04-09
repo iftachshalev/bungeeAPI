@@ -24,7 +24,7 @@ class Stat(Enum):
 class Manager:
     OUTPUT_TO_FILE = True
     OUTPUT_TO_SCREEN = True
-    INPUT_FROM_FUNC = False
+    INPUT_FROM_FUNC = True
     LOG_FILE = 'log.txt'
     ROBOT_NUM_USER = 2
 
@@ -192,7 +192,7 @@ class Manager:
             elif st == Stat.END:
                 e = self.do_end()
                 return {
-                    "winner": e,
+                    "winner": f"iftach{e}",
                     "score": self.players_score
                 }
 
