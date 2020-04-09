@@ -76,6 +76,14 @@ def main_algo(my_cards, lucky_card, last_card, bungee_mode, score):
     # say bungee
     if score <= bungee_score:
         say_bungee = True
+        dict = {
+            'say_bungee': say_bungee,
+            'from_stack': True,
+            'quit': False,
+            'error': '',
+            'throw_cards': []
+        }
+        return dict
 
     # take useful card
     if last_card <= max_use_take:
@@ -99,6 +107,7 @@ def main_algo(my_cards, lucky_card, last_card, bungee_mode, score):
                 last_card >= min_dup_take and \
                 last_ind and \
                 last_card > min_dup_take and \
+                len(rest_pairs.pairs) > 1 and\
                 rest_pairs.pairs[-1].points > max_use_take:
             from_stack = False
 
@@ -115,7 +124,7 @@ def main_algo(my_cards, lucky_card, last_card, bungee_mode, score):
         'error': '',
         'throw_cards': throw_cards
     }
-    print(f"throw: {dict['throw_cards']}, stack: {dict['from_stack']}, bungee: {dict['say_bungee']}")
+    # print(f"throw: {dict['throw_cards']}, stack: {dict['from_stack']}, bungee: {dict['say_bungee']}")
     return dict
 
 def get_pairs_except_inds(pairs, inds):
