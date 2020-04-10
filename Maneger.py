@@ -78,6 +78,7 @@ class Manager:
         # get user or robot command
         my_cards, lucky_card, lost_card, bungee_mode, score = self.player[self.turn].get_state()
         command_dict = self.inp.get_turn(self.turn, my_cards, lucky_card, lost_card, bungee_mode, score)
+        # command_dict = self.player[self.turn].inp.get_turn(self.turn, my_cards, lucky_card, lost_card, bungee_mode, score)
 
         # spatial cases
         if command_dict['error'] != '':
