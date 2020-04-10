@@ -1,101 +1,167 @@
 ------------------------------
-Player Number: 1
- Score: 21
- Cards: [1, 2, 5, 5, 8]	Lucky card: 7, Last_card: None,
- throw: [5, 5], stack: True
- get card: 10
- Score: 21
- Cards: [1, 2, 8, 10]	Lucky card: 7, Last_card: 5,
-------------------------------
-Player Number: 2
- Score: 27
- Cards: [0, 1, 6, 10, 10]	Lucky card: 7, Last_card: 5,
- throw: [6], stack: False
- get card: 5
- Score: 26
- Cards: [0, 1, 5, 10, 10]	Lucky card: 7, Last_card: 6,
-------------------------------
-Player Number: 2
- Score: 26
- Cards: [0, 1, 5, 10, 10]	Lucky card: 7, Last_card: 6,
- throw: [10, 10], stack: True
- get card: 3
- Score: 9
- Cards: [0, 1, 3, 5]	Lucky card: 7, Last_card: 10,
-------------------------------
-Player Number: 1
- Score: 21
- Cards: [1, 2, 8, 10]	Lucky card: 7, Last_card: 10,
- throw: [8], stack: False
- get card: 10
- Score: 23
- Cards: [1, 2, 10, 10]	Lucky card: 7, Last_card: 8,
-------------------------------
-Player Number: 2
- Score: 9
- Cards: [0, 1, 3, 5]	Lucky card: 7, Last_card: 8,
- throw: [5], stack: True
- get card: 9
- Score: 13
- Cards: [0, 1, 3, 9]	Lucky card: 7, Last_card: 5,
-------------------------------
-Player Number: 1
- Score: 23
- Cards: [1, 2, 10, 10]	Lucky card: 7, Last_card: 5,
- throw: [10, 10], stack: True
- get card: 7
- Score: 3
- Cards: [1, 2, 7]	Lucky card: 7, Last_card: 10,
-------------------------------
-Player Number: 2
- Score: 13
- Cards: [0, 1, 3, 9]	Lucky card: 7, Last_card: 10,
+Player Number: 3
+ Score: 30
+ Cards: [2, 4, 7, 8, 9]	Lucky card: 3, Last_card: None,
  throw: [9], stack: True
- get card: 10
- Score: 14
- Cards: [0, 1, 3, 10]	Lucky card: 7, Last_card: 9,
+ get card: 8
+ Score: 29
+ Cards: [2, 4, 7, 8, 8]	Lucky card: 3, Last_card: 9,
 ------------------------------
 Player Number: 1
- Score: 3
- Cards: [1, 2, 7]	Lucky card: 7, Last_card: 9,
- throw: [2], stack: True
- get card: 9
- Score: 10
- Cards: [1, 7, 9]	Lucky card: 7, Last_card: 2,
+ Score: 20
+ Cards: [0, 3, 4, 6, 10]	Lucky card: 3, Last_card: 9,
+ throw: [6], stack: True
+ get card: 8
+ Score: 22
+ Cards: [3, 0, 4, 8, 10]	Lucky card: 3, Last_card: 6,
+------------------------------
+Player Number: 3
+ Score: 29
+ Cards: [2, 4, 7, 8, 8]	Lucky card: 3, Last_card: 6,
+ throw: [8], stack: True
+ get card: 7
+ Score: 28
+ Cards: [2, 4, 7, 7, 8]	Lucky card: 3, Last_card: 8,
+------------------------------
+Player Number: 1
+ Score: 22
+ Cards: [3, 0, 4, 8, 10]	Lucky card: 3, Last_card: 8,
+ throw: [10], stack: False
+ get card: 8
+ Score: 20
+ Cards: [3, 0, 4, 8, 8]	Lucky card: 3, Last_card: 10,
 ------------------------------
 Player Number: 2
- Score: 14
- Cards: [0, 1, 3, 10]	Lucky card: 7, Last_card: 2,
- throw: [10], stack: False
+ Score: 33
+ Cards: [2, 5, 6, 10, 10]	Lucky card: 3, Last_card: 10,
+ throw: [6], stack: False
+ get card: 10
+ Score: 37
+ Cards: [2, 5, 10, 10, 10]	Lucky card: 3, Last_card: 6,
+------------------------------
+Player Number: 1
+ Score: 20
+ Cards: [3, 0, 4, 8, 8]	Lucky card: 3, Last_card: 6,
+ throw: [8, 8], stack: True
  get card: 2
  Score: 6
- Cards: [0, 1, 2, 3]	Lucky card: 7, Last_card: 10,
+ Cards: [3, 0, 2, 4]	Lucky card: 3, Last_card: 8,
 ------------------------------
-Player Number: 1
- Score: 10
- Cards: [1, 7, 9]	Lucky card: 7, Last_card: 10,
- throw: [9], stack: True
+Player Number: 2
+ Score: 37
+ Cards: [2, 5, 10, 10, 10]	Lucky card: 3, Last_card: 8,
+ throw: [10, 10, 10], stack: True
  get card: 9
-well done! you stick, rand: 0.8594980217683515
- Score: 1
- Cards: [1, 7]	Lucky card: 7, Last_card: 9,
+ Score: 16
+ Cards: [2, 5, 9]	Lucky card: 3, Last_card: 10,
 ------------------------------
-Player Number: 2
- Score: 6
- Cards: [0, 1, 2, 3]	Lucky card: 7, Last_card: 9,
- throw: [3], stack: True
- get card: 7
- Score: 3
- Cards: [0, 1, 2, 7]	Lucky card: 7, Last_card: 3,
+Player Number: 3
+ Score: 28
+ Cards: [2, 4, 7, 7, 8]	Lucky card: 3, Last_card: 10,
+ throw: [8], stack: True
+ get card: 0
+------------------------------
+Player Number: 3
+ Score: 20
+ Cards: [2, 4, 7, 7]	Lucky card: 3, Last_card: 8,
+ throw: [7], stack: True
+ get card: 10
+ Score: 23
+ Cards: [2, 4, 7, 10]	Lucky card: 3, Last_card: 7,
 ------------------------------
 Player Number: 1
- Score: 1
- Cards: [1, 7]	Lucky card: 7, Last_card: 3,
+ Score: 6
+ Cards: [3, 0, 2, 4]	Lucky card: 3, Last_card: 7,
+ throw: [4], stack: True
+ get card: 10
+ Score: 12
+ Cards: [3, 0, 2, 10]	Lucky card: 3, Last_card: 4,
 ------------------------------
 Player Number: 2
- Score: 3
- Cards: [0, 1, 2, 7]	Lucky card: 7, Last_card: 3,
-1
+ Score: 16
+ Cards: [2, 5, 9]	Lucky card: 3, Last_card: 4,
+ throw: [9], stack: False
+ get card: 4
+ Score: 11
+ Cards: [2, 4, 5]	Lucky card: 3, Last_card: 9,
+------------------------------
+Player Number: 3
+ Score: 23
+ Cards: [2, 4, 7, 10]	Lucky card: 3, Last_card: 9,
+ throw: [10], stack: True
+ get card: 5
+ Score: 18
+ Cards: [2, 4, 5, 7]	Lucky card: 3, Last_card: 10,
+------------------------------
+Player Number: 1
+ Score: 12
+ Cards: [3, 0, 2, 10]	Lucky card: 3, Last_card: 10,
+ throw: [2], stack: False
+ get card: 10
+ Score: 20
+ Cards: [3, 0, 10, 10]	Lucky card: 3, Last_card: 2,
+------------------------------
+Player Number: 2
+ Score: 11
+ Cards: [2, 4, 5]	Lucky card: 3, Last_card: 2,
+ throw: [5], stack: False
+ get card: 2
+ Score: 8
+ Cards: [2, 2, 4]	Lucky card: 3, Last_card: 5,
+------------------------------
+Player Number: 3
+ Score: 18
+ Cards: [2, 4, 5, 7]	Lucky card: 3, Last_card: 5,
+ throw: [7], stack: False
+ get card: 5
+ Score: 16
+ Cards: [2, 4, 5, 5]	Lucky card: 3, Last_card: 7,
+------------------------------
+Player Number: 1
+ Score: 20
+ Cards: [3, 0, 10, 10]	Lucky card: 3, Last_card: 7,
+ throw: [10, 10], stack: True
+ get card: 10
+well done! you stick, rand: 0.556079183470486
+ Score: 0
+ Cards: [0, 3]	Lucky card: 3, Last_card: 10,
+------------------------------
+Player Number: 2
+ Score: 8
+ Cards: [2, 2, 4]	Lucky card: 3, Last_card: 10,
+ throw: [2, 2], stack: True
+ get card: 5
+ Score: 9
+ Cards: [4, 5]	Lucky card: 3, Last_card: 2,
+------------------------------
+Player Number: 3
+ Score: 16
+ Cards: [2, 4, 5, 5]	Lucky card: 3, Last_card: 2,
+ throw: [5], stack: False
+ get card: 2
+ Score: 13
+ Cards: [2, 2, 4, 5]	Lucky card: 3, Last_card: 5,
+------------------------------
+Player Number: 1
+ Score: 0
+ Cards: [0, 3]	Lucky card: 3, Last_card: 5,
+------------------------------
+Player Number: 2
+ Score: 9
+ Cards: [4, 5]	Lucky card: 3, Last_card: 5,
+ throw: [5], stack: True
+ get card: 7
+ Score: 11
+ Cards: [4, 7]	Lucky card: 3, Last_card: 5,
+------------------------------
+Player Number: 3
+ Score: 13
+ Cards: [2, 2, 4, 5]	Lucky card: 3, Last_card: 5,
+ throw: [4], stack: False
+ get card: 5
+ Score: 14
+ Cards: [2, 2, 5, 5]	Lucky card: 3, Last_card: 4,
+0
 
 Player Number: 1 Is The Winner!!!!!!!!!!!!!!!!
-his score - 1
+his score - 0
