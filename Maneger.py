@@ -26,7 +26,7 @@ class Manager:
     OUTPUT_TO_SCREEN = True
     INPUT_FROM_FUNC = True
     LOG_FILE = 'log.txt'
-    ROBOT_NUM_USER = 2
+    ROBOT_NUM_USER = 3
 
     def __init__(self):
 
