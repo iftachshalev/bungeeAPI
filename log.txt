@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ------------------------------
 Player Number: 2
  Score: 23
@@ -144,5 +145,7 @@ Player Number: 1
 
 Player Number: 2 Is The Winner!!!!!!!!!!!!!!!!
 his score - 3
+=======
+>>>>>>> 70a3f5221aa9bdfe4a7accebf5bb2a24c98a58b6
 =======
 >>>>>>> 70a3f5221aa9bdfe4a7accebf5bb2a24c98a58b6
