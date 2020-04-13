@@ -32,13 +32,11 @@ x = np.arange(N)
 # plt.bar(players, win_count)
 # plt.show()
 
-
-
-fig = plt.figure(figsize=(8, 5)) # create a figure, just like in matlab
-ax = fig.add_subplot(1, 1 ,1) # create a subplot of certain size
-box = np.ones(20)/20
+fig = plt.figure(figsize=(8, 5))# create a figure, just like in matlab
+ax = fig.add_subplot(1, 1, 1)# create a subplot of certain size
+# box = np.ones(20)/20
 for i in range(num_users):
-    sc = scores[:,i]
+    sc = scores[:, i]
     sc = np.convolve(sc, box, mode='same')
     ax.plot(x,sc, label=players[i])
 # ax.set_xlabel('index')
