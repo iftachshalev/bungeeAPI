@@ -28,8 +28,7 @@ class Manager:
     LOG_FILE = 'log.txt'
     ROBOT_NUM_USER = 3
 
-    def __init__(self):
-
+    def __init__(self, array_pram):
         self.num_user = -1
         self.turn = -1
         self.lucky_card = -1
