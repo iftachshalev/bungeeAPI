@@ -1,0 +1,115 @@
+------------------------------
+It is Robot number 1
+ The Robot thinking...
+ .
+ .
+ .
+ The Robot finished!
+ throw: [6], stack: True
+ Score: 29
+ Cards: [0, 4, 5, 10, 10]	Lucky card: 9, Last_card: 6,
+------------------------------
+It is Robot number 1
+ The Robot thinking...
+ .
+ .
+ .
+ The Robot finished!
+ throw: [10, 10], stack: True
+ Score: 12
+ Cards: [0, 3, 4, 5]	Lucky card: 9, Last_card: 10,
+------------------------------
+It is Robot number 2
+ The Robot thinking...
+ .
+ .
+ .
+ The Robot finished!
+------------------------------
+It is Robot number 1
+ The Robot thinking...
+ .
+ .
+ .
+ The Robot finished!
+ throw: [5], stack: False
+ Score: 11
+ Cards: [0, 3, 4, 4]	Lucky card: 9, Last_card: 5,
+------------------------------
+It is Robot number 2
+ The Robot thinking...
+ .
+ .
+ .
+ The Robot finished!
+------------------------------
+It is Robot number 1
+ The Robot thinking...
+ .
+ .
+ .
+ The Robot finished!
+ throw: [4, 4], stack: True
+oh no! you can't stick, rand: 0.25233790000900325
+ Score: 7
+ Cards: [0, 3, 4]	Lucky card: 9, Last_card: 4,
+------------------------------
+It is Robot number 2
+ The Robot thinking...
+ .
+ .
+ .
+ The Robot finished!
+oh no! you can't stick, rand: 0.1908930299249355
+------------------------------
+It is Robot number 1
+ The Robot thinking...
+ .
+ .
+ .
+ The Robot finished!
+ throw: [4], stack: False
+ Score: 6
+ Cards: [0, 3, 3]	Lucky card: 9, Last_card: 4,
+------------------------------
+It is Robot number 2
+ The Robot thinking...
+ .
+ .
+ .
+ The Robot finished!
+------------------------------
+It is Robot number 1
+ The Robot thinking...
+ .
+ .
+ .
+ The Robot finished!
+ throw: [3, 3], stack: True
+ Score: 2
+ Cards: [0, 2]	Lucky card: 9, Last_card: 3,
+------------------------------
+It is Robot number 2
+ The Robot thinking...
+ .
+ .
+ .
+ The Robot finished!
+------------------------------
+It is Robot number 1
+ The Robot thinking...
+ .
+ .
+ .
+ The Robot finished!
+------------------------------
+It is Robot number 2
+ The Robot thinking...
+ .
+ .
+ .
+ The Robot finished!
+2
+
+Player Number: 1 Is The Winner!!!!!!!!!!!!!!!!
+his score - 2

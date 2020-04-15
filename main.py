@@ -1,3 +1,5 @@
+from Maneger import Manager
+
 while True:
     ROBOT_NUM_USER = input("Shoos number of players:\n >>>")
     try:
@@ -31,7 +33,7 @@ for i in range(ROBOT_NUM_USER):
             ROBOT_ARRAY.append(input_2)
             print(" The player saved!")
             succses = True
-
-
+d = Manager(ROBOT_ARRAY)
+d.run()
 
 

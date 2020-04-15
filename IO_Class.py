@@ -25,13 +25,12 @@ class IO_Class:
 
 class Input:
 
-    def __init__(self, from_func, user_funcs=None):
-        self.from_func = from_func
+    def __init__(self, user_funcs=None):
         self.user_funcs = user_funcs
 
-    def get_turn(self, turn, my_cards, lucky_card, lost_card, bungee_mode, score):
-        if self.from_func:
-            my_func = self.user_funcs[turn]
+    def get_turn(self, my_cards, lucky_card, lost_card, bungee_mode, score):
+        if self.user_funcs:
+            my_func = self.user_funcs
             return my_func(my_cards, lucky_card, lost_card, bungee_mode, score)
         else:
             what_to_do = input("Action:  B [Bungee]  Q [Quit]\n>>>")
@@ -82,11 +81,11 @@ class Input:
             return dict
             # validation from user
 
-    def input_num_users(self, robot_users):
-        if self.from_func:
-            return robot_users
-        else:
-            return int(input("Choose Number Of Players:"))
+    # def input_num_users(self, robot_users):
+    #     if self.from_func:
+    #         return robot_users
+    #     else:
+    #         return int(input("Choose Number Of Players:"))
 
 
 # d = IO_Class(True, True, "f1.txt")

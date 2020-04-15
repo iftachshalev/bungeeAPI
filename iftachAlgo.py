@@ -428,9 +428,9 @@ def if_to_say_bungee(my_cards, lost_card, index_best_array):
     return bungee
 
 
-name = simple([8], 7, 8, False, 3)
-
-print(name)
+# name = simple([8], 7, 8, False, 3)
+#
+# print(name)
 
 
 # import numpy as np

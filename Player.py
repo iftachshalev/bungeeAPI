@@ -8,7 +8,7 @@ class Player:
 
     # lucky card
 
-    def __init__(self, game, print_func):
+    def __init__(self, game, print_func, user_func):
         self.game = game
         self.print_func = print_func
         self.my_cards = []
@@ -21,7 +21,8 @@ class Player:
         self.bungee_mode = False
         self.my_score = self.my__score()
         self.stick_factor = 0.5
-        # self.inp = Input()
+        self.inp = Input(user_func)
+        self.user_func = user_func
 
     # def say_bungee(self):
     #     if sum(self.my_cards) <= 5:
@@ -50,7 +51,9 @@ class Player:
             card = self.game.card_from_stack()
         else:
             card, success = self.game.card_from_lost()
-        self.print_func(f" get card: {card}")
+
+        if self.user_func is None:
+            self.print_func(f" get card: {card}")
 
         # throw the cards
         for i in range(len(throw_index)):
