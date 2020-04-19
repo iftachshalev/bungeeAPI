@@ -38,7 +38,6 @@ class Manager:
         self.who_say_bungee = 0
         self.break_ = 0
         self.array_param = array_param
-        print(array_param)
 
         self.func_dict = {
             0: None,
@@ -94,10 +93,7 @@ class Manager:
             sleep(1)
             self.out.print(" .")
             sleep(1)
-            if self.func_dict[self.array_param[self.turn]] is None:
-                self.out.print(" The Robot finished! your turn!")
-            else:
-                self.out.print(" The Robot finished!")
+
 
 
         # get user or robot command
@@ -119,8 +115,7 @@ class Manager:
         old_my_cards = copy.copy(self.player[self.turn].my_cards)
 
         array = [self.player[self.turn].my_cards[i] for i in command_dict['throw_cards']]
-        if self.OUTPUT_TO_SCREEN and self.func_dict[self.turn] is None:
-            self.out.print(f" throw: {array}, stack: {command_dict['from_stack']}")
+        self.out.print(f" throw: {array}, stack: {command_dict['from_stack']}")
 
         # play turn
         success, self.sam = self.player[self.turn].turn(command_dict['throw_cards'], command_dict['from_stack'],)
@@ -134,7 +129,7 @@ class Manager:
 
         # print state afterwards2
 
-        if self.OUTPUT_TO_SCREEN and self.func_dict[self.turn] is None:
+        if self.OUTPUT_TO_SCREEN and self.func_dict[self.array_param[self.turn]] is None:
             self.out.print(repr(self.player[self.turn]))
 
         # skip turn if 6
@@ -149,7 +144,8 @@ class Manager:
         # cheek if has a bug in the software
         if self.break_ > 200:
             return Stat.BREAK
-
+        if self.func_dict[self.array_param[self.turn]] is not None:
+            self.out.print(" The Robot finished!")
         return Stat.GAME
 
     # run when player in bungee mode

@@ -4,12 +4,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 num_users = 3
-N = 10000
+N = 1000
 win_count = np.zeros(num_users)
 scores = np.zeros((N, num_users))
+array = [1, 2, 3]
 
 for i in range(N):
-    manager = Manager()
+    manager = Manager(array)
     manager.OUTPUT_TO_FILE = False
     manager.OUTPUT_TO_SCREEN = False
     manager.ROBOT_NUM_USER = num_users
@@ -21,7 +22,7 @@ for i in range(N):
     win_count[dict["winner"]] += 1
     scores[i, :] = dict["score"]
 
-    print(f'Winner is {dict["winner"]}, scores: {dict["score"]}')
+    print(f'Winner is {dict["winner"] + 1}, scores: {dict["score"]}')
 
 print()
 print('--------------')
@@ -34,7 +35,7 @@ x = np.arange(N)
 
 fig = plt.figure(figsize=(8, 5))# create a figure, just like in matlab
 ax = fig.add_subplot(1, 1, 1)# create a subplot of certain size
-# box = np.ones(20)/20
+box = np.ones(20)/20
 for i in range(num_users):
     sc = scores[:, i]
     sc = np.convolve(sc, box, mode='same')
