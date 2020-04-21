@@ -3,11 +3,11 @@ from Maneger import Manager
 import numpy as np
 import matplotlib.pyplot as plt
 
-num_users = 3
+num_users = 2
 N = 1000
 win_count = np.zeros(num_users)
 scores = np.zeros((N, num_users))
-array = [1, 2, 3]
+array = [2, 2]
 
 for i in range(N):
     manager = Manager(array)

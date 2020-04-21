@@ -1,8 +1,13 @@
 import socket
 
+HOST = '127.0.0.1'  # The server's hostname or IP address
+PORT = 65432        # The port used by the server
 
-my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-my_socket.connect(('54.157.229.65', 65432))
-to_res = my_socket.recv(1024)
-print(to_res); input_1 = input("your turn:")
-my_socket.send(b'input_1')
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    s.connect((HOST, PORT))
+    s.sendall(b'Hello, world')
+    data = s.recv(1024)
+
+print('Received', repr(data))
+
+
