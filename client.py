@@ -7,22 +7,15 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 s.connect((HOST, PORT))
 
-data = b""
 
 while True:
-    inp = input("enter txt:")
-    s.sendall(inp.encode())
-    while True:
-        daata = s.recv(1024)
-        if daata[-2] == b"Q":
-            break
-        else:
-            data += daata
-            print(daata)
-    if data == b"quit":
-        print("quit")
+    data = s.recv(1024)
+    if data == b"Q":
+        print("The Game Break")
         break
-    # date = s.recv(1024)
-    print('Received:', data)
-
+    elif data == b"I":
+        inp = input(str(s.recv(1024)))
+        s.sendall(inp.encode())
+    else:
+        print(data)
 s.close()

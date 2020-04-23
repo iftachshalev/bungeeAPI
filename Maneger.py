@@ -9,6 +9,7 @@ import nadavAlgo
 import sampleAlgo
 import iftachAlgo
 from time import sleep
+import socket
 
 
 class Stat(Enum):
@@ -22,7 +23,11 @@ class Stat(Enum):
 # Handle functionality of state machine
 
 
+
 class Manager:
+    HOST = '127.0.0.1'
+    PORT = 65432
+    USE_INTERNET = True
     OUTPUT_TO_FILE = True
     OUTPUT_TO_SCREEN = True
     INPUT_FROM_FUNC = True
@@ -30,14 +35,15 @@ class Manager:
     ROBOT_NUM_USER = 3
 
     def __init__(self, array_param=None):
+
         self.num_user = -1
         self.turn = -1
         self.lucky_card = -1
         self.game = []
         self.player = []
-        self.who_say_bungee = 0
         self.break_ = 0
         self.array_param = array_param
+        self.who_say_bungee = 0
 
         self.func_dict = {
             0: None,
@@ -45,16 +51,23 @@ class Manager:
             2: iftachAlgo.simple,
             3: nadavAlgo.main_algo
         }
+        if self.USE_INTERNET:
+            self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self.s.bind((self.HOST, self.PORT))
+
+            self.s.listen()
+            self.conn, addr = self.s.accept()
+
 
     # prepare game: create users
     def do_start(self):
 
         self.break_ = 0
         # set output obj
-        self.out = IO_Class.IO_Class(self.OUTPUT_TO_FILE, self.OUTPUT_TO_SCREEN, self.LOG_FILE)
+        self.out = IO_Class.IO_Class(self.OUTPUT_TO_FILE, self.OUTPUT_TO_SCREEN, self.LOG_FILE, self.conn)
 
         # user input obj
-        self.inp = Input(self.func_dict)
+        self.inp = Input(self.func_dict, self.conn)
 
         self.num_user = len(self.array_param)
         self.game = Game()
@@ -175,7 +188,12 @@ class Manager:
         shore = "Y"# input("are you shore?[Y / N]:")
         if shore == "Y":
             self.out.print("The game break")
-            exit()
+            if self.USE_INTERNET:
+                self.out.print("Q")
+                self.conn.close()
+                self.s.close()
+            else:
+                exit()
         else:
             self.out.print("The game continue")
             return Stat.GAME
@@ -202,7 +220,7 @@ class Manager:
 
 
 
-# game state machine
+    # game state machine
     def run(self):
         st = Stat.START
         while True:
@@ -217,6 +235,7 @@ class Manager:
                 st = self.do_break()
             elif st == Stat.END:
                 e = self.do_end()
+                self.conn.close()
                 return {
                     "winner": e,
                     "score": self.players_score

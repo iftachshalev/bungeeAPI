@@ -1,22 +1,26 @@
 import os
 from nadavAlgo import *
+import socket
 
 
 class IO_Class:
 
-    def __init__(self, file_flag, screen_flag, url=''):
+    def __init__(self, file_flag, screen_flag, url='', conn=False):
         self.file_flag = file_flag
         self.screen_flag = screen_flag
         self.url = url
         self.turn = None
         if url != '':
             self.file = open(self.url, "w")
+        self.conn = conn
 
     def print(self, what_to_print):
         if self.file_flag:
             self.file.write(what_to_print + '\n')
-        if self.screen_flag:
+        elif self.screen_flag and self.conn is False:
             print(what_to_print)
+        elif self.screen_flag and self.conn:
+            self.conn.sendall(what_to_print.encode)
 
     def close(self):
         if self.url != '':
@@ -25,15 +29,21 @@ class IO_Class:
 
 class Input:
 
-    def __init__(self, user_funcs=None):
+    def __init__(self, user_funcs=None, conn=False):
         self.user_funcs = user_funcs
+        self.conn = conn
 
     def get_turn(self, my_cards, lucky_card, lost_card, bungee_mode, score):
         if self.user_funcs:
             my_func = self.user_funcs
             return my_func(my_cards, lucky_card, lost_card, bungee_mode, score)
         else:
-            what_to_do = input("Action:  B [Bungee]  Q [Quit]\n>>>")
+            if self.conn:
+                self.conn.sendall(b"I")
+                self.conn.sendall(b"Action:  B [Bungee]  Q [Quit]\n>>>")
+                what_to_do = self.conn.recv(1024)
+            else:
+                what_to_do = input("Action:  B [Bungee]  Q [Quit]\n>>>")
 
             say_bungee = False
             from_stack = True

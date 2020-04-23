@@ -17,12 +17,8 @@ while True:
     if data == b"Q":
         conn.sendall(b"quit")
         break
+    conn.sendall(str(len(data)).encode() + str(data)[-2].encode())
 
-    conn.sendall(b"len:   ")
-    conn.sendall(str(len(data)).encode())
-    conn.sendall(b"last:   ")
-    conn.sendall(str(data)[-2].encode())
-    conn.sendall(b"Q")
 
 
 
