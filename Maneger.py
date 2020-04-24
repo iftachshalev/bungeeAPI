@@ -73,7 +73,7 @@ class Manager:
 
         # init players
         for i in range(self.num_user):
-            self.player.append(Player(self.game, self.out.print, self.func_dict[self.array_param[i]]))
+            self.player.append(Player(self.game, self.out.print, self.func_dict[self.array_param[i]], self.conn))
 
         # choose random turn
         self.turn = random.randrange(len(self.player))
@@ -192,6 +192,8 @@ class Manager:
                 self.conn.close()
                 self.s.close()
             else:
+                if self.USE_INTERNET:
+                    self.conn.close()
                 exit()
         else:
             self.out.print("The game continue")
@@ -234,7 +236,8 @@ class Manager:
                 st = self.do_break()
             elif st == Stat.END:
                 e = self.do_end()
-                self.conn.close()
+                if self.USE_INTERNET:
+                    self.conn.close()
                 return {
                     "winner": e,
                     "score": self.players_score

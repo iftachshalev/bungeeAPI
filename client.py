@@ -10,12 +10,14 @@ s.connect((HOST, PORT))
 
 while True:
     data = s.recv(1024)
+    s.send(b"ack")
     if data == b"Q":
         print("The Game Break")
         break
     elif data == b"I":
-        inp = input(str(s.recv(1024)))
+        inp_1 = s.recv(1024).decode()
+        inp = input(inp_1)
         s.sendall(inp.encode())
     else:
-        print(data)
+        print(data.decode())
 s.close()

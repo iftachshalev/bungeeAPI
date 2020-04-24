@@ -8,7 +8,7 @@ class Player:
 
     # lucky card
 
-    def __init__(self, game, print_func, user_func):
+    def __init__(self, game, print_func, user_func, conn):
         self.game = game
         self.print_func = print_func
         self.my_cards = []
@@ -21,7 +21,7 @@ class Player:
         self.bungee_mode = False
         self.my_score = self.my__score()
         self.stick_factor = 0.5
-        self.inp = Input(user_func)
+        self.inp = Input(conn, user_func)
         self.user_func = user_func
 
     # def say_bungee(self):

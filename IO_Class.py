@@ -5,7 +5,7 @@ import socket
 
 class IO_Class:
 
-    def __init__(self, file_flag, screen_flag, url='', conn=False):
+    def __init__(self, file_flag, screen_flag, url='', conn=None):
         self.file_flag = file_flag
         self.screen_flag = screen_flag
         self.url = url
@@ -17,10 +17,13 @@ class IO_Class:
     def print(self, what_to_print):
         if self.file_flag:
             self.file.write(what_to_print + '\n')
-        elif self.screen_flag and self.conn is False:
+        if self.screen_flag:
             print(what_to_print)
-        elif self.screen_flag and self.conn:
+        if self.conn:
             self.conn.sendall(what_to_print.encode())
+            ack = self.conn.recv(1024)
+            if ack != b"ack":
+                raise ConnectionError("ack is'nt receive")
 
     def close(self):
         if self.url != '':
@@ -32,19 +35,20 @@ class Input:
     def __init__(self, conn=None, user_funcs=None):
         self.user_funcs = user_funcs
         self.conn = conn
-        print(conn)
 
     def get_turn(self, my_cards, lucky_card, lost_card, bungee_mode, score):
         if self.user_funcs:
             my_func = self.user_funcs
             return my_func(my_cards, lucky_card, lost_card, bungee_mode, score)
         else:
-            if self.conn is not None:
+            if self.conn:
                 self.conn.sendall(b"I")
+                ack = self.conn.recv(1024)
+                if ack != b"ack":
+                    raise ConnectionError("ack is'nt receive")
                 self.conn.sendall(b"Action:  B [Bungee]  Q [Quit]\n>>>")
-                what_to_do = self.conn.recv(1024)
+                what_to_do = self.conn.recv(1024).decode()
             else:
-                print("dsss")
                 what_to_do = input("Action:  B [Bungee]  Q [Quit]\n>>>")
 
             say_bungee = False
