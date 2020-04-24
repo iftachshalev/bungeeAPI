@@ -1,0 +1,12 @@
+------------------------------
+It is Robot number 2
+ The Robot thinking...
+ .
+ .
+ .
+ throw: [6], stack: True
+well done! you stick, rand: 0.7813387193246513
+------------------------------
+Player Number: 1
+ Score: 13
+ Cards: [2, 1, 2, 3, 9]	Lucky card: 2, Last_card: 6,
