@@ -20,7 +20,7 @@ class IO_Class:
         elif self.screen_flag and self.conn is False:
             print(what_to_print)
         elif self.screen_flag and self.conn:
-            self.conn.sendall(what_to_print.encode)
+            self.conn.sendall(what_to_print.encode())
 
     def close(self):
         if self.url != '':
@@ -29,20 +29,22 @@ class IO_Class:
 
 class Input:
 
-    def __init__(self, user_funcs=None, conn=False):
+    def __init__(self, conn=None, user_funcs=None):
         self.user_funcs = user_funcs
         self.conn = conn
+        print(conn)
 
     def get_turn(self, my_cards, lucky_card, lost_card, bungee_mode, score):
         if self.user_funcs:
             my_func = self.user_funcs
             return my_func(my_cards, lucky_card, lost_card, bungee_mode, score)
         else:
-            if self.conn:
+            if self.conn is not None:
                 self.conn.sendall(b"I")
                 self.conn.sendall(b"Action:  B [Bungee]  Q [Quit]\n>>>")
                 what_to_do = self.conn.recv(1024)
             else:
+                print("dsss")
                 what_to_do = input("Action:  B [Bungee]  Q [Quit]\n>>>")
 
             say_bungee = False

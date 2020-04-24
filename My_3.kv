@@ -1,17 +1,43 @@
 <Button>:
-    font_size: 40
+    font_size: 25
     color: 0.3, 0.6, 0.7, 1
-    size_hint: 0.3, 0.5
 
 
 <FloatLayout>:
+    GridLayout:
+        cols: 1
 
-    Button:
-        text: "tech with"
-        pos_hint: {"x": 0.5, "top": 1}
+        pos: 100, 100
 
-    Button:
-        id: btn
-        pos_hint: {"y": 0.3}
-        text: "tim" if btn.state == "normal" else "Done"
-        backround_color: 0.3, 0.4, 0.5, 1
+        padding_left: 500
+        Label:
+            text: "player number 2"
+            font_size: 30
+
+
+
+        GridLayout:
+            pos: 100, 100
+            cols: 5
+            Button:
+                text: "tech with"
+                pos_hint: {"x": 0.}
+
+            Button:
+                id: btn
+                pos_hint: {"x": 0.2}
+                padding_left: 50
+                text: "tim" if btn.state == "normal" else "Done"
+                backround_color: 0.3, 0.4, 0.5, 1
+
+            Button:
+                text: "tech with"
+                pos_hint: {"x": 0.4}
+
+            Button:
+                text: "tech with"
+                pos_hint: {"x": 0.6}
+
+            Button:
+                text: "tech with"
+                pos_hint: {"x": 0.8}

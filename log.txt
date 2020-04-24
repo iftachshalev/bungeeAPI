@@ -1,0 +1,4 @@
+------------------------------
+Player Number: 1
+ Score: 29
+ Cards: [1, 3, 6, 9, 10]	Lucky card: 7, Last_card: None,

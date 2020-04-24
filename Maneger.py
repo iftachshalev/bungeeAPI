@@ -58,7 +58,6 @@ class Manager:
             self.s.listen()
             self.conn, addr = self.s.accept()
 
-
     # prepare game: create users
     def do_start(self):
 
@@ -67,7 +66,7 @@ class Manager:
         self.out = IO_Class.IO_Class(self.OUTPUT_TO_FILE, self.OUTPUT_TO_SCREEN, self.LOG_FILE, self.conn)
 
         # user input obj
-        self.inp = Input(self.func_dict, self.conn)
+        self.inp = Input(self.conn, self.func_dict)
 
         self.num_user = len(self.array_param)
         self.game = Game()
@@ -240,4 +239,5 @@ class Manager:
                     "winner": e,
                     "score": self.players_score
                 }
+
 
