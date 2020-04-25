@@ -65,13 +65,13 @@ class Player:
         if from_stack and card == old_my_cards[throw_index[0]]:
             rand = random.random()
             if rand > self.stick_factor:
-                self.print_func("well done! you stick, rand: {}".format(rand))
+                self.print_func(" well done! you stick, rand: {}".format(rand))
                 self.game.throw_card(card)
                 if card == 6:
                     return True, 1
                 return True, 0
             else:
-                self.print_func("oh no! you can't stick, rand: {}".format(rand))
+                self.print_func(" oh no! you can't stick, rand: {}".format(rand))
                 self.my_cards.append(card)
                 return True, 0
         else:

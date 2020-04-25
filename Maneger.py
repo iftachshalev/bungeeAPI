@@ -23,13 +23,12 @@ class Stat(Enum):
 # Handle functionality of state machine
 
 
-
 class Manager:
     HOST = '127.0.0.1'
     PORT = 65432
     USE_INTERNET = True
     OUTPUT_TO_FILE = True
-    OUTPUT_TO_SCREEN = True
+    OUTPUT_TO_SCREEN = False
     INPUT_FROM_FUNC = True
     LOG_FILE = 'log.txt'
     ROBOT_NUM_USER = 3
@@ -62,6 +61,7 @@ class Manager:
     def do_start(self):
 
         self.break_ = 0
+
         # set output obj
         self.out = IO_Class.IO_Class(self.OUTPUT_TO_FILE, self.OUTPUT_TO_SCREEN, self.LOG_FILE, self.conn)
 
@@ -91,7 +91,6 @@ class Manager:
             self.out.print(repr(self.player[self.turn]))
 
         if self.func_dict[self.array_param[self.turn]] is not None:
-            turn = (self.turn + 1) % self.num_user
 
             self.out.print('------------------------------')
 
@@ -105,8 +104,6 @@ class Manager:
             sleep(1)
             self.out.print(" .")
             sleep(1)
-
-
 
         # get user or robot command
         my_cards, lucky_card, lost_card, bungee_mode, score = self.player[self.turn].get_state()
@@ -217,8 +214,6 @@ class Manager:
         self.out.print("Player Number: {} Is The Winner!!!!!!!!!!!!!!!!".format(minplayer_index + 1))
         self.out.print(f"his score - {minscore}")
         return minplayer_index
-
-
 
 
     # game state machine

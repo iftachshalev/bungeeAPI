@@ -46,10 +46,10 @@ class Input:
                 ack = self.conn.recv(1024)
                 if ack != b"ack":
                     raise ConnectionError("ack is'nt receive")
-                self.conn.sendall(b"Action:  B [Bungee]  Q [Quit]\n>>>")
+                self.conn.sendall(b" Action:  B [Bungee]  Q [Quit]\n >>>")
                 what_to_do = self.conn.recv(1024).decode()
             else:
-                what_to_do = input("Action:  B [Bungee]  Q [Quit]\n>>>")
+                what_to_do = input(" Action:  B [Bungee]  Q [Quit]\n >>>")
 
             say_bungee = False
             from_stack = True
