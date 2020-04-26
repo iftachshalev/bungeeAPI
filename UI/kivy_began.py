@@ -8,11 +8,12 @@ from kivy.uix.button import Button
 
 
 
-class My_1App(App):
+class BeganApp(App):
+
 
     def build(self):
         return FloatLayout()
 
 
 if __name__ == "__main__":
-    My_1App().run()
+    BeganApp().run()

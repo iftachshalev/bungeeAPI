@@ -7,14 +7,11 @@
     color: 0.3, 0.6, 0.7, 1
 
 
-
-
 <FloatLayout>:
 
-
+    id_buttons: id_buttons
     GridLayout:
         cols: 1
-
 
         Label:
             text: "Player number - 2:"
@@ -26,44 +23,55 @@
         Label:
             text: "last player throw: 8 and get from the stack"
 
+        Label:
+            text: "lucky card - 3"
+            font_size: 30
 
         GridLayout:
             cols: 3
 
             Button:
+                id: "lost_btn"
                 text: "lost: 8"
                 font_size: 25
-
-            Label:
-                text: "lucky card - 3"
-
+                disabled: True
 
             Button:
+                id: "bungee_btn"
+                text: "to saw Bungee"
+                font_size: 25
+                disabled: True
+
+            Button:
+                id: "stack_btn"
                 text: "stack"
                 font_size: 25
+                disabled: True
 
         GridLayout:
             cols: 5
-            Button:
+
+            ToggleButton:
                 text: "10"
+                id: btn
                 pos_hint: {"x": 0.}
 
             ToggleButton:
-                id: btn
-                pos_hint: {"x": 0.2}
-                padding_left: 50
-                text: "6" if btn.state == "normal" else "down"
-                backround_color: 0.3, 0.4, 0.5, 1
-
-
-            Button:
                 text: "6"
-                pos_hint: {"x": 0.4}
+                id: id_buttons
+                pos_hint: {"x": 0.2}
 
-            Button:
+
+            ToggleButton:
+                text: "6"
+                id: btn
+                pos_hint: {"x": 0.}
+
+            ToggleButton:
                 text: "2"
-                pos_hint: {"x": 0.6}
+                pos_hint: {"x": 0.}
 
-            Button:
+            ToggleButton:
                 text: "0"
-                pos_hint: {"x": 0.8}
+                id: btn
+                pos_hint: {"x": 0.}

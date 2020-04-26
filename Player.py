@@ -8,7 +8,7 @@ class Player:
 
     # lucky card
 
-    def __init__(self, game, print_func, user_func, conn):
+    def __init__(self, game, print_func, user_func, conn=None):
         self.game = game
         self.print_func = print_func
         self.my_cards = []

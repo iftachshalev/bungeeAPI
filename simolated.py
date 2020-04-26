@@ -7,12 +7,12 @@ num_users = 2
 N = 1000
 win_count = np.zeros(num_users)
 scores = np.zeros((N, num_users))
-array = [2, 2]
+array = [1, 2]
 
 for i in range(N):
-    manager = Manager(array)
-    manager.OUTPUT_TO_FILE = False
-    manager.OUTPUT_TO_SCREEN = False
+    manager = Manager(None, array)
+    manager.OUTPUT_TO_FILE = True
+    manager.OUTPUT_TO_SCREEN = True
     manager.ROBOT_NUM_USER = num_users
 
     print('--------------')

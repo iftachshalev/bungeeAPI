@@ -9,7 +9,6 @@ import nadavAlgo
 import sampleAlgo
 import iftachAlgo
 from time import sleep
-import socket
 
 
 class Stat(Enum):
@@ -24,16 +23,14 @@ class Stat(Enum):
 
 
 class Manager:
-    HOST = '127.0.0.1'
-    PORT = 65432
     USE_INTERNET = True
     OUTPUT_TO_FILE = True
-    OUTPUT_TO_SCREEN = False
+    OUTPUT_TO_SCREEN = True
     INPUT_FROM_FUNC = True
     LOG_FILE = 'log.txt'
-    ROBOT_NUM_USER = 3
 
-    def __init__(self, array_param=None):
+    def __init__(self, conn=None, array_param=None):
+        print(array_param)
 
         self.num_user = -1
         self.turn = -1
@@ -43,6 +40,7 @@ class Manager:
         self.break_ = 0
         self.array_param = array_param
         self.who_say_bungee = 0
+        self.only_robot = None
 
         self.func_dict = {
             0: None,
@@ -50,17 +48,21 @@ class Manager:
             2: iftachAlgo.simple,
             3: nadavAlgo.main_algo
         }
-        if self.USE_INTERNET:
-            self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            self.s.bind((self.HOST, self.PORT))
 
-            self.s.listen()
-            self.conn, addr = self.s.accept()
+        self.conn = conn
 
     # prepare game: create users
     def do_start(self):
 
+        self.only_robot = True
+        for i in self.array_param:
+            if i == 0:
+                self.only_robot = False
+
         self.break_ = 0
+
+        if not self.conn:
+            self.USE_INTERNET = False
 
         # set output obj
         self.out = IO_Class.IO_Class(self.OUTPUT_TO_FILE, self.OUTPUT_TO_SCREEN, self.LOG_FILE, self.conn)
@@ -90,7 +92,7 @@ class Manager:
                 self.out.print(" It is Bungee mode NOW!!!!")
             self.out.print(repr(self.player[self.turn]))
 
-        if self.func_dict[self.array_param[self.turn]] is not None:
+        if self.func_dict[self.array_param[self.turn]] is not None and not self.only_robot:
 
             self.out.print('------------------------------')
 
@@ -153,7 +155,7 @@ class Manager:
         # cheek if has a bug in the software
         if self.break_ > 200:
             return Stat.BREAK
-        if self.func_dict[self.array_param[self.turn]] is not None:
+        if self.func_dict[self.array_param[self.turn]] is not None and not self.only_robot:
             self.out.print(" The Robot finished!")
         return Stat.GAME
 
@@ -187,7 +189,7 @@ class Manager:
             if self.USE_INTERNET:
                 self.out.print("Q")
                 self.conn.close()
-                self.s.close()
+                self.conn.close()
             else:
                 if self.USE_INTERNET:
                     self.conn.close()
