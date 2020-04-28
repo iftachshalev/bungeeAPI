@@ -28,6 +28,7 @@ class Manager:
     OUTPUT_TO_SCREEN = True
     INPUT_FROM_FUNC = True
     LOG_FILE = 'log.txt'
+    HOW_WOCH = False
 
     def __init__(self, conn=None, array_param=None):
         print(array_param)
@@ -92,7 +93,7 @@ class Manager:
                 self.out.print(" It is Bungee mode NOW!!!!")
             self.out.print(repr(self.player[self.turn]))
 
-        if self.func_dict[self.array_param[self.turn]] is not None and not self.only_robot:
+        if self.func_dict[self.array_param[self.turn]] is not None and not self.only_robot or self.HOW_WOCH:
 
             self.out.print('------------------------------')
 
