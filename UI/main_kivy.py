@@ -8,35 +8,23 @@ from kivy.uix.button import Button
 from kivy.properties import ObjectProperty
 
 
-class Button_1(Button):
-    def __init__(self, my_cards, **kwargs):
-        super(Button_1, self).__init__(**kwargs)
+class MyFloatLayout(FloatLayout):
+    def __init__(self, **kwargs):
+        super(FloatLayout, self).__init__(**kwargs)
+    #     self.my_cards = [0, 2, 6, 6, 10]
+    #
+    #     # init socket (connect)
 
+    # def bungee_disable(self, instance):
+    #     if sum(self.my_cards) <= 5:
+    #         instance.disabled = False
+    #     else:
+    #         instance.disabled = True
 
-        print("dssssd")
-        if sum(my_cards) <= 5:
-            self.disabled = False
-        else:
-            self.disabled = True
-    # pass
 
 class Main_kivyApp(App):
-    my_cards = [0, 2, 6, 6, 10]
-
-    # def __init__(self, **kwargs):
-    #     super(Main_kivyApp, self).__init__(**kwargs)
-    #     print("hi")
-    #     if sum(self.my_cards)
-    #     print(self.lost_btn.text)
-
-    def bungee_disab(self, instance):
-        if sum(self.my_cards) <= 5:
-            instance.disabled = False
-        else:
-            instance.disabled = True
-
     def build(self):
-        return FloatLayout()
+        return MyFloatLayout()
 
 
 if __name__ == "__main__":
