@@ -1,0 +1,93 @@
+------------------------------
+It is Robot number 2
+ The Robot thinking...
+ .
+ .
+ .
+ throw: [7, 7], stack: True
+ well done! you stick, rand: 0.7282032004733804
+------------------------------
+Player Number: 1
+ Score: 13
+ Cards: [0, 1, 2, 5, 5]	Lucky card: 8, Last_card: 7,
+ throw: [5, 5], stack: True
+ get card: 6
+ Score: 9
+ Cards: [0, 1, 2, 6]	Lucky card: 8, Last_card: 5,
+ The Robot finished!
+------------------------------
+It is Robot number 2
+ The Robot thinking...
+ .
+ .
+ .
+ throw: [9], stack: False
+------------------------------
+Player Number: 1
+ Score: 9
+ Cards: [0, 1, 2, 6]	Lucky card: 8, Last_card: 9,
+ throw: [6], stack: True
+ get card: 4
+ Score: 7
+ Cards: [0, 1, 2, 4]	Lucky card: 8, Last_card: 6,
+------------------------------
+Player Number: 1
+ Score: 7
+ Cards: [0, 1, 2, 4]	Lucky card: 8, Last_card: 6,
+ throw: [4], stack: True
+ get card: 3
+ Score: 6
+ Cards: [0, 1, 2, 3]	Lucky card: 8, Last_card: 4,
+ The Robot finished!
+------------------------------
+It is Robot number 2
+ The Robot thinking...
+ .
+ .
+ .
+ throw: [5, 5], stack: False
+------------------------------
+Player Number: 1
+ Score: 6
+ Cards: [0, 1, 2, 3]	Lucky card: 8, Last_card: 5,
+ throw: [3], stack: True
+ get card: 5
+ Score: 8
+ Cards: [0, 1, 2, 5]	Lucky card: 8, Last_card: 3,
+ The Robot finished!
+------------------------------
+It is Robot number 2
+ The Robot thinking...
+ .
+ .
+ .
+ throw: [4], stack: False
+------------------------------
+Player Number: 1
+ Score: 8
+ Cards: [0, 1, 2, 5]	Lucky card: 8, Last_card: 4,
+ throw: [5], stack: True
+ get card: 10
+ Score: 13
+ Cards: [0, 1, 2, 10]	Lucky card: 8, Last_card: 5,
+ The Robot finished!
+------------------------------
+It is Robot number 2
+ The Robot thinking...
+ .
+ .
+ .
+------------------------------
+Player Number: 1
+ It is Bungee mode NOW!!!!
+ Score: 13
+ Cards: [0, 1, 2, 10]	Lucky card: 8, Last_card: 5,
+ throw: [10], stack: True
+ get card: 3
+ Score: 6
+ Cards: [0, 1, 2, 3]	Lucky card: 8, Last_card: 10,
+ The Robot finished!
+5
+ 
+Player Number: 2 Is The Winner!!!!!!!!!!!!!!!!
+his score - 5

@@ -156,7 +156,7 @@ class Manager:
         # cheek if has a bug in the software
         if self.break_ > 200:
             return Stat.BREAK
-        if self.func_dict[self.array_param[self.turn]] is not None and not self.only_robot:
+        if self.func_dict[self.array_param[self.turn]] is not None and not self.only_robot or self.HOW_WOCH:
             self.out.print(" The Robot finished!")
         return Stat.GAME
 
@@ -213,7 +213,7 @@ class Manager:
                 minscore = self.players_score[tur]
                 minplayer_index = tur
             tur = (tur + 1) % self.num_user
-        self.out.print("")
+        self.out.print(" ")
         self.out.print("Player Number: {} Is The Winner!!!!!!!!!!!!!!!!".format(minplayer_index + 1))
         self.out.print(f"his score - {minscore}")
         return minplayer_index
