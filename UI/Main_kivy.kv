@@ -8,69 +8,75 @@
 
 
 <MyFloatLayout>:
+    btn_card_1: btn_card_1
+    btn_card_2: btn_card_2
 
-    GridLayout:
-        cols: 1
-
-        Label:
-            text: "Player number - 2:"
-            font_size: 40
-            markup: True
-            shorten: True
-            ellipsis_options: {'color': (0.3, 0.6, 0.7, 1),'underline':True}
-
-        Label:
-            text: "last player throw: 8 and get from the stack"
-
-        Label:
-            text: "lucky card - 3"
-            font_size: 30
+    FloatLayout:
+        size: root.width, root.height
+        pos: 1, 1
 
         GridLayout:
-            cols: 3
+            cols: 1
 
-            Button:
-                id: "lost_btn"
-                text: "lost: 8"
-                font_size: 25
-                disabled: True
+            Label:
+                text: "Player number - 2:"
+                font_size: 40
+                markup: True
+                shorten: True
+                ellipsis_options: {'color': (0.3, 0.6, 0.7, 1),'underline':True}
 
-            Button:
-                id: "bungee_btn"
-                text: "to saw Bungee"
-                font_size: 25
-                my_cards: self.my
+            Label:
+                text: "last player throw: 8 and get from the stack"
 
-            Button:
-                id: "stack_btn"
-                text: "stack"
-                font_size: 25
-                disabled: True
+            Label:
+                text: "lucky card - 3"
+                font_size: 30
 
-        GridLayout:
-            cols: 5
+            GridLayout:
+                cols: 3
 
-            ToggleButton:
-                text: "10"
-                id: btn
-                pos_hint: {"x": 0.}
+                Button:
+                    id: "lost_btn"
+                    text: "lost: 8"
+                    font_size: 25
+                    disabled: True
 
-            ToggleButton:
-                text: "6"
-                id: id_buttons
-                pos_hint: {"x": 0.2}
+                Button:
+                    id: "bungee_btn"
+                    text: "to saw Bungee"
+                    font_size: 25
+
+                Button:
+                    id: "stack_btn"
+                    text: "stack"
+                    font_size: 25
+                    disabled: True
+
+            GridLayout:
+                cols: 5
+
+                ToggleButton:
+                    text: "10"
+                    id: btn_card_1
+                    pos_hint: {"x": 0.}
+
+                ToggleButton:
+                    text: "6"
+                    id: btn_card_2
+                    pos_hint: {"x": 0.2}
 
 
-            ToggleButton:
-                text: "6"
-                id: btn
-                pos_hint: {"x": 0.}
+                ToggleButton:
+                    text: "6"
+                    id: btn_card_3
+                    pos_hint: {"x": 0.}
 
-            ToggleButton:
-                text: "2"
-                pos_hint: {"x": 0.}
+                ToggleButton:
+                    text: "2"
+                    id: btn_card_4
+                    pos_hint: {"x": 0.}
 
-            ToggleButton:
-                text: "0"
-                id: btn
-                pos_hint: {"x": 0.}
+                ToggleButton:
+                    text: "0"
+                    id: btn_card_5
+                    pos_hint: {"x": 0.}
