@@ -1,6 +1,7 @@
 import os
 from nadavAlgo import *
 import socket
+from Messages import StartGameMessage
 
 
 class IO_Class:
@@ -13,17 +14,29 @@ class IO_Class:
         if url != '':
             self.file = open(self.url, "w")
         self.conn = conn
+        self.with_data = True
 
     def print(self, what_to_print):
         if self.file_flag:
             self.file.write(what_to_print + '\n')
+
         if self.screen_flag:
             print(what_to_print)
+
         if self.conn:
             self.conn.sendall(what_to_print.encode())
             ack = self.conn.recv(1024)
             if ack != b"ack":
                 raise ConnectionError("ack is'nt receive")
+
+        if self.with_data:
+            ddd = StartGameMessage(33, 4445, 665, 8767)
+            s1 = ddd.encode()
+            print(s1)
+            s2 = ddd.decode(s1)
+            print(s2.array)
+
+
 
     def close(self):
         if self.url != '':
@@ -126,3 +139,6 @@ class Input:
 # print(res_turn)
 # res_turn = inp.get_turn(1, [2, 3, 5, 7, 8], 9, 8, False, 25)
 # print(res_turn)
+
+d = IO_Class(False, False)
+d.print("33")

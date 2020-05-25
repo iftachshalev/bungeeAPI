@@ -10,6 +10,15 @@
 <MyFloatLayout>:
     btn_card_1: btn_card_1
     btn_card_2: btn_card_2
+    btn_card_3: btn_card_3
+    btn_card_4: btn_card_4
+    btn_card_5: btn_card_5
+    btn_lost: btn_lost
+    btn_stack: btn_stack
+    btn_bungee: btn_bungee
+    lbl_last_player: last_player
+    lbl_lucky_card: lucky_card
+    lbl_num_player: num_player
 
     FloatLayout:
         size: root.width, root.height
@@ -19,64 +28,74 @@
             cols: 1
 
             Label:
-                text: "Player number - 2:"
+                id: num_player
+                text: ""
                 font_size: 40
                 markup: True
                 shorten: True
                 ellipsis_options: {'color': (0.3, 0.6, 0.7, 1),'underline':True}
 
             Label:
-                text: "last player throw: 8 and get from the stack"
+                id: last_player
+                text: ""
 
             Label:
-                text: "lucky card - 3"
+                id: lucky_card
+                text: ""
                 font_size: 30
 
             GridLayout:
                 cols: 3
 
                 Button:
-                    id: "lost_btn"
-                    text: "lost: 8"
+                    id: btn_lost
+                    text: ""
                     font_size: 25
                     disabled: True
+                    on_press: root.return_turn(btn_lost)
 
                 Button:
-                    id: "bungee_btn"
+                    id: btn_bungee
                     text: "to saw Bungee"
                     font_size: 25
 
                 Button:
-                    id: "stack_btn"
+                    id: btn_stack
                     text: "stack"
                     font_size: 25
                     disabled: True
+                    on_press: root.return_turn(btn_stack)
 
             GridLayout:
                 cols: 5
 
                 ToggleButton:
-                    text: "10"
+                    text: ""
                     id: btn_card_1
                     pos_hint: {"x": 0.}
+                    on_press: root.click_btn_card(btn_card_1)
 
                 ToggleButton:
-                    text: "6"
+                    text: ""
                     id: btn_card_2
                     pos_hint: {"x": 0.2}
+                    on_press: root.click_btn_card(btn_card_2)
 
 
                 ToggleButton:
-                    text: "6"
+                    text: ""
                     id: btn_card_3
                     pos_hint: {"x": 0.}
+                    on_press: root.click_btn_card(btn_card_3)
 
                 ToggleButton:
-                    text: "2"
+                    text: ""
                     id: btn_card_4
                     pos_hint: {"x": 0.}
+                    on_press: root.click_btn_card(btn_card_4)
 
                 ToggleButton:
-                    text: "0"
+                    text: ""
                     id: btn_card_5
                     pos_hint: {"x": 0.}
+                    on_press: root.click_btn_card(btn_card_5)

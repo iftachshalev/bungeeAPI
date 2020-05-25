@@ -7,7 +7,7 @@ num_users = 2
 N = 1000
 win_count = np.zeros(num_users)
 scores = np.zeros((N, num_users))
-array = [1, 2]
+array = [2, 3]
 
 for i in range(N):
     manager = Manager(None, array)

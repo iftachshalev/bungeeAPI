@@ -156,7 +156,7 @@ class Manager:
         # cheek if has a bug in the software
         if self.break_ > 200:
             return Stat.BREAK
-        if self.func_dict[self.array_param[self.turn]] is not None and not self.only_robot or self.HOW_WOCH:
+        if self.func_dict[self.array_param[self.turn]] is not None and not self.only_robot and self.HOW_WOCH:
             self.out.print(" The Robot finished!")
         return Stat.GAME
 
@@ -235,6 +235,7 @@ class Manager:
             elif st == Stat.END:
                 e = self.do_end()
                 if self.USE_INTERNET:
+                    self.out.print("Q")
                     self.conn.close()
                 return {
                     "winner": e,

@@ -17,9 +17,6 @@ def simple(my_cards, lucky_card, lost_card, bungee_mode, score):
         if card == luc:
             my_cards[i] = 0
 
-    # sort my cards
-    my_cards.sort()
-
     # To get a list of cards to throw
     index_best_array = best_cards(my_cards)
 
