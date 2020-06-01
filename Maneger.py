@@ -82,10 +82,14 @@ class Manager:
         self.turn = random.randrange(len(self.player))
 
         self.lucky_card = self.game.get_lucky_card()
+
+        # message number 1
+
         return Stat.GAME
 
     # run game: one turn each
     def do_game(self):
+        # message number 3
         if self.OUTPUT_TO_SCREEN and self.func_dict[self.array_param[self.turn]] is None:
             self.out.print('------------------------------')
             self.out.print('Player Number: {}'.format(self.turn + 1))
@@ -158,6 +162,7 @@ class Manager:
             return Stat.BREAK
         if self.func_dict[self.array_param[self.turn]] is not None and not self.only_robot and self.HOW_WOCH:
             self.out.print(" The Robot finished!")
+        # message number 2
         return Stat.GAME
 
     # run when player in bungee mode
