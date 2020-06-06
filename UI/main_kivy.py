@@ -1,6 +1,13 @@
 from kivy.app import App
 from kivy.properties import ObjectProperty
 from kivy.uix.widget import Widget
+data = {
+    "State": 1,
+    "PlayerNumber": 2,
+    "Cards": [1, 2, 3, 4, 5],
+    "LuckyCard": 5,
+    "LastPlayer": [3, "T"]  # or None
+}
 
 
 class MyFloatLayout(Widget):
@@ -18,22 +25,19 @@ class MyFloatLayout(Widget):
     lbl_last_player = ObjectProperty(None)
     lbl_num_player = ObjectProperty(None)
     lost_card = 5
-    last_player = [6, "F"]
-    num_player = 3
-
 
     def __init__(self, **kwargs):
         super(MyFloatLayout, self).__init__(**kwargs)
-        self.my_cards = [0, 0, 2, 2, 1]
-        self.bungee_disabled()
-        self.array_cards = [self.btn_card_1, self.btn_card_2, self.btn_card_3, self.btn_card_4
-                            , self.btn_card_5]
-        self.update_cards()
+        self.my_cards = data["Cards"]
+        self.num_player = data["PlayerNumber"]
         self.throw_array = []
-        self.lucky_card = 7
+        self.array_cards = [self.btn_card_1, self.btn_card_2, self.btn_card_3, self.btn_card_4,
+                            self.btn_card_5]
+        self.lucky_card = data["LuckyCard"]
+        self.last_player = data["LastPlayer"]
+        self.update_cards()
         self.update_lucky_card()
-
-
+        self.bungee_disabled()
 
     def update_cards(self):
         self.throw_array = []
@@ -53,6 +57,7 @@ class MyFloatLayout(Widget):
             self.btn_bungee.disabled = True
 
     def click_btn_card(self, instans):
+        print(data)
         if instans.state == "down":
             self.throw_array.append(instans)
             self.btn_bungee.disabled = True
@@ -82,6 +87,7 @@ class MyFloatLayout(Widget):
             for btn_cards in self.array_cards:
                 btn_cards.disabled = False
 
+        self.bungee_disabled()
 
     def disabled_empty_btn(self):
         for i in self.array_cards:
@@ -113,21 +119,25 @@ class MyFloatLayout(Widget):
         self.btn_lost.text = "lost: " + str(self.lost_card)
 
     def update_last_player(self):
-        where = None
-        if self.last_player[1] == "T":
+        if self.last_player[-1] == "T":
             where = "Stack"
+            self.lbl_last_player.text = "last player throw: " + str(self.last_player[0]) + " and get from the " + where
+
+        elif not self.last_player[0]:
+            self.lbl_last_player.text = "You Are The First Player!"
 
         else:
             where = "Lost"
-        self.lbl_last_player.text = "last player throw: " + str(self.last_player[0]) + " and get from the " + where
+            self.lbl_last_player.text = "last player throw: " + str(self.last_player[0]) + " and get from the " + where
 
     def update_num_player(self):
         self.lbl_num_player.text = "player number " + str(self.num_player) + ":"
 
-class Main_kivyApp(App):
+
+class MainKivyApp(App):
     def build(self):
         return MyFloatLayout()
 
 
 if __name__ == "__main__":
-    Main_kivyApp().run()
+    MainKivyApp().run()

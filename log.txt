@@ -1,20 +1,18 @@
- throw: [7], stack: True
- throw: [5], stack: True
- oh no! you can't stick, rand: 0.1573575543723611
  throw: [10], stack: True
- throw: [5], stack: True
- throw: [7], stack: True
- throw: [4], stack: True
- throw: [9], stack: False
- throw: [6], stack: True
- throw: [3], stack: True
- throw: [4, 4], stack: True
+ throw: [4], stack: False
+ throw: [10], stack: True
+ oh no! you can't stick, rand: 0.4671306063410844
+ throw: [10], stack: False
+ throw: [5, 5, 5], stack: True
+ throw: [10], stack: True
+ throw: [5, 5], stack: True
+ throw: [10, 10], stack: True
+ throw: [4], stack: False
+ throw: [5], stack: False
+ throw: [10, 10], stack: True
  throw: [7], stack: False
- throw: [10], stack: True
- throw: [4], stack: True
- throw: [7], stack: True
- throw: [6], stack: True
-4
+5
  
-Player Number: 1 Is The Winner!!!!!!!!!!!!!!!!
-his score - 4
+Player Number: 4 Is The Winner!!!!!!!!!!!!!!!!
+his score - 5
+Q
