@@ -135,6 +135,7 @@ class MyFloatLayout(Widget):
 
 
 class MainKivyApp(App):
+
     def build(self):
         return MyFloatLayout()
 
