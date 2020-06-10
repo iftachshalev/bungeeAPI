@@ -24,6 +24,5 @@ class Translator:
         dec_message = StartGameMessage()
         data_in_array = dec_message.decode(data).array
 
-
     def send(self):
         pass
