@@ -85,6 +85,8 @@ class Manager:
 
         # message number 1
 
+        self.players_score = None
+
         return Stat.GAME
 
     # run game: one turn each
@@ -189,7 +191,7 @@ class Manager:
 
     # run when player ask to quit game
     def do_break(self):
-        shore = "Y"# input("are you shore?[Y / N]:")
+        shore = "Y"  # input("are you shore?[Y / N]:")
         if shore == "Y":
             self.out.print("The game break")
             if self.USE_INTERNET:
@@ -223,7 +225,6 @@ class Manager:
         self.out.print(f"his score - {minscore}")
         return minplayer_index
 
-
     # game state machine
     def run(self):
         st = Stat.START
@@ -248,3 +249,7 @@ class Manager:
                 }
 
 
+num = 122
+w = int(str(num) * 2)
+if w % 7 == 0 and w % 11 == 0 and w % 13 == 0:
+    print(num)
