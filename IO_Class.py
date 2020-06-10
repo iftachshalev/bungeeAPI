@@ -35,8 +35,8 @@ class IO_Class:
             ddd = StartGameMessage(33, 4445, 665, 8767)
             s1 = ddd.encode()
             print(s1)
-            s2 = ddd.decode(s1)
-            print(s2.array)
+            s2 = ddd.decode(s1).array
+            print(s2)
 
 
 
