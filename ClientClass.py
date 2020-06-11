@@ -14,6 +14,7 @@ class Client:
         self.address = None
         self.dict = dict()
         self.data_in_array = None
+        self.sen_message = None
 
     def connect(self):
         self.server_socket.bind((self.host, self.port))
@@ -21,14 +22,21 @@ class Client:
         self.client_socket, self.address = self.server_socket.accept()
 
     def dis_connect(self):
-        pass
+        self.client_socket.sendall(b"Q")
+        self.server_socket.close()
 
     def receive(self):
         data = self.client_socket.recv(1024)
         self.data_in_array = StartGameMessage.decode(data).array
+        self.arrange_dict()
+        return self.dict
 
-    def send(self):
-        pass
+    def send(self, throw, get, bungee):
+        if bungee:
+            self.sen_message = StartGameMessage(throw, get, bungee)
+        else:
+            self.sen_message = StartGameMessage(throw, get)
+        self.client_socket.sendall(self.sen_message.encode())
 
     def arrange_dict(self):
         self.dict["State"] = self.data_in_array[0]
@@ -38,7 +46,12 @@ class Client:
             self.dict["LuckyCard"] = self.data_in_array[3]
             self.dict["LastPlayer"] = self.data_in_array[4]
         if self.dict["State"] == 2:
-            pass
+            self.dict["LastPlayer"] = self.data_in_array[1]
+            self.dict["BungeeMode"] = self.data_in_array[2]
+        if self.dict["State"] == 3:
+            self.dict["PlayerNumber"] = self.data_in_array[1]
+        if self.dict["State"] == 4:
+            self.dict["Score"] = self.data_in_array[1]
 
 
 def hello():
