@@ -28,13 +28,10 @@ class StartGameMessage:
     def __init__(self, *args):
         #if type(args[0]) == list:
 
-        try:
-            self.array = [i for i in args]
-            if type(self.array[0]) == list:
-                for i in self.array:
-                    self.array = self.array[0]
-        except:
-            pass
+        self.array = [i for i in args]
+        if type(self.array[0]) == list:
+            for i in self.array:
+                self.array = self.array[0]
 
     def encode(self) -> bytes:
         var = str(self.array[0])
