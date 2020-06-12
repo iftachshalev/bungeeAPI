@@ -6,7 +6,6 @@ data = {
     "PlayerNumber": 2,
     "Cards": [1, 2, 3, 4, 5],
     "LuckyCard": 5,
-    "LastPlayer": [3, "T"]  # or None
 }
 
 
