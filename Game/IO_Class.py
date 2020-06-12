@@ -31,12 +31,12 @@ class IO_Class:
             if ack != b"ack":
                 raise ConnectionError("ack is'nt receive")
 
-        if self.with_data:
-            ddd = StartGameMessage(33, 4445, 665, 8767)
-            s1 = ddd.encode()
-            print(s1)
-            s2 = ddd.decode(s1).array
-            print(s2)
+        # if self.with_data:
+        #     ddd = StartGameMessage(33, 4445, 665, 8767)
+        #     s1 = ddd.encode()
+        #     print(s1)
+        #     s2 = ddd.decode(s1).array
+        #     print(s2)
 
 
 

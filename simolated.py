@@ -1,4 +1,4 @@
-from Maneger import Manager
+from Game.Maneger import Manager
 
 import numpy as np
 import matplotlib.pyplot as plt

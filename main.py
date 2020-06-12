@@ -1,4 +1,4 @@
-from Maneger import Manager
+from Game.Maneger import Manager
 import socket
 
 HOST = '127.0.0.1'

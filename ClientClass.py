@@ -6,6 +6,9 @@ import time
 
 class Client:
 
+    PACK_LEN = 1024
+    TO_QUIT = b"Q"
+
     def __init__(self, host, port):
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.host = host
@@ -15,18 +18,22 @@ class Client:
         self.dict = dict()
         self.data_in_array = None
         self.sen_message = None
+        self.state = "disconnect"
 
     def connect(self):
         self.server_socket.bind((self.host, self.port))
         self.server_socket.listen()
         self.client_socket, self.address = self.server_socket.accept()
+        self.state = "connect"
 
-    def dis_connect(self):
-        self.client_socket.sendall(b"Q")
-        self.server_socket.close()
+    def disconnect(self):
+        if self.state == "connect":
+            self.client_socket.sendall(self.TO_QUIT)
+            self.server_socket.close()
+            self.client_socket.close()
 
     def receive(self):
-        data = self.client_socket.recv(1024)
+        data = self.client_socket.recv(self.PACK_LEN)
         self.data_in_array = StartGameMessage.decode(data).array
         self.arrange_dict()
         return self.dict

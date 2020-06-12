@@ -1,7 +1,7 @@
 # from Bunjy_Game import Game
 import random
 import copy
-from IO_Class import Input
+from Game.IO_Class import Input
 
 
 class Player:

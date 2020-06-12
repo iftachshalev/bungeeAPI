@@ -1,10 +1,10 @@
 from enum import Enum
-from Bunjy_Game import Game
-from Player import Player
-from IO_Class import Input
+from Game.Bunjy_Game import Game
+from Game.Player import Player
+from Game.IO_Class import Input
 import random
 import copy
-import IO_Class
+from Game import IO_Class
 import nadavAlgo
 import sampleAlgo
 import iftachAlgo
@@ -27,7 +27,7 @@ class Manager:
     OUTPUT_TO_FILE = True
     OUTPUT_TO_SCREEN = True
     INPUT_FROM_FUNC = True
-    LOG_FILE = 'log.txt'
+    LOG_FILE = '../log.txt'
     HOW_WOCH = False
 
     def __init__(self, conn=None, array_param=None):
@@ -248,8 +248,3 @@ class Manager:
                     "score": self.players_score
                 }
 
-
-num = 122
-w = int(str(num) * 2)
-if w % 7 == 0 and w % 11 == 0 and w % 13 == 0:
-    print(num)

@@ -19,8 +19,6 @@
 #         return StartGameMessage(int(array[0].decode()), int(array[1].decode()))
 #
 
-
-
 class StartGameMessage:
 
     DELIM = ":-)"
