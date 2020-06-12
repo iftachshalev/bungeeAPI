@@ -1,11 +1,3 @@
-import os
-from nadavAlgo import *
-import socket
-from Messages import StartGameMessage
-
-
-
-
 class IO_Class:
 
     def __init__(self, file_flag, screen_flag, url='', conn=None):

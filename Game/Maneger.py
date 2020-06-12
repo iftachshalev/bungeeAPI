@@ -5,9 +5,7 @@ from Game.IO_Class import Input
 import random
 import copy
 from Game import IO_Class
-import nadavAlgo
-import sampleAlgo
-import iftachAlgo
+from Algo import iftachAlgo, nadavAlgo, sampleAlgo
 from time import sleep
 
 
@@ -27,7 +25,7 @@ class Manager:
     OUTPUT_TO_FILE = True
     OUTPUT_TO_SCREEN = True
     INPUT_FROM_FUNC = True
-    LOG_FILE = '../log.txt'
+    LOG_FILE = '../HelpFile/log.txt'
     HOW_WOCH = False
 
     def __init__(self, conn=None, array_param=None):

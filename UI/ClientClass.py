@@ -1,6 +1,5 @@
 import socket
-from Messages import StartGameMessage
-import threading
+from Game.Messages import StartGameMessage
 import time
 
 

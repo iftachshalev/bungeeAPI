@@ -1,6 +1,5 @@
 import socket
-import time
-from Messages import StartGameMessage
+from Game.Messages import StartGameMessage
 
 
 HOST = '127.0.0.1'
