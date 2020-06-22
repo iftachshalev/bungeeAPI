@@ -20,6 +20,7 @@ class Client:
 
     def connect(self):
         self.server_socket.connect((self.host, self.port))
+        self.server_socket.setblocking(False)
 
         self.state = "connect"
 

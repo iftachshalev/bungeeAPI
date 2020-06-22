@@ -1,6 +1,7 @@
 from kivy.app import App
 from kivy.properties import ObjectProperty
 from kivy.uix.widget import Widget
+from .ClientClass import *
 data = {
     "State": 1,
     "PlayerNumber": 2,
@@ -24,6 +25,8 @@ class MyFloatLayout(Widget):
     lbl_last_player = ObjectProperty(None)
     lbl_num_player = ObjectProperty(None)
     lost_card = 5
+    HOST = "127.0.0.1"
+    PORT = 65432
 
     def __init__(self, **kwargs):
         super(MyFloatLayout, self).__init__(**kwargs)
@@ -37,6 +40,8 @@ class MyFloatLayout(Widget):
         self.update_cards()
         self.update_lucky_card()
         self.bungee_disabled()
+        self.client = Client(self.HOST, self.PORT)
+        self.client.connect()
 
     def update_cards(self):
         self.throw_array = []
