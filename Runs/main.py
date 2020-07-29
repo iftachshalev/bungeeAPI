@@ -83,5 +83,4 @@ for i in range(ROBOT_NUM_USER):
 #             succses = True
 d = Manager(conn, ROBOT_ARRAY)
 t = d.run()
-print(t["score"])
 

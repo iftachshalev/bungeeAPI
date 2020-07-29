@@ -21,16 +21,13 @@ class Stat(Enum):
 
 
 class Manager:
-    USE_INTERNET = True
-    OUTPUT_TO_FILE = True
-    OUTPUT_TO_SCREEN = True
-    INPUT_FROM_FUNC = True
+    USE_INTERNET = False
+    OUTPUT_TO_FILE = False
+    OUTPUT_TO_SCREEN = False
     LOG_FILE = '../HelpFile/log.txt'
     HOW_WOCH = False
 
     def __init__(self, conn=None, array_param=None):
-        print(array_param)
-
         self.num_user = -1
         self.turn = -1
         self.lucky_card = -1
@@ -40,6 +37,7 @@ class Manager:
         self.array_param = array_param
         self.who_say_bungee = 0
         self.only_robot = None
+        self.players_score = False
 
         self.func_dict = {
             0: None,
@@ -90,7 +88,7 @@ class Manager:
     # run game: one turn each
     def do_game(self):
         # message number 3
-        if self.OUTPUT_TO_SCREEN and self.func_dict[self.array_param[self.turn]] is None:
+        if self.func_dict[self.array_param[self.turn]] is None:
             self.out.print('------------------------------')
             self.out.print('Player Number: {}'.format(self.turn + 1))
             if self.player[self.turn].bungee_mode:

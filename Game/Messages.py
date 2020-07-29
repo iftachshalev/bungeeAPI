@@ -1,23 +1,4 @@
-# class Message:
-#     pass
-#
-#
-# class StartGameMessage:
-#
-#     DELIM = ":-)"
-#
-#     def __init__(self, my_turn, lucky_card):
-#         self.my_turn = my_turn
-#         self.lucky_card = lucky_card
-#
-#     def encode(self) -> bytes:
-#         return (str(self.my_turn) + self.DELIM + str(self.lucky_card)).encode()
-#
-#     @staticmethod
-#     def decode(data: bytes):
-#         array = data.split(StartGameMessage.DELIM.encode())
-#         return StartGameMessage(int(array[0].decode()), int(array[1].decode()))
-#
+
 
 class StartGameMessage:
 

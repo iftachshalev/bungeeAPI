@@ -1,10 +1,6 @@
 import random
 import copy
-# all_cards_array = [[i, i, i, i, i]for i in range(1, 11)]
-# t = [all_cards_array[-1].append(10)for i in range(3)]
-# t = [all_cards_array.insert(0, [0, 0, 0])for i in range(1)]
-# del(all_cards_array[6][0])
-# print(all_cards_array)
+
 
 class Game:
     cards_type = [0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6,
@@ -15,10 +11,14 @@ class Game:
 
     # it is the init
     def __init__(self):
+
         # random.shuffle(self.cards)
         self.reset_cards()
+
+        # get lucky card
         self.lucky_card = self.get_valid_lucky_card()
-        del(self.cards[-1])
+
+        # reset the lost cards to False
         self.lost_cards = []
 
     # func to throw cads
@@ -63,17 +63,19 @@ class Game:
         except:
             return None
 
-    #
+    # get lucky card that not == to 6 or 0
     def get_valid_lucky_card(self):
         while True:
             card = self.cards[-1]
             if card != 0 and card != 6:
+                del(self.cards[-1])
                 break
             else:
                 del(self.cards[-1])
                 self.cards.insert(0, card)
         return card
 
+    # do random to the list cards in the stack
     def reset_cards(self):
         self.cards = copy.copy(self.cards_type)
         random.shuffle(self.cards)
