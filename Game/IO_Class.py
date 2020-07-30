@@ -1,3 +1,4 @@
+from UI.ClientClass import Client
 
 
 class IO_Class:

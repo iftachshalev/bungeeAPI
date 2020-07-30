@@ -67,11 +67,3 @@ class Client:
 #     t.start()
 #     while True:
 #         pass
-
-a = Client("127.0.0.1", 65432)
-a.connect()
-a.send(22266868, 345432, 3434)
-sss = a.receive()
-print(sss)
-a.disconnect()
-time.sleep(4)
