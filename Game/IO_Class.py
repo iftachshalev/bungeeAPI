@@ -1,4 +1,5 @@
 from UI.ClientClass import Client
+from Game.Messages import StartGameMessage
 
 
 class IO_Class:
@@ -21,12 +22,15 @@ class IO_Class:
             print(what_to_print)
 
         if self.conn:
-            self.conn.sendall(what_to_print.encode())
+            ddd = StartGameMessage(what_to_print)
+            s1 = ddd.encode()
+            # s2 = ddd.decode(s1).array
+            # print(s2)
+            self.conn.sendall(s1)
             ack = self.conn.recv(1024)
             if ack != b"ack":
                 raise ConnectionError("ack is'nt receive")
 
-        # if self.with_data:
         #     ddd = StartGameMessage(33, 4445, 665, 8767)
         #     s1 = ddd.encode()
         #     print(s1)
@@ -52,12 +56,14 @@ class Input:
             return my_func(my_cards, lucky_card, lost_card, bungee_mode, score)
         else:
             if self.conn:
-                self.conn.sendall(b"I")
+                StartGameMessag = StartGameMessage("I")
+                self.conn.sendall(StartGameMessag.encode())
                 ack = self.conn.recv(1024)
                 if ack != b"ack":
                     raise ConnectionError("ack is'nt receive")
-                self.conn.sendall(b" Action:  B [Bungee]  Q [Quit]\n >>>")
-                what_to_do = self.conn.recv(1024).decode()
+                StartGameMessag = StartGameMessage(" Action:  B [Bungee]  Q [Quit]\n >>>")
+                self.conn.sendall(StartGameMessag.encode())
+                what_to_do = self.conn.recv(1024).StartGameMessage().decode().array
             else:
                 what_to_do = input(" Action:  B [Bungee]  Q [Quit]\n >>>")
 

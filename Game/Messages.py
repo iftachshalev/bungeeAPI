@@ -5,7 +5,7 @@ class StartGameMessage:
     DELIM = ":-)"
 
     def __init__(self, *args):
-        #if type(args[0]) == list:
+
         try:
             self.array = [i for i in args]
             if type(self.array[0]) == list:
