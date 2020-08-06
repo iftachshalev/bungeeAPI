@@ -58,39 +58,41 @@ class StartGameMessage:
                 #
                 # array.append(min_array_to_array)
                 # print(min_array_to_array)
-
-                first_str_array = list(i)
-                first_int_array = []
-                for i in first_str_array:
-                    try:
-                        int(i)
-                        first_int_array.append(int(i))
-                    except:
-                        pass
-                len_first_int_array = len(first_int_array)
-                the_real_array_cards = []
-                if_jump = False
-                for index, vul in enumerate(first_int_array):
-                    if if_jump:
-                        if_jump = False
-                    else:
-                        if len_first_int_array > 5 and vul == 1 and first_int_array[index + 1] == 0:
-                            the_real_array_cards.append(10)
-                            len_first_int_array -= 1
-                            if_jump = True
-
+                if i[0] != "[":
+                    array.append(i)
+                else:
+                    first_str_array = list(i)
+                    first_int_array = []
+                    for i in first_str_array:
+                        try:
+                            int(i)
+                            first_int_array.append(int(i))
+                        except:
+                            pass
+                    len_first_int_array = len(first_int_array)
+                    the_real_array_cards = []
+                    if_jump = False
+                    for index, vul in enumerate(first_int_array):
+                        if if_jump:
+                            if_jump = False
                         else:
-                            the_real_array_cards.append(vul)
+                            if len_first_int_array > 5 and vul == 1 and first_int_array[index + 1] == 0:
+                                the_real_array_cards.append(10)
+                                len_first_int_array -= 1
+                                if_jump = True
 
-                array.append(the_real_array_cards)
+                            else:
+                                the_real_array_cards.append(vul)
+
+                    array.append(the_real_array_cards)
         return StartGameMessage(array[:])
 
 
-# ddd = StartGameMessage(1, 2, [2, 4, 4, 9, 10], 9)
-# s1 = ddd.encode()
-# print(s1)
-#
-# prin = StartGameMessage().decode(s1).array
-# print(prin)
-#
-#
+ddd = StartGameMessage("fdghrth", "vvv", "dgbh")
+s1 = ddd.encode()
+print(s1)
+
+prin = StartGameMessage().decode(s1).array
+print(prin)
+
+
