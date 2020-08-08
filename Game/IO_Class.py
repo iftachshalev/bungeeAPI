@@ -27,8 +27,9 @@ class IO_Class:
             # s2 = ddd.decode(s1).array
             # print(s2)
             self.conn.sendall(s1)
-            ack = self.conn.recv(1024)
-            if ack != b"ack":
+            ack1 = self.conn.recv(1024)
+            ack = StartGameMessage().decode(ack1).array[0]
+            if ack != "ack":
                 raise ConnectionError("ack is'nt receive")
 
         #     ddd = StartGameMessage(33, 4445, 665, 8767)
@@ -58,12 +59,14 @@ class Input:
             if self.conn:
                 StartGameMessag = StartGameMessage("I")
                 self.conn.sendall(StartGameMessag.encode())
-                ack = self.conn.recv(1024)
-                if ack != b"ack":
+                ack1 = self.conn.recv(1024)
+                ack = StartGameMessage().decode(ack1).array[0]
+                if ack != "ack":
                     raise ConnectionError("ack is'nt receive")
                 StartGameMessag = StartGameMessage(" Action:  B [Bungee]  Q [Quit]\n >>>")
                 self.conn.sendall(StartGameMessag.encode())
-                what_to_do = self.conn.recv(1024).StartGameMessage().decode().array
+                what_to_do1 = self.conn.recv(1024)
+                what_to_do = StartGameMessage().decode(what_to_do1).array[0]
             else:
                 what_to_do = input(" Action:  B [Bungee]  Q [Quit]\n >>>")
 
@@ -143,5 +146,5 @@ class Input:
 # res_turn = inp.get_turn(1, [2, 3, 5, 7, 8], 9, 8, False, 25)
 # print(res_turn)
 
-d = IO_Class(False, False)
-d.print("33")
+# d = IO_Class(False, False)
+# d.print("33")

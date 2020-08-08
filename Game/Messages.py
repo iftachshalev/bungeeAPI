@@ -88,11 +88,11 @@ class StartGameMessage:
         return StartGameMessage(array[:])
 
 
-ddd = StartGameMessage("fdghrth", "vvv", "dgbh")
-s1 = ddd.encode()
-print(s1)
-
-prin = StartGameMessage().decode(s1).array
-print(prin)
-
+# ddd = StartGameMessage("fdghrth", "dvbvfsddd", "rrrrrr")
+# s1 = ddd.encode()
+# print(s1)
+#
+# prin = StartGameMessage().decode(s1).array
+# print(prin)
+#
 
