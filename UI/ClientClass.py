@@ -48,6 +48,7 @@ class Client:
             self.dict["PlayerNumber"] = self.data_in_array[1]
             self.dict["Cards"] = self.data_in_array[2]
             self.dict["LuckyCard"] = self.data_in_array[3]
+            self.dict["LastPlayer"] = self.data_in_array[4]
         if self.dict["State"] == 2:
             self.dict["LastPlayer"] = self.data_in_array[1]
             self.dict["BungeeMode"] = self.data_in_array[2]
