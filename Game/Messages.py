@@ -33,31 +33,6 @@ class StartGameMessage:
                 array.append(e)
             except ValueError:
 
-                # first_list_of_array = list(i)
-                # arbif = []
-                # for i in first_list_of_array:
-                #     try:
-                #         int(i)
-                #         arbif.append(int(i))
-                #     except:
-                #         pass
-                # len_arbif = len(arbif)
-                # min_array_to_array = []
-                # if_jump = False
-                # for index, vul in enumerate(ar):
-                #     if if_jump:
-                #         if_jump = False
-                #     else:
-                #         if len_arbif > 5 and vul == 1 and arbif[index + 1] == 0:
-                #             min_array_to_array.append(10)
-                #             len_arbif -= 1
-                #             if_jump = True
-                #
-                #         else:
-                #             min_array_to_array.append(vul)
-                #
-                # array.append(min_array_to_array)
-                # print(min_array_to_array)
                 if i[0] != "[":
                     array.append(i)
                 else:
