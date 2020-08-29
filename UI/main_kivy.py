@@ -7,7 +7,7 @@ data = {
     "PlayerNumber": 2,
     "Cards": [1, 2, 3, 4, 5],
     "LuckyCard": 5,
-    "LastPlayer": [False]
+    "LastPlayer": ["False"]  # [3, 3, 3, "False"]
 }
 
 

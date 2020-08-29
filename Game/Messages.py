@@ -37,39 +37,28 @@ class StartGameMessage:
                     if i[0] != "[":
                         array.append(i)
                     else:
-                        first_str_array = list(i)
-                        first_int_array = []
-                        for i in first_str_array:
+                        t = []
+                        str = i[1:-1]
+                        if str[0] == "[" and str[-1] == "[":
+                            str = str[1:-1]
+                        str = str.split(", ")
+                        for i in range(len(str)):
                             try:
-                                int(i)
-                                first_int_array.append(int(i))
+                                t.append(int(str[i]))
                             except:
-                                pass
-                        len_first_int_array = len(first_int_array)
-                        the_real_array_cards = []
-                        if_jump = False
-                        for index, vul in enumerate(first_int_array):
-                            if if_jump:
-                                if_jump = False
-                            else:
-                                if len_first_int_array > 5 and vul == 1 and first_int_array[index + 1] == 0:
-                                    the_real_array_cards.append(10)
-                                    len_first_int_array -= 1
-                                    if_jump = True
-
-                                else:
-                                    the_real_array_cards.append(vul)
-
-                        array.append(the_real_array_cards)
+                                t.append(str[i])
+                        array.append(t)
 
         return StartGameMessage(array[:])
 
 
-# ddd = StartGameMessage("fdghrth", "dvbvfsddd", "rrrrrr")
+# t1 = [1, 2, [10, 6, 4, 3], 3, [5, 5, False]]
+# t2 = []
+# ddd = StartGameMessage(t1[:])
 # s1 = ddd.encode()
 # print(s1)
 #
 # prin = StartGameMessage().decode(s1).array
 # print(prin)
-#
+
 
