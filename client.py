@@ -12,11 +12,13 @@ s.connect((HOST, PORT))
 
 while True:
     data = s.recv(1024)
-    data = StartGameMessage().decode(data).array[0]
+    try:
+        data = StartGameMessage().decode(data).array[0]
+    except IndexError:
+        data = ""
 
     ddd = StartGameMessage("ack")
     s.send(ddd.encode())
-
 
     if data == "Q":
         print("The Game Break")
@@ -33,3 +35,19 @@ while True:
         print(data)
 
 s.close()
+
+
+# import sched, time
+# s = sched.scheduler(time.time, time.sleep)
+#
+#
+# def do_something(sc):
+#     print("Doing stuff...")
+#     # do your stuff
+#     s.enter(1, 1, do_something, (sc,))
+#
+#
+# s.enter(1, 1, do_something, (s,))
+# s.run()
+#
+# print(34)

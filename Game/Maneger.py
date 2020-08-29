@@ -23,8 +23,8 @@ class Stat(Enum):
 class Manager:
     USE_INTERNET = False
     OUTPUT_TO_FILE = False
-    OUTPUT_TO_SCREEN = False
-    LOG_FILE = '../HelpFile/log.txt'
+    OUTPUT_TO_SCREEN = True
+    LOG_FILE = 'log.txt'
     HOW_WOCH = False
 
     def __init__(self, conn=None, array_param=None):
@@ -206,7 +206,6 @@ class Manager:
     def do_end(self):
         self.players_score = [i.my__score() for i in self.player]
         minimaly = min(self.players_score)
-        self.out.print(str(minimaly))
         numin = 0
         minscore = self.players_score[self.turn]
         minplayer_index = self.turn
@@ -216,7 +215,6 @@ class Manager:
                 minscore = self.players_score[tur]
                 minplayer_index = tur
             tur = (tur + 1) % self.num_user
-        self.out.print(" ")
         self.out.print("Player Number: {} Is The Winner!!!!!!!!!!!!!!!!".format(minplayer_index + 1))
         self.out.print(f"his score - {minscore}")
         return minplayer_index
