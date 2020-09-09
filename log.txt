@@ -1,64 +1,81 @@
 ------------------------------
-Player Number: 2
- Score: 31
- Cards: [1, 6, 7, 7, 10]	Lucky card: 5, Last_card: None,
- throw: [1, 6, 7, 7, 10], stack: True
-ERROR! You cannot throw unequal cards
-------------------------------
-Player Number: 2
- Score: 31
- Cards: [1, 6, 7, 7, 10]	Lucky card: 5, Last_card: None,
- throw: [7, 7], stack: True
- get card: 7
-well done! you stick, rand: 0.9556145771029065
- Score: 17
- Cards: [1, 6, 10]	Lucky card: 5, Last_card: 7,
-------------------------------
 Player Number: 1
- Score: 25
- Cards: [5, 3, 4, 8, 10]	Lucky card: 5, Last_card: 7,
- throw: [10], stack: True
- get card: 5
- Score: 15
- Cards: [5, 3, 4, 5, 8]	Lucky card: 5, Last_card: 10,
-------------------------------
-Player Number: 2
- Score: 17
- Cards: [1, 6, 10]	Lucky card: 5, Last_card: 10,
- throw: [6], stack: False
- get card: 10
- Score: 21
- Cards: [1, 10, 10]	Lucky card: 5, Last_card: 6,
-------------------------------
-Player Number: 2
- Score: 21
- Cards: [1, 10, 10]	Lucky card: 5, Last_card: 6,
- throw: [10, 10], stack: True
- get card: 2
- Score: 3
- Cards: [1, 2]	Lucky card: 5, Last_card: 10,
-------------------------------
-Player Number: 1
- Score: 15
- Cards: [5, 3, 4, 5, 8]	Lucky card: 5, Last_card: 10,
- throw: [8], stack: True
+ Score: 13
+ Cards: [8, 0, 0, 6, 7]	Lucky card: 8, Last_card: None,
+ throw: [7], stack: True
  get card: 6
- Score: 13
- Cards: [5, 5, 3, 4, 6]	Lucky card: 5, Last_card: 8,
+ Score: 12
+ Cards: [8, 0, 0, 6, 6]	Lucky card: 8, Last_card: 7,
 ------------------------------
 Player Number: 2
- Score: 3
- Cards: [1, 2]	Lucky card: 5, Last_card: 8,
+ Score: 18
+ Cards: [1, 2, 2, 3, 10]	Lucky card: 8, Last_card: 7,
+ throw: [2, 2], stack: True
+ get card: 5
+ Score: 19
+ Cards: [1, 3, 5, 10]	Lucky card: 8, Last_card: 2,
 ------------------------------
 Player Number: 1
- It is Bungee mode NOW!!!!
- Score: 13
- Cards: [5, 5, 3, 4, 6]	Lucky card: 5, Last_card: 8,
- throw: [6], stack: True
+ Score: 12
+ Cards: [8, 0, 0, 6, 6]	Lucky card: 8, Last_card: 2,
+ throw: [6, 6], stack: True
  get card: 5
- Score: 7
- Cards: [5, 3, 4, 5, 5]	Lucky card: 5, Last_card: 6,
-3
+ Score: 5
+ Cards: [8, 0, 0, 5]	Lucky card: 8, Last_card: 6,
+------------------------------
+Player Number: 2
+ Score: 19
+ Cards: [1, 3, 5, 10]	Lucky card: 8, Last_card: 6,
+ throw: [10], stack: True
+ get card: 9
+ Score: 18
+ Cards: [1, 3, 5, 9]	Lucky card: 8, Last_card: 10,
+------------------------------
+Player Number: 1
+ Score: 5
+ Cards: [8, 0, 0, 5]	Lucky card: 8, Last_card: 10,
+ throw: [5], stack: True
+ get card: 10
+ Score: 10
+ Cards: [8, 0, 0, 10]	Lucky card: 8, Last_card: 5,
+------------------------------
+Player Number: 2
+ Score: 18
+ Cards: [1, 3, 5, 9]	Lucky card: 8, Last_card: 5,
+ throw: [9], stack: False
+ get card: 5
+ Score: 14
+ Cards: [1, 3, 5, 5]	Lucky card: 8, Last_card: 9,
+------------------------------
+Player Number: 1
+ Score: 10
+ Cards: [8, 0, 0, 10]	Lucky card: 8, Last_card: 9,
+ throw: [10], stack: True
+ get card: 1
+ Score: 1
+ Cards: [8, 0, 0, 1]	Lucky card: 8, Last_card: 10,
+------------------------------
+Player Number: 2
+ Score: 14
+ Cards: [1, 3, 5, 5]	Lucky card: 8, Last_card: 10,
+ throw: [5, 5], stack: True
+ get card: 10
+ Score: 14
+ Cards: [1, 3, 10]	Lucky card: 8, Last_card: 5,
+------------------------------
+Player Number: 1
+ Score: 1
+ Cards: [8, 0, 0, 1]	Lucky card: 8, Last_card: 5,
+------------------------------
+Player Number: 2
+ It is Bungee mode NOW!!!!
+ Score: 14
+ Cards: [1, 3, 10]	Lucky card: 8, Last_card: 5,
+ throw: [10], stack: True
+ get card: 1
+ Score: 5
+ Cards: [1, 1, 3]	Lucky card: 8, Last_card: 10,
+1
 
-Player Number: 2 Is The Winner!!!!!!!!!!!!!!!!
-his score - 3
+Player Number: 1 Is The Winner!!!!!!!!!!!!!!!!
+his score - 1
