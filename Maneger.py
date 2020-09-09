@@ -38,6 +38,7 @@ class Manager:
         self.who_say_bungee = 0
         self.break_ = 0
         self.array_param = array_param
+        self.sam = 0
 
         self.func_dict = {
             0: None,

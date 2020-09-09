@@ -50,7 +50,7 @@ class Player:
         if from_stack:
             card = self.game.card_from_stack()
         else:
-            card, success = self.game.card_from_lost()
+            card = self.game.card_from_lost()
 
         if self.user_func is None:
             self.print_func(f" get card: {card}")

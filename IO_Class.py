@@ -33,7 +33,7 @@ class Input:
             my_func = self.user_funcs
             return my_func(my_cards, lucky_card, lost_card, bungee_mode, score)
         else:
-            what_to_do = input("Action:  B [Bungee]  Q [Quit]\n>>>")
+            what_to_do = input(" Action:  B [Bungee]  Q [Quit]\n >>>")
 
             say_bungee = False
             from_stack = True
@@ -49,7 +49,7 @@ class Input:
                     error_msg = 'Error: score > 5, cant say bungee'
             elif what_to_do == "Q":
                 to_quit = True
-            elif len(what_to_do) >= 2 & len(what_to_do) < len(my_cards)+1:
+            elif len(what_to_do) >= 2 & len(what_to_do) <= len(my_cards)+1:
                 is_from_stack = what_to_do[-1]
                 if is_from_stack == "T":
                     from_stack = True

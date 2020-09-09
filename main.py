@@ -33,7 +33,7 @@ from Maneger import Manager
 #             ROBOT_ARRAY.append(input_2)
 #             print(" The player saved!")
 #             succses = True
-ROBOT_ARRAY = [1, 1, 2, 3, 1, 2, 3]
+ROBOT_ARRAY = [0, 0]
 d = Manager(ROBOT_ARRAY)
 t = d.run()
 print(t["score"])
