@@ -1,4 +1,3 @@
-# from Bunjy_Game import Game
 import random
 import copy
 from IO_Class import Input
@@ -8,9 +7,8 @@ class Player:
 
     # lucky card
 
-    def __init__(self, game, print_func):
+    def __init__(self, game):
         self.game = game
-        self.print_func = print_func
         self.my_cards = []
         for i in range(5):
             card = self.game.card_from_stack()
@@ -21,7 +19,6 @@ class Player:
         self.bungee_mode = False
         self.my_score = self.my__score()
         self.stick_factor = 0.5
-
 
     # def say_bungee(self):
     #     if sum(self.my_cards) <= 5:
@@ -34,16 +31,16 @@ class Player:
         self.lost_card = self.game.get_lost_card()
 
         # when try to get card from empty lost list
-        if not from_stack and self.lost_card is None:
-            self.print_func("ERROR! You cant put card from lost if you play first")
-            return False, 0
+        # if not from_stack and self.lost_card is None:
+        #     # self.print_func("ERROR! You cant put card from lost if you play first")
+        #     return False, 0
 
         # check throw cards are equal
         throw_index.sort()
-        for j in range(len(throw_index) - 1):
-            if self.my_cards[throw_index[j]] != self.my_cards[throw_index[j + 1]]:
-                self.print_func("ERROR! You cannot throw unequal cards")
-                return False, 0
+        # for j in range(len(throw_index) - 1):
+        #     if self.my_cards[throw_index[j]] != self.my_cards[throw_index[j + 1]]:
+        #         # self.print_func("ERROR! You cannot throw unequal cards")
+        #         return False, 0
 
         # get card
         if from_stack:
@@ -51,7 +48,7 @@ class Player:
         else:
             card = self.game.card_from_lost()
 
-        self.print_func(f" get card: {card}")
+        # self.print_func(f" get card: {card}")
 
         # throw the cards
         for i in range(len(throw_index)):
@@ -63,13 +60,13 @@ class Player:
         if from_stack and card == old_my_cards[throw_index[0]]:
             rand = random.random()
             if rand > self.stick_factor:
-                self.print_func(" well done! you stick, rand: {}".format(rand))
+                print(" !!!!!well done! you stick, rand: {}".format(rand))
                 self.game.throw_card(card)
                 if card == 6:
                     return True, 1
                 return True, 0
             else:
-                self.print_func(" oh no! you can't stick, rand: {}".format(rand))
+                print(" !!!!!oh no! you can't stick, rand: {}".format(rand))
                 self.my_cards.append(card)
                 return True, 0
         else:
