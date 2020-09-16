@@ -27,20 +27,11 @@ class Player:
     #         self.print_func("ERROR!")
 
     def turn(self, throw_index, from_stack):
+
+        do_stick = None
+
         old_my_cards = copy.copy(self.my_cards)
         self.lost_card = self.game.get_lost_card()
-
-        # when try to get card from empty lost list
-        # if not from_stack and self.lost_card is None:
-        #     # self.print_func("ERROR! You cant put card from lost if you play first")
-        #     return False, 0
-
-        # check throw cards are equal
-        throw_index.sort()
-        # for j in range(len(throw_index) - 1):
-        #     if self.my_cards[throw_index[j]] != self.my_cards[throw_index[j + 1]]:
-        #         # self.print_func("ERROR! You cannot throw unequal cards")
-        #         return False, 0
 
         # get card
         if from_stack:
@@ -48,30 +39,25 @@ class Player:
         else:
             card = self.game.card_from_lost()
 
-        # self.print_func(f" get card: {card}")
-
         # throw the cards
         for i in range(len(throw_index)):
             self.game.throw_card(self.my_cards[throw_index[- (i + 1)]])
             del(self.my_cards[throw_index[-(i + 1)]])
 
         # try to stick
-        # if card:
         if from_stack and card == old_my_cards[throw_index[0]]:
             rand = random.random()
             if rand > self.stick_factor:
-                print(" !!!!!well done! you stick, rand: {}".format(rand))
+                do_stick = True
                 self.game.throw_card(card)
                 if card == 6:
                     return True, 1
-                return True, 0
             else:
-                print(" !!!!!oh no! you can't stick, rand: {}".format(rand))
+                do_stick = False
                 self.my_cards.append(card)
-                return True, 0
         else:
             self.my_cards.append(card)
-            return True, 0
+        return 0, do_stick
 
     def get_state(self):
         lost_card = self.game.get_lost_card()
