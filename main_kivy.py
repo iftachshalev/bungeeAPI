@@ -1,14 +1,9 @@
 from kivy.app import App
 from kivy.properties import ObjectProperty
 from kivy.uix.widget import Widget
-from ClientClass import Client
-data = {
-    "State": 1,
-    "PlayerNumber": 2,
-    "Cards": [1, 2, 3, 4, 5],
-    "LuckyCard": 5,
-    "LastPlayer": [False]
-}
+from copy import copy
+from time import sleep
+from Maneger import Play
 
 
 class MyFloatLayout(Widget):
@@ -31,18 +26,20 @@ class MyFloatLayout(Widget):
 
     def __init__(self, **kwargs):
         super(MyFloatLayout, self).__init__(**kwargs)
-        self.my_cards = data["Cards"]
-        self.num_player = data["PlayerNumber"]
+        self.play = Play(2)
+        obj = self.play.get_state()
+        self.update_state(obj)
+        self.my_cards = [0, 3, 3, 6, 10]
+        self.num_player = 2
         self.throw_array = []
         self.array_cards = [self.btn_card_1, self.btn_card_2, self.btn_card_3, self.btn_card_4,
                             self.btn_card_5]
-        self.lucky_card = data["LuckyCard"]
-        self.last_player = data["LastPlayer"]
+        self.lucky_card = 5
+        self.last_player = [2, "T"]
         self.update_cards()
-        self.update_lucky_card()
-        self.bungee_disabled()
-        # self.client = Client(self.HOST, self.PORT)
-        # self.client.connect()
+
+    def update_state(self, obj):
+        pass
 
     def update_cards(self):
         self.throw_array = []
@@ -56,19 +53,19 @@ class MyFloatLayout(Widget):
         self.update_lost_card()
         self.update_last_player()
         self.update_num_player()
+        self.update_lucky_card()
 
     def bungee_disabled(self):
         if sum(self.my_cards) >= 6:
             self.btn_bungee.disabled = True
 
     def click_btn_card(self, instans):
-        print(data)
         if instans.state == "down":
             self.throw_array.append(instans)
             self.btn_bungee.disabled = True
 
             self.btn_lost.disabled = False
-            if not data["LastPlayer"][0]:
+            if not self.last_player[0]:
                 self.btn_lost.disabled = True
             self.btn_stack.disabled = False
             for btn_cards in self.array_cards:
@@ -115,21 +112,29 @@ class MyFloatLayout(Widget):
             if str(card) == self.throw_array[0].text:
                 array.append(card)
                 t += 1
-
         if instans.text[0] == "l":
             from_stack = "F"
 
         else:
             from_stack = "T"
-        print(array, from_stack)
+        choice = ""
+        old_my_cards = copy(self.my_cards)
+        for i in range(len(array)):
+            for j in range(len(old_my_cards)):
+                if array[i] == old_my_cards[j]:
+                    choice += str(j)
+                    old_my_cards[j] = 'False'
+                    break
+        choice += from_stack
+        print(choice)
 
     def update_lost_card(self):
         if not self.last_player[0]:
             self.btn_lost.text = "lost: #"
             self.btn_lost.disabled = True
         else:
-            self.btn_lost.disabled = False
-            self.btn_lost.text = "lost: " + str(data["LastPlayer"][0])
+            # self.btn_lost.disabled = False
+            self.btn_lost.text = "lost: " + str(self.last_player[0])
 
     def update_last_player(self):
         if self.last_player[-1] == "T":
