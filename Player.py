@@ -1,11 +1,8 @@
 import random
 import copy
-from IO_Class import Input
 
 
 class Player:
-
-    # lucky card
 
     def __init__(self, game):
         self.game = game
@@ -20,12 +17,6 @@ class Player:
         self.my_score = self.my__score()
         self.stick_factor = 0.5
 
-    # def say_bungee(self):
-    #     if sum(self.my_cards) <= 5:
-    #         self.bungee_mode = True
-    #     else:
-    #         self.print_func("ERROR!")
-
     def turn(self, throw_index, from_stack):
 
         do_stick = None
@@ -38,7 +29,7 @@ class Player:
             card = self.game.card_from_stack()
         else:
             card = self.game.card_from_lost()
-
+        print(f"  Get - {card}")
         # throw the cards
         for i in range(len(throw_index)):
             self.game.throw_card(self.my_cards[throw_index[- (i + 1)]])
@@ -57,6 +48,7 @@ class Player:
                 self.my_cards.append(card)
         else:
             self.my_cards.append(card)
+        self.sort_array()
         return 0, do_stick
 
     def get_state(self):
@@ -73,9 +65,13 @@ class Player:
         return sam
 
     def __repr__(self):
-        lost_card = self.game.get_lost_card()
-        return f" Score: {self.my__score()}\n Cards: {self.my_cards}\t" \
-               f"Lucky card: {self.lucky_card}, Last_card: {lost_card},"
+        return {
+            "score": self.my__score(),
+            "cards": self.my_cards,
+            "luckyCard": self.lucky_card,
+            "lostCard": self.game.get_lost_card(),
+            "bungeeMode": self.bungee_mode
+           }
 
     def get_lucky_card_to_zero(self):
         for i in range(len(self.my_cards)):

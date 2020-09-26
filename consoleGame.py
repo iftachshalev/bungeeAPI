@@ -1,40 +1,28 @@
-from Maneger import Manager
+from Maneger import Play
 
 
 def game(num):
-    gameModule = Manager(num)
-    to_exit = False
-    global_turn = None
-    while not to_exit:
-        turn, bungee_mode = gameModule.get_some_variables()
-        if turn == global_turn:
-            min_player_index, min_score, players_score = gameModule.do_end()
-            print(f"Player {min_player_index + 1} is the winner!!   his score - {min_score}   all the players scores are - {players_score}")
-            gameModule.do_break()
-        print(f"Player number {turn + 1}")
-        print(f"Bungee mode is: {bungee_mode}")
-        print(gameModule.get_state(True))
-        choice = input(" Enter your choice: ")
-        if choice == "Q":
-            gameModule.do_break()
-        elif choice == "B":
-            global_turn = turn
-            gameModule.do_bungee()
-        else:
-            to_throw = list(choice[:-1])
-            to_throw = [int(i) for i in to_throw]
-            if choice[-1] == "T":
-                from_stack = True
-            else:
-                from_stack = False
-            stick = gameModule.do_game(to_throw, from_stack)
-            if stick:
-                print("Oh no!!! You cant stick!!")
-            if stick is False:
-                print("Oh Yeh!!! You stick!!")
-            print("")
-            print(gameModule.get_state(False))
-        print("====================================")
+    play = Play(num)
+    while True:
+        if play.check_if_end():
+            min_player_index, min_score, players_score = play.do_end()
+            print(f"Player {min_player_index + 1} is the winner!! His score - {min_score}!! All the players' score - {players_score}")
+            play.do_break()
+        state = play.get_state()
+        print(f'Player number {state["turn"] + 1}\n  Bungee mode - {state["bungeeMode"]}\n  Your score - {state["score"]}'
+              f'\n  Your cards - {state["cards"]}  Lucky card - {state["luckyCard"]}  Lost card - {state["lostCard"]}'
+              f'\n  The optionals - B[Bungee] Q[quit] [turn]')
+        choice = input("  Enter your chose: ")
+        if choice == "":
+            print("invalid!!!!")
+        is_stick = play.do_game(choice)
+        state = play.get_state(1)
+        if is_stick:
+            print("  Wel Done!! You Stick!!")
+        elif is_stick is False:
+            print("  Oho No!! You Cant Stick!!")
+        print(f'  Your score - {state["score"]}'
+              f'\n  Your cards - {state["cards"]}  Lost card - {state["lostCard"]}\n======================================\n')
 
 
 game(3)
