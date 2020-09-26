@@ -18,30 +18,32 @@ class MyFloatLayout(Widget):
     btn_bungee = ObjectProperty(None)
 
     lbl_lucky_card = ObjectProperty(None)
-    lbl_last_player = ObjectProperty(None)
+    lbl_bungee_mode = ObjectProperty(None)
     lbl_num_player = ObjectProperty(None)
-    lost_card = None
-    HOST = "127.0.0.1"
-    PORT = 65432
 
     def __init__(self, **kwargs):
         super(MyFloatLayout, self).__init__(**kwargs)
-        self.play = Play(2)
+        self.num_player = None
+        self.my_cards = None
+        self.lucky_card = None
+        self.lost_card = None
+        self.bungee_mode = None
+        self.play = Play(56)
         obj = self.play.get_state()
         self.update_state(obj)
-        self.my_cards = [0, 3, 3, 6, 10]
-        self.num_player = 2
         self.throw_array = []
         self.array_cards = [self.btn_card_1, self.btn_card_2, self.btn_card_3, self.btn_card_4,
                             self.btn_card_5]
-        self.lucky_card = 5
-        self.last_player = [2, "T"]
-        self.update_cards()
+        self.update()
 
     def update_state(self, obj):
-        pass
+        self.num_player = obj["turn"] + 1
+        self.my_cards = obj["cards"]
+        self.lucky_card = obj["luckyCard"]
+        self.lost_card = obj["lostCard"]
+        self.bungee_mode = obj["bungeeMode"]
 
-    def update_cards(self):
+    def update(self):
         self.throw_array = []
         for i in range(5):
             try:
@@ -51,13 +53,9 @@ class MyFloatLayout(Widget):
         self.bungee_disabled()
         self.disabled_empty_btn()
         self.update_lost_card()
-        self.update_last_player()
         self.update_num_player()
         self.update_lucky_card()
-
-    def bungee_disabled(self):
-        if sum(self.my_cards) >= 6:
-            self.btn_bungee.disabled = True
+        self.update_bungee_mode()
 
     def click_btn_card(self, instans):
         if instans.state == "down":
@@ -65,7 +63,7 @@ class MyFloatLayout(Widget):
             self.btn_bungee.disabled = True
 
             self.btn_lost.disabled = False
-            if not self.last_player[0]:
+            if not self.lost_card:
                 self.btn_lost.disabled = True
             self.btn_stack.disabled = False
             for btn_cards in self.array_cards:
@@ -94,14 +92,6 @@ class MyFloatLayout(Widget):
 
         self.bungee_disabled()
 
-    def disabled_empty_btn(self):
-        for i in self.array_cards:
-            if i.text == "":
-                i.disabled = True
-
-    def update_lucky_card(self):
-        self.lbl_lucky_card.text = "Lucky card - " + str(self.lucky_card)
-
     def return_turn(self, instans):
 
         array = []
@@ -128,29 +118,34 @@ class MyFloatLayout(Widget):
         choice += from_stack
         print(choice)
 
+    def disabled_empty_btn(self):
+        for i in self.array_cards:
+            if i.text == "":
+                i.disabled = True
+            else:
+                i.disabled = False
+
+    def bungee_disabled(self):
+        if sum(self.my_cards) >= 6:
+            self.btn_bungee.disabled = True
+        else:
+            self.btn_bungee.disabled = False
+
+    def update_lucky_card(self):
+        self.lbl_lucky_card.text = "Lucky card - " + str(self.lucky_card)
+
     def update_lost_card(self):
-        if not self.last_player[0]:
+        if not self.lost_card:
             self.btn_lost.text = "lost: #"
             self.btn_lost.disabled = True
         else:
-            # self.btn_lost.disabled = False
-            self.btn_lost.text = "lost: " + str(self.last_player[0])
-
-    def update_last_player(self):
-        if self.last_player[-1] == "T":
-            where = "Stack"
-            self.lbl_last_player.text = "last player throw: " + str(self.last_player[0]) + " and get from the " + where
-
-        elif not self.last_player[0]:
-            self.lbl_last_player.text = "You Are The First Player!"
-
-        else:
-            where = "Lost"
-            self.lbl_last_player.text = "last player throw: " + str(self.last_player[0]) + " and get from the " + where
+            self.btn_lost.text = "lost: " + str(self.lost_card)
 
     def update_num_player(self):
         self.lbl_num_player.text = "player number " + str(self.num_player) + ":"
 
+    def update_bungee_mode(self):
+        self.lbl_bungee_mode.text = "Bungee mode - " + str(self.bungee_mode)
 
 class MainKivyApp(App):
 

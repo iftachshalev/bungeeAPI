@@ -25,4 +25,4 @@ def game(num):
               f'\n  Your cards - {state["cards"]}  Lost card - {state["lostCard"]}\n======================================\n')
 
 
-game(3)
+game(555)
