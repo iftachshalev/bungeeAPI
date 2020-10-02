@@ -2,7 +2,6 @@ from kivy.app import App
 from kivy.properties import ObjectProperty
 from kivy.uix.widget import Widget
 from copy import copy
-from time import sleep
 from Maneger import Play
 
 
@@ -28,27 +27,29 @@ class MyFloatLayout(Widget):
         self.lucky_card = None
         self.lost_card = None
         self.bungee_mode = None
-        self.play = Play(56)
-        obj = self.play.get_state()
-        self.update_state(obj)
+        self.play = Play(3)
+        self.obj = self.play.get_state()
+        self.update_state()
         self.throw_array = []
         self.array_cards = [self.btn_card_1, self.btn_card_2, self.btn_card_3, self.btn_card_4,
                             self.btn_card_5]
         self.update()
 
-    def update_state(self, obj):
-        self.num_player = obj["turn"] + 1
-        self.my_cards = obj["cards"]
-        self.lucky_card = obj["luckyCard"]
-        self.lost_card = obj["lostCard"]
-        self.bungee_mode = obj["bungeeMode"]
+    def update_state(self):
+        self.num_player = self.obj["turn"] + 1
+        self.my_cards = self.obj["cards"]
+        self.lucky_card = self.obj["luckyCard"]
+        self.lost_card = self.obj["lostCard"]
+        self.bungee_mode = self.obj["bungeeMode"]
 
     def update(self):
         self.throw_array = []
         for i in range(5):
+            self.array_cards[i].state = "normal"
             try:
                 self.array_cards[i].text = str(self.my_cards[i])
-            except IndexError:
+            except:
+                self.array_cards[i].text = ""
                 self.array_cards[i].disablde = True
         self.bungee_disabled()
         self.disabled_empty_btn()
@@ -88,35 +89,51 @@ class MyFloatLayout(Widget):
             self.btn_lost.disabled = True
             self.btn_stack.disabled = True
             for btn_cards in self.array_cards:
-                btn_cards.disabled = False
+                if btn_cards.text != "":
+                    btn_cards.disabled = False
+                else:
+                    btn_cards.disabled = True
 
         self.bungee_disabled()
 
     def return_turn(self, instans):
-
-        array = []
-        t = 0
-        for i, card in enumerate(self.my_cards):
-            if t == len(self.throw_array):
-                break
-            if str(card) == self.throw_array[0].text:
-                array.append(card)
-                t += 1
-        if instans.text[0] == "l":
-            from_stack = "F"
-
+        if instans.text == self.btn_bungee.text:
+            choice = "B"
         else:
-            from_stack = "T"
-        choice = ""
-        old_my_cards = copy(self.my_cards)
-        for i in range(len(array)):
-            for j in range(len(old_my_cards)):
-                if array[i] == old_my_cards[j]:
-                    choice += str(j)
-                    old_my_cards[j] = 'False'
+            array = []
+            t = 0
+            for i, card in enumerate(self.my_cards):
+                if t == len(self.throw_array):
                     break
-        choice += from_stack
-        print(choice)
+                if str(card) == self.throw_array[0].text:
+                    array.append(card)
+                    t += 1
+            if instans.text[0] == "l":
+                from_stack = "F"
+
+            else:
+                from_stack = "T"
+            choice = ""
+            old_my_cards = copy(self.my_cards)
+            for i in range(len(array)):
+                for j in range(len(old_my_cards)):
+                    if array[i] == old_my_cards[j]:
+                        choice += str(j)
+                        old_my_cards[j] = 'False'
+                        break
+            choice += from_stack
+        is_stick = self.play.do_game(choice)
+        if is_stick:
+            print("  Wel Done!! You Stick!!")
+        elif is_stick is False:
+            print("  Oho No!! You Cant Stick!!")
+        if self.play.check_if_end():
+            min_player_index, min_score, players_score = self.play.do_end()
+            print(f"Player {min_player_index + 1} is the winner!! His score - {min_score}!! All the players' score - {players_score}")
+            self.play.do_break()
+        self.obj = self.play.get_state()
+        self.update_state()
+        self.update()
 
     def disabled_empty_btn(self):
         for i in self.array_cards:
@@ -126,7 +143,7 @@ class MyFloatLayout(Widget):
                 i.disabled = False
 
     def bungee_disabled(self):
-        if sum(self.my_cards) >= 6:
+        if self.obj["score"] >= 6:
             self.btn_bungee.disabled = True
         else:
             self.btn_bungee.disabled = False
