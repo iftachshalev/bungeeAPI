@@ -4,10 +4,14 @@ import copy
 
 class Game:
     cards_type = [0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6,
+<<<<<<< HEAD:Game/Bunjy_Game.py
                   6, 6, 6, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10,
                   0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6,
                   6, 6, 6, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10
                   ]
+=======
+                  6, 6, 6, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10]
+>>>>>>> GameAPIGUI:Bunjy_Game.py
 
     # it is the init
     def __init__(self):
@@ -34,9 +38,6 @@ class Game:
     # get card from stack
     def card_from_stack(self):
         if len(self.cards) == 0:
-            # self.cards = self.lost_cards[:-1]
-            # random.shuffle(self.cards)
-            # del(self.lost_cards[:-1])
             self.reset_cards()
         card = self.cards[-1]
         del(self.cards[-1])
@@ -44,10 +45,9 @@ class Game:
 
     # get card from lost cards
     def card_from_lost(self):
-        success = True
         card = self.lost_cards[-1]
         del (self.lost_cards[-1])
-        return card, success
+        return card
 
     def __repr__(self):
         return f"cards - {self.cards}\n, lucky card - {self.lucky_card}, lost_cards - {self.lost_cards}"
@@ -63,7 +63,10 @@ class Game:
         except:
             return None
 
+<<<<<<< HEAD:Game/Bunjy_Game.py
     # get lucky card that not == to 6 or 0
+=======
+>>>>>>> GameAPIGUI:Bunjy_Game.py
     def get_valid_lucky_card(self):
         while True:
             card = self.cards[-1]

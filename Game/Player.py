@@ -1,16 +1,21 @@
-# from Bunjy_Game import Game
 import random
 import copy
+<<<<<<< HEAD:Game/Player.py
 from Game.IO_Class import Input
+=======
+>>>>>>> GameAPIGUI:Player.py
 
 
 class Player:
 
+<<<<<<< HEAD:Game/Player.py
     # lucky card
 
     def __init__(self, game, print_func, user_func, conn=None):
+=======
+    def __init__(self, game):
+>>>>>>> GameAPIGUI:Player.py
         self.game = game
-        self.print_func = print_func
         self.my_cards = []
         for i in range(5):
             card = self.game.card_from_stack()
@@ -21,6 +26,7 @@ class Player:
         self.bungee_mode = False
         self.my_score = self.my__score()
         self.stick_factor = 0.5
+<<<<<<< HEAD:Game/Player.py
         self.inp = Input(conn, user_func)
         self.user_func = user_func
 
@@ -29,57 +35,50 @@ class Player:
     #         self.bungee_mode = True
     #     else:
     #         self.print_func("ERROR!")
+=======
+>>>>>>> GameAPIGUI:Player.py
 
     def turn(self, throw_index, from_stack):
+
+        do_stick = None
+
         old_my_cards = copy.copy(self.my_cards)
         self.lost_card = self.game.get_lost_card()
-
-        # when try to get card from empty lost list
-        if not from_stack and self.lost_card is None:
-            self.print_func("ERROR! You cant put card from lost if you play first")
-            return False, 0
-
-        # check throw cards are equal
-        throw_index.sort()
-        for j in range(len(throw_index) - 1):
-            if self.my_cards[throw_index[j]] != self.my_cards[throw_index[j + 1]]:
-                self.print_func("ERROR! You cannot throw unequal cards")
-                return False, 0
 
         # get card
         if from_stack:
             card = self.game.card_from_stack()
         else:
-            card, success = self.game.card_from_lost()
-
-        if self.user_func is None:
-            self.print_func(f" get card: {card}")
-
+            card = self.game.card_from_lost()
+        print(f"  Get - {card}")
         # throw the cards
         for i in range(len(throw_index)):
             self.game.throw_card(self.my_cards[throw_index[- (i + 1)]])
             del(self.my_cards[throw_index[-(i + 1)]])
 
         # try to stick
-        # if card:
         if from_stack and card == old_my_cards[throw_index[0]]:
             rand = random.random()
             if rand > self.stick_factor:
+<<<<<<< HEAD:Game/Player.py
                 self.print_func(" well done! you stick, rand: {}".format(rand))
+=======
+                do_stick = True
+>>>>>>> GameAPIGUI:Player.py
                 self.game.throw_card(card)
                 if card == 6:
                     return True, 1
-                return True, 0
             else:
+<<<<<<< HEAD:Game/Player.py
                 self.print_func(" oh no! you can't stick, rand: {}".format(rand))
+=======
+                do_stick = False
+>>>>>>> GameAPIGUI:Player.py
                 self.my_cards.append(card)
-                return True, 0
         else:
             self.my_cards.append(card)
-            return True, 0
-
-        # self.sort_array()
-        # return False, 0
+        self.sort_array()
+        return 0, do_stick
 
     def get_state(self):
         lost_card = self.game.get_lost_card()
@@ -95,9 +94,13 @@ class Player:
         return sam
 
     def __repr__(self):
-        lost_card = self.game.get_lost_card()
-        return f" Score: {self.my__score()}\n Cards: {self.my_cards}\t" \
-               f"Lucky card: {self.lucky_card}, Last_card: {lost_card},"
+        return {
+            "score": self.my__score(),
+            "cards": self.my_cards,
+            "luckyCard": self.lucky_card,
+            "lostCard": self.game.get_lost_card(),
+            "bungeeMode": self.bungee_mode
+           }
 
     def get_lucky_card_to_zero(self):
         for i in range(len(self.my_cards)):
