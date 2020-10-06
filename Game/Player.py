@@ -1,10 +1,20 @@
 import random
 import copy
+<<<<<<< HEAD:Game/Player.py
+from Game.IO_Class import Input
+=======
+>>>>>>> GameAPIGUI:Player.py
 
 
 class Player:
 
+<<<<<<< HEAD:Game/Player.py
+    # lucky card
+
+    def __init__(self, game, print_func, user_func, conn=None):
+=======
     def __init__(self, game):
+>>>>>>> GameAPIGUI:Player.py
         self.game = game
         self.my_cards = []
         for i in range(5):
@@ -16,6 +26,17 @@ class Player:
         self.bungee_mode = False
         self.my_score = self.my__score()
         self.stick_factor = 0.5
+<<<<<<< HEAD:Game/Player.py
+        self.inp = Input(conn, user_func)
+        self.user_func = user_func
+
+    # def say_bungee(self):
+    #     if sum(self.my_cards) <= 5:
+    #         self.bungee_mode = True
+    #     else:
+    #         self.print_func("ERROR!")
+=======
+>>>>>>> GameAPIGUI:Player.py
 
     def turn(self, throw_index, from_stack):
 
@@ -39,12 +60,20 @@ class Player:
         if from_stack and card == old_my_cards[throw_index[0]]:
             rand = random.random()
             if rand > self.stick_factor:
+<<<<<<< HEAD:Game/Player.py
+                self.print_func(" well done! you stick, rand: {}".format(rand))
+=======
                 do_stick = True
+>>>>>>> GameAPIGUI:Player.py
                 self.game.throw_card(card)
                 if card == 6:
                     return True, 1
             else:
+<<<<<<< HEAD:Game/Player.py
+                self.print_func(" oh no! you can't stick, rand: {}".format(rand))
+=======
                 do_stick = False
+>>>>>>> GameAPIGUI:Player.py
                 self.my_cards.append(card)
         else:
             self.my_cards.append(card)
