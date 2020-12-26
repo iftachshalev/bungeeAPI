@@ -26,4 +26,4 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 // <<<<<<<<<< !setup!
 
-app.get("/" (req, res) => res.send("sert"))
+app.get("/", (req, res) => res.send("sert"))
